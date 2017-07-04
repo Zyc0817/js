@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+				/*left: 200px;*/
+				right: 0;
+			}
+			div img{
+				position: absolute;
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript" src="js/perfectMove.js">
+			
+		</script>
+		<div><img src="img/D-2.jpg"/><p>aaaa</p></div>
+		<script type="text/javascript">
+			var oDiv = document.getElementsByTagName("div")[0];
+			oDiv.onmouseover = function(){
+				startMove(this,{width:200});
+			}
+		</script>
+	</body>
+</html>

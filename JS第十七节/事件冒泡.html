@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				padding: 50px;
+			}
+			#div1{
+				background-color: red;
+			}
+			#div2{
+				background-color: blue;
+			}
+			#div3{
+				background-color: magenta;
+				position: absolute;
+				top: 400px;
+			}
+		</style>
+	</head>
+	<body id="body">
+		<div id="div1">
+			<div id="div2">
+				<div id="div3"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var oDiv1 = document.getElementById("div1");
+			var oDiv2 = document.getElementById("div2");
+			var oDiv3 = document.getElementById("div3");
+			var body = document.getElementById("body");
+			function heihei(){
+				alert(this.id);
+			}
+			//给div1的点击事件加了一个绑定函数
+			oDiv1.onclick = heihei;
+			oDiv2.onmouseover = heihei;
+			oDiv3.onclick = heihei;
+			body.onclick = heihei;
+			document.documentElement.onclick = function(){
+				alert("html");
+			}
+			/*
+			 当子标签触发事件后，会向父级传递这个事件
+			 一直追溯到document（html标签），这个过程称为事件冒泡
+			 
+			 
+			 冒泡需要有两个前提
+			 1.必须有从属关系
+			 2.必须事件相同
+			 
+			 
+			 
+			 */
+			
+			
+		</script>
+	</body>
+</html>

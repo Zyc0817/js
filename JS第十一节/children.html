@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="ul1">
+			<li>1111</li>
+			<li>2222</li>
+			<li>3333</li>
+			<li>4444</li>
+		</ul>
+		<script type="text/javascript">
+			var oUl = document.getElementById("ul1");
+			/*
+			 元素.children:属性(只读)  子节点列表集合
+			 标准和非标准下都只获取元素类型的节点集合
+			 */
+			
+			for(var i = 0;i < oUl.children.length;i++){
+				oUl.children[i].style.backgroundColor = "yellow";
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>刘文绝对玩不过10分的游戏</title>
+		<style type="text/css">
+			#div1,#div2{
+				width: 100px;
+				height: 50px;
+				margin-top: 20px;
+				text-align: center;
+				line-height: 50px;
+			}
+			#div3{
+				width: 250px;
+				height: 250px;
+				border: 1px solid red;
+				margin: 20px auto;
+				font-size: 200px;
+				text-align: center;
+				line-height: 250px;
+				color: red;
+			}
+			.div input{
+				width: 150px;
+				height: 150px;
+				outline: 0;
+				margin-left: 10px;
+			}
+			#btn1{
+				background-color: yellow;
+			}
+			#btn2{
+				background-color: red;
+			}
+			#btn3{
+				background-color: blue;
+			}
+			.div{
+				width: 500px;
+				margin: 0 auto;		
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">0分</div>
+		<div id="div2">20秒</div>
+		<div id="div3">黄</div>
+		<div class="div">
+			<input type="button" id="btn1" value="" />
+			<input type="button" id="btn2" value="" />
+			<input type="button" id="btn3" value="" />
+		</div>	
+		<script type="text/javascript">
+			var oDiv1 = document.getElementById("div1");   //分数
+			var oDiv2 = document.getElementById("div2");   //倒计时
+			var oDiv3 = document.getElementById("div3");   //文字
+			var oBtn1 = document.getElementById("btn1");   //黄色按钮
+			var oBtn2 = document.getElementById("btn2");   //红色按钮
+			var oBtn3 = document.getElementById("btn3");   //蓝色按钮
+			var index = 0;   //计分器
+			var time;
+			var compare = true;
+			var countDown = 20;    //倒计时
+			var arr1 = ["黄","红","蓝"];
+			var arr2 = ["red","yellow","blue"];
+			function countDown1(){		
+				if(compare == true){
+					time = setInterval(function(){
+						countDown--;
+						if(countDown < 0){
+							clearInterval(time);
+							alert("游戏结束，得分:" + oDiv1.innerHTML);
+							//刷新窗口
+							window.location.reload();
+						}
+						oDiv2.innerHTML = countDown+"秒";
+					},1000);
+					compare = false;
+				}
+			}
+			function random(){
+				var num1 = Math.floor(Math.random()*3);
+				var num2 = Math.floor(Math.random()*3);
+				oDiv3.innerHTML = arr1[num1];	
+				oDiv3.style.color = arr2[num2];
+				oDiv1.innerHTML = index+"分";
+			}
+			oBtn1.onclick = function(){
+				//在btn1的点击事件里判断，显示出来的文字是否与"黄"一致
+				if(oDiv3.innerHTML == "黄"){
+					index++;
+				}else{				
+					index--;
+				}
+				random();
+				countDown1();
+			}
+			oBtn2.onclick = function(){				
+				if(oDiv3.innerHTML == "红"){
+					index++;
+				}else{
+					index--;
+				}
+				random();
+				countDown1();
+			}
+			oBtn3.onclick = function(){					
+				if(oDiv3.innerHTML == "蓝"){
+					index++;
+				}else{
+					index--;
+				}
+				random();
+				countDown1();
+			}			
+		</script>
+	</body>
+</html>

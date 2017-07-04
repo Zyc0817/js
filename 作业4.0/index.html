@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div0{
+				height: 200px;
+				width:400px;
+				background-color:skyblue;
+				margin: 300px auto;
+				text-align: center;
+				font-size: 30px;
+				line-height: 200px;
+			}
+			#btn0{
+				position: absolute;
+				top: 550px;
+				left: 670px;
+				background-color:skyblue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div0">看谁这么牛!</div>
+		<input type="button" id="btn0" value="开始" />
+		<script type="text/javascript">
+			var oDiv = document.getElementById("div0");
+			var oBtn = document.getElementById("btn0");
+//			oDiv.innerHTML;
+			var compare=true;
+			var time;
+			
+			var arr = ["张玲","夏菁","王思媛","董磊","李双利","曹明蓄","王瑞琪","郑艳玲","李想","高佳楠","赵清晨","张云驰","赵宇","马闯","李世鹏","邓玉","赵晓庆","于正文","许卓","王博浩","王鑫晨"];
+			oBtn.onclick=function(){
+				if (compare==true) {
+					time = setInterval(function(){
+					var num = Math.floor(Math.random()*20+1);					
+					oDiv.innerHTML=arr[num];
+					},300)
+					
+					this.value="开始";
+				} else{
+					clearInterval(time);
+					this.value = "停止";
+				}
+				compare=!compare;
+			}
+		</script>
+		
+		
+		
+		
+	</body>
+</html>

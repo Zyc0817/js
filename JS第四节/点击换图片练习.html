@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				display: inline-block;
+				margin-top: 50px;
+				visibility: hidden;
+				width: 200px;
+				height: 200px;
+			}
+			#div1{		
+				background-color: red;	
+			}
+			#div2{
+				background-color: blue;
+			}
+			#div3{
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" name="btn1" id="btn1" value="列表一" />
+		<input type="button" name="btn2" id="btn2" value="列表二" />
+		<input type="button" name="btn3" id="btn3" value="列表三" /><br />
+		<div id="div1"></div>
+		<div id="div2"></div>
+		<div id="div3"></div>		
+		<script type="text/javascript">
+			var oBtn1 = document.getElementById("btn1");
+			var oBtn2 = document.getElementById("btn2");
+			var oBtn3 = document.getElementById("btn3");
+			var oDiv1 = document.getElementById("div1");
+			var oDiv2 = document.getElementById("div2");
+			var oDiv3 = document.getElementById("div3");
+			oBtn1.onclick = function(){
+				if(oDiv1.style.visibility == "visible"){		
+					oDiv1.style.visibility = "hidden";
+				}else{
+					oDiv1.style.visibility = "visible";
+					oDiv2.style.visibility = "hidden";
+					oDiv3.style.visibility = "hidden";
+				}
+			}
+			oBtn2.onclick = function(){
+				if(oDiv2.style.visibility == "visible"){
+					oDiv2.style.visibility = "hidden";
+					
+				}else{
+					oDiv2.style.visibility = "visible";
+					oDiv1.style.visibility = "hidden";
+					oDiv3.style.visibility = "hidden";
+				}
+			}
+			oBtn3.onclick = function(){
+				if(oDiv3.style.visibility == "visible"){
+					oDiv3.style.visibility = "hidden";
+					
+				}else{
+					oDiv3.style.visibility = "visible";
+					oDiv2.style.visibility = "hidden";
+					oDiv1.style.visibility = "hidden";
+				}	
+			}	
+		</script>
+	</body>
+</html>

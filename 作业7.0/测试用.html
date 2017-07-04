@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css" id="css">
+			.wrap{
+				width: 200px;
+				height: 200px;
+				border: 2px solid black;
+				margin: 100px auto;
+				border-radius: 50%;
+				position: relative;
+			}
+			.wrap ul {
+				margin: 0;
+				padding: 0;
+				height: 200px;
+				list-style: none;
+				position: relative;
+			}
+			.wrap ul li{
+				width: 2px;
+				height: 6px;
+				background-color: black;
+				position: absolute;
+				/*margin-top: 10px;*/
+				left: 99px;
+				top: 0px;	
+				transform-origin: center 100px;
+			}
+			.wrap ul li:nth-of-type(5n+1){
+				height: 12px;
+			}
+			.hour{
+				width: 6px;
+				height: 45px;
+				background-color: black;
+				position: absolute;
+				top: 55px;
+				left: 97px;
+				transform-origin: bottom;
+			}
+			.min{
+				width: 4px;
+				height: 65px;
+				background-color: blue;
+				position: absolute;
+				top: 35px;
+				left: 98px;
+				transform-origin: bottom;
+			}
+			.sec{
+				width: 2px;
+				height: 80px;
+				background-color: red;
+				position: absolute;
+				top: 20px;
+				left: 99px;
+				transform-origin: bottom;
+			}
+			.icon{
+				width: 20px;
+				height: 20px;
+				background-color: black;
+				border-radius: 50%;
+				position: absolute;
+				top: 90px;
+				left: 90px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap" id="wrap">
+			<ul id="list">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<div class="hour" id="hour"></div>
+			<div class="min" id="min"></div>
+			<div class="sec" id="sec"></div>
+			<div class="icon"></div>
+		</div>
+		<script type="text/javascript">
+			var oList = document.getElementById("list");
+			var oLi = "";
+			var oCss = document.getElementById("css");
+			var sCss = ""
+			var oHour = document.getElementById("hour");
+			var oMin = document.getElementById("min");
+			var oSec = document.getElementById("sec");
+			for(var i = 0;i < 60;i++){
+				oLi += "<li></li>"
+				sCss += ".wrap ul li:nth-of-type("+(i+1)+"){transform:rotate("+(i*6)+"deg);}"
+			}
+			oList.innerHTML += oLi;
+			oCss.innerHTML += sCss;
+			function toTime(){
+				var oDate = new Date();
+				
+			}
+		</script>
+	</body>
+</html>

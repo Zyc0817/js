@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#wrap{
+				display: inline-block;
+			}
+			ul{
+				display: none;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<input type="button" name="btn" id="btn" value="电影天堂" />
+			<ul id="ul">
+				<li>内地</li>
+				<li>港台</li>
+				<li>欧美</li>
+				<li>其他</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var oBtn = document.getElementById("btn");
+			var oUl = document.getElementById("ul");
+			var oDiv = document.getElementById("wrap");
+			//鼠标移入事件
+			oDiv.onmouseover = function(){
+				oUl.style.display = "block";
+				oBtn.value = "收起";
+			}
+			//鼠标移出事件
+			oDiv.onmouseout = function(){
+				oUl.style.display = "none";
+				oBtn.value = "电影天堂";
+			}
+			
+						
+//			var compare = true;
+//			oBtn.onclick = function(){
+//				if(compare == true){
+//					oUl.style.display = "block";
+//					this.value = "收起";   //this代表oBtn
+//				}else{
+//					oUl.style.display = "none";
+//					this.value = "电影频道";
+//				}
+//				compare =! compare;
+//			}
+		</script>
+	</body>
+</html>

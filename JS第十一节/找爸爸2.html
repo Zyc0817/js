@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				padding: 40px 50px;
+			}
+			#div1{
+				background-color: orange;
+				position: relative;
+			}
+			#div2{
+				position: absolute;
+				background-color: yellow;
+			}
+			#div3{
+				background-color: yellowgreen;
+			}
+		</style>
+	</head>
+	<body id="body">
+		<div id="div1">
+			<div id="div2">
+				<div id="div3"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var oDiv3 = document.getElementById("div3");
+			//offsetParent 属性（只读）  找到有定位的爹,没定位的找body
+			oDiv3.offsetParent.style.backgroundColor = "red";
+			alert(oDiv3.offsetParent.id);
+			//包含padding不包含边框
+			oDiv3.clientWidth;
+			oDiv3.clientHeight;
+		</script>
+	</body>
+</html>

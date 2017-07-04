@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#div1{
+				width: 500px;
+				height: 500px;
+				background-color: deepskyblue;
+			}
+			#div2{
+				width: 440px;
+				height: 440px;
+				background-color: dodgerblue;
+				position: absolute;
+				left: 30px;
+				top: 30px;
+			}
+			#div3{
+				width: 380px;
+				height: 380px;
+				background-color: lightblue;
+				position: absolute;
+				left: 60px;
+				top: 60px;
+			}
+			#div4{
+				width: 320px;
+				height: 320px;
+				background-color: aliceblue;
+				position: absolute;
+				left: 90px;
+				top: 90px;
+			}
+			#div5{
+				width: 260px;
+				height: 260px;
+				background-color: cyan;
+				position: absolute;
+				left: 120px;
+				top: 120px;
+			}
+			#div6{
+				width: 200px;
+				height: 200px;
+				background-color: cornflowerblue;
+				position: absolute;
+				left: 150px;
+				top: 150px;
+			}
+			#div7{
+				width: 140px;
+				height: 140px;
+				background-color: powderblue;
+				position: absolute;
+				left: 180px;
+				top: 180px;
+			}
+			div{
+				transition: all 0.2s;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div id="div2"></div>
+		<div id="div3"></div>
+		<div id="div4"></div>
+		<div id="div5"></div>
+		<div id="div6"></div>
+		<div id="div7"></div>
+		<input type="button" name="btn" id="btn" value="启动" />
+		
+		<script type="text/javascript">
+			var oBtn = document.getElementById("btn");
+			var div1 = document.getElementById("div1");
+			var div2 = document.getElementById("div2");
+			var div3 = document.getElementById("div3");
+			var div4 = document.getElementById("div4");
+			var div5 = document.getElementById("div5");
+			var div6 = document.getElementById("div6");
+			var div7 = document.getElementById("div7");
+			var color1 = "deepskyblue";
+			var color2 = "dodgerblue";
+			var color3 = "lightblue";
+			var color4 = "aliceblue";
+			var color5 = "cyan";
+			var color6 = "cornflowerblue";
+			var color7 = "powderblue";
+			var compare = true;
+			var time;
+			oBtn.onclick = function(){
+				if(compare == true) {
+					time = setInterval(function(){
+						var temp = color1;
+						color1 = color2;
+						color2 = color3;
+						color3 = color4;
+						color4 = color5;
+						color5 = color6;
+						color6 = color7;
+						color7 = temp;
+						div1.style.backgroundColor = color1;
+						div2.style.backgroundColor = color2;
+						div3.style.backgroundColor = color3;
+						div4.style.backgroundColor = color4;
+						div5.style.backgroundColor = color5;
+						div6.style.backgroundColor = color6;
+						div7.style.backgroundColor = color7;
+					},100);
+					this.value = "停止";
+				}else{
+					clearInterval(time);		
+					this.value = "启动";
+				}
+				compare =! compare;
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

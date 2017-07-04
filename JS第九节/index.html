@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				margin-top: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script type="text/javascript">
+			var allDiv = document.getElementsByTagName("div");
+			allDiv[0].onmouseover = function(){
+				startMove(this,{width:200,height:100})
+			}
+			allDiv[1].onmouseover = function(){
+				startMove(this,{width:200,height:200})
+			}
+			allDiv[0].onmouseout = function(){
+				startMove(this,{width:100})
+			}
+			allDiv[1].onmouseout = function(){
+				startMove(this,{width:100,height:100})
+			}
+		</script>
+		<script type="text/javascript" src="js/perfectMove.js">
+			
+		</script>
+	</body>
+</html>

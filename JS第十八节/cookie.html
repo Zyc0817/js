@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			 cookie:存储数据，当用户访问了某个网站(网页)的时候，
+			 		我们可以通过cookie来向访问者的电脑存储数据
+			 
+			 1.不同的浏览器存放cookie的位置不一样，而且不能互相通用
+			 2.cookie的存储是️以域名形式进行区分的
+			 3.cookie的存储的数据是可以设置名字的
+			 4.一个域名下存放的cookie的个数是有限的，不同浏览器存储的个数是不同的
+			 5.每个cookie存放的内容大小也是有限的，不同浏览器也是不同的
+			 
+			 
+			 我们通过document.cookie来获取当前网站cookie的时候，得到的字符串形式的值，
+			 他包含了当前网站下所有的cookie值，他会把所有的cookie值通过分号+空格的形式
+			 串联起来
+			 
+			 
+			 */
+			var oDate = new Date();
+			oDate.setDate(oDate.getDate() + 1);
+			//oDate是对象，需要把他转换成字符串，oDate.toGMTString()这么用效率高
+			document.cookie = "username = sp250;expires =" + oDate.toGMTString();
+			document.cookie = "age = 18";
+//			alert(document.cookie);
+			var strings = document.cookie.split("; ");
+			for(var i = 0;i < strings.length;i++){
+				var a = strings[i].split("=");
+				if(a[0] == "age"){
+					alert(a[1])
+				}
+//				alert(a[1])
+			}
+			
+			
+			
+			
+//			var cookies = document.cookie;
+//			var arr = cookies.split("; ");
+//			for(var i = 0;i < arr.length;i++){
+//				var arr2 = arr[i].split("=");
+//				alert(arr2[1])
+//			}
+			
+			
+			
+		</script>
+	</body>
+</html>

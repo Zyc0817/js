@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var arr = [];
+			
+			function random(){
+				var num = Math.floor(Math.random()*24);
+				return num;
+			}
+			for(var i = 0;;i++){
+				var num1 = random();
+				var compare = true;
+				for(var j = 0;j<arr.length;j++){
+					if(arr[j] == num1){
+						compare = false;
+					}		
+				}
+				if(compare == true){
+					arr.push(num1);
+				}
+				if(arr.length == 5){
+					break;
+				}
+			}
+			document.write(arr);
+		</script>
+	</body>
+</html>

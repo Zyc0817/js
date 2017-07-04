@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+		</script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.wrap {
+				position: relative;
+				margin: 0 auto;
+				width: 650px;
+				height: 600px;
+			}
+			
+			.div1 {
+				position: absolute;
+			}
+			
+			.div2 {
+				position: absolute;
+				top: 59px;
+				left: 117px;
+				transition: 2s ease-out;
+			}
+			
+			.div3 {
+				position: absolute;
+				top: 160px;
+				left: 249px;
+				transform: rotateZ();
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="center">
+			<div class="wrap">
+				<div class="div1" id="div1">
+					<img src="img/turntable-bg.jpg" class="img1" />
+				</div>
+				<div class="div2" id="turn">
+					<img src="img/turntable.png" />
+				</div>
+				<div class="div3" id="startMove">
+					<img src="img/pointer.png" />
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function() {
+				var $startMove = $("#startMove");
+				var $turn = $("#turn");
+
+				function rand() {
+					return parseInt((Math.random() * (6 - 3 + 1) + 3) * 360);
+				}
+				var a = 0;
+				var bol = true;
+				$startMove.click(function() {
+					if(bol) {
+						bol = false;
+						a = a + rand()
+						$turn.css({
+							transform: "rotateZ(" + a + "deg)"
+						});
+						var time = setTimeout(function() {
+							bol = true;
+							var b = a % 360;
+							b = parseInt(b / 51.4);
+							switch(b) {
+								case 0:
+									alert("免单4999元");
+									break;
+								case 1:
+									alert("免单50元");
+									break;
+								case 2:
+									alert("免单10元");
+									break;
+								case 3:
+									alert("免单5元");
+									break;
+								case 4:
+									alert("免分期服务费");
+									break;
+								case 5:
+									alert("提高白条额度");
+									break;
+								case 6:
+									alert("未中奖");
+									break;
+							}
+
+						}, 2000);
+					}
+
+				});
+			});
+		</script>
+	</body>
+
+</html>

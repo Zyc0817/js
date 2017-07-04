@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			var oDiv = document.getElementById("div1");
+			document.onclick = function(ev){
+				var evObj = ev || window.event;
+				var top = evObj.clientY;
+				var left = evObj.clientX;
+				oDiv.style.top = top - oDiv.offsetHeight / 2 + "px";
+				oDiv.style.left = left - oDiv.offsetWidth / 2 + "px";
+			}
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		转换前：
+		<textarea name="" id="txt1" rows="10" cols="60" value=""></textarea><br />
+		<input type="button" name="btn" id="btn" value="转换" /><br /> 转换后：
+		<textarea name="" id="txt2" rows="10" cols="60"></textarea>
+
+		<script type="text/javascript">
+			var txt1 = document.getElementById("txt1");
+			var txt2 = document.getElementById("txt2");
+			var oBtn = document.getElementById("btn");
+			oBtn.onclick = function() {
+				txt2.value = txt1.value.replace(/李伯伯|屁股/g, "***");
+			}
+		</script>
+	</body>
+
+</html>

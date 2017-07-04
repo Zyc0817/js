@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" name="btn" id="btn" value="添加" />
+		<ul>
+			<li>aaaaaa</li>
+			<li>bbbbbb</li>
+			<li>cccccc</li>
+		</ul>
+		<script type="text/javascript">
+			var oLi = document.getElementsByTagName("li");
+			var oUl = document.getElementsByTagName("ul")[0];
+			var oBtn = document.getElementsByTagName("input")[0];
+//			for(var i = 0;i < oLi.length;i++){
+//				oLi[i].onmouseover = function(){
+//					this.style.backgroundColor = "red";
+//				}
+//				oLi[i].onmouseout = function(){
+//					this.style.backgroundColor = "";
+//				}
+//			}
+
+
+			/*
+			 事件委托：
+			 事件原本加在某个元素上，然而我们却把事件加到了别的标签上来完成同样的
+			 操作，一般是加给父级	 
+			 */
+			oUl.onmouseover = function(ev){
+				var evObj = ev || event;
+				//evObj.srcElement兼容低版本ie
+				//target:事件源对象
+				var target = evObj.target || evObj.srcElement;
+				if(target.tagName == "LI"){
+					target.style.backgroundColor = "red";
+				}			
+			}
+			oUl.onmouseout = function(ev){
+				var evObj = ev || event;
+				//evObj.srcElement兼容低版本ie
+				//target:事件源对象
+				var target = evObj.target || evObj.srcElement;
+				if(target.tagName == "LI"){
+					target.style.backgroundColor = "";
+				}
+				
+			}
+			oBtn.onclick = function(){
+				var li = document.createElement("li");
+				li.innerHTML = "ssssssssppppppp";
+				oUl.appendChild(li);	
+			}
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#ul1{
+				position: absolute;
+				display: none;
+			}
+			ul{
+				list-style: none;
+			}
+			li{
+				position: relative;
+				background-color: grey;
+				width: 100px;
+				text-align: center;
+			}
+			li ul{
+				width: 100px;
+				position: absolute;
+				left: 98px;
+				top: 2px;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="ul1">
+			<li>我是li1</li>
+			<li>我是li2</li>
+			<li>我是li3
+				<ul>
+					<li>我是li3下的li1</li>
+					<li>我是li3下的li2</li>
+					<li>我是li3下的li3</li>
+				</ul>
+			</li>
+			<li>我是li4
+				<ul>
+					<li>我是li4下的li1</li>
+					<li>我是li4下的li2
+						<ul>
+							<li>我是li4下的li2下的li1</li>
+							<li>我是li4下的li2下的li2</li>
+							<li>我是li4下的li2下的li3</li>
+						</ul>
+					</li>
+					<li>我是li4下的li3</li>
+				</ul>
+			</li>
+			<li>我是li5</li>
+		</ul>
+		
+		
+		<script type="text/javascript">
+			var ul1 = document.querySelector("#ul1");  //兼容问题
+			var lis = document.querySelectorAll("#ul1 li");  //类似于数组
+//			document.addEventListener("contextmenu",function(ev){			
+//				var evObj = ev || window.event;
+//				evObj.preventDefault();
+////				return false;
+////				在事件的第二种绑定形式中，return false 是阻止不了默认事件的
+//			},false)
+
+			document.oncontextmenu = function(ev){
+				var evObj = ev || window.event;
+				ul1.style.display = "block";
+				ul1.style.left = evObj.clientX + "px";
+				ul1.style.top = evObj.clientY + "px";
+				return false;			
+			}
+			//给所有的li来点事
+			for(var i = 0;i < lis.length;i++){
+				lis[i].onclick = function(ev){
+//					alert("点击了");
+					var evObj = ev || window.event;
+					evObj.cancelBubble = true;
+				}
+				//over
+				lis[i].onmouseover = function(){
+					this.style.backgroundColor = "red";
+					var children = this.children;
+					if(children.length > 0){
+						//判断标签名，UL需要大写
+						if(children[0].tagName == "UL"){
+							children[0].style.display = "block";
+						}
+					}
+				}
+				//out
+				lis[i].onmouseout = function(){
+					this.style.backgroundColor = "";
+					var children = this.children;
+					if(children.length > 0){
+						//判断标签名，UL需要大写
+						if(children[0].tagName == "UL"){
+							children[0].style.display = "none";
+						}
+					}
+				}		
+			}
+			document.onclick = function(){
+				ul1.style.display = "none";
+			}			
+		</script>
+	</body>
+</html>

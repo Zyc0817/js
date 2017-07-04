@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#flow{
+				list-style: none;
+				position: relative;
+				margin: 0 auto;
+			}
+			#flow li{
+				position: absolute;
+				width: 200px;
+				background-color: lightgray;
+				font-size: 50px;
+				transition: 0.5s;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="flow">
+			
+		</ul>
+		<script type="text/javascript">
+			function randH(min,max){
+				return parseInt(Math.random() * (max - min +1) + min);
+			}
+			var lis = document.getElementsByTagName("li");
+			var ul = document.getElementById("flow");
+			var hs = [];
+			function layout(bol){
+				var cols = parseInt(document.documentElement.clientWidth / 200);
+				ul.style.width = cols * 200 + cols * 10 + "px";
+				var arrH = [];
+				for(var i = 0;i < cols;i++){
+					arrH[i] = 10;
+				}
+				function creatLi(index){
+					var li = lis[index] || document.createElement("li");
+					li.innerHTML = index;
+					var h = hs[index] || randH(100,300);
+					li.style.height = h + "px";
+					if(bol){
+						hs.push(h);
+					}
+					var minl = 0;
+					var minH = 10;
+					for(var i = 0;i < arrH.length;i++){
+						if(minH > arrH[i]){
+							minH = arrH[i];
+							minl = i;
+						}
+					}
+					arrH[minl] = arrH[minl] + li.offsetHeight + 10;
+					li.style.left = 10 + (200 + 10) * minl + "px";
+					li.style.top = 10 + arrH[minl] + "px";
+					bol && ul.appendChild(li);
+				}
+				for(var i = 0;i < 30;i++){
+					creatLi(i);
+				}
+			
+			}
+			layout(true);
+			window.onresize = function(){
+				layout(false);
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

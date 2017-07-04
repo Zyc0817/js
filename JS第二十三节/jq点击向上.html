@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: fixed;
+				right: 0;
+				bottom: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div style="width: 50px;">
+			李伯伯要当红军 红军不要李伯伯
+			因为李伯伯的屁股大呀 容易被鬼子发现目标
+			李伯伯找到了团长 团长也是个老伯伯
+			因为伯伯同情伯伯呀 李伯伯就光荣当了红军
+			李伯伯去执行任务 爬上了小山坡
+			因为李伯伯的屁股大呀 被鬼子发现了目标
+			李伯伯拍屁股就跑 鬼子上来就是两刺刀
+			为了革命为了党啊 李伯伯就壮烈牺牲了
+			李伯伯要当红军 红军不要李伯伯
+			因为李伯伯的屁股大呀 容易被鬼子发现目标
+			李伯伯找到了团长 团长也是个老伯伯
+			因为伯伯同情伯伯呀 李伯伯就光荣当了红军
+			李伯伯去执行任务 爬上了小山坡
+			因为李伯伯的屁股大呀 被鬼子发现了目标
+			李伯伯拍屁股就跑 鬼子上来就是两刺刀
+			为了革命为了党啊 李伯伯就壮烈牺牲了
+		</div>
+		<script type="text/javascript">
+//			$(function(){
+//				$("#div1").click(function(){
+//					$("body").animate({
+//						"scrollTop":0
+//					},300);
+//				});
+//			});
+			//类的扩展，给jq加一个新的方法
+			$.fn.extend({
+				"toTop":function(aa){
+					$(aa).click(function(){
+						$("body").animate({
+							"scrollTop":0
+						},300);
+					});
+//					alert(11)
+				
+				}
+			});
+			
+			$(function(){
+				$("#div1").toTop(this);
+
+			});
+
+		</script>
+	</body>
+</html>

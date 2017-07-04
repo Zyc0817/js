@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var arr=[];
+			function funA(){
+				for (var k=0;k<10;k++) {
+				var num=Math.floor(Math.random()*24);
+				if(num != arr[4] && num != arr[3] && num != arr[2] && num != arr[1] && num != arr[0]){
+								
+					if (arr.length<5) {
+						arr.push(num);
+					} else{
+						break;
+					}
+				}
+			}
+			}
+			funA();
+			document.write(arr);
+		</script>
+	</body>
+</html>

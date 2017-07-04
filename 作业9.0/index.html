@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html,
+			body {
+				height: 100%;
+				font-size: 10px;
+			}
+			
+			.wrap {
+				height: 35%;
+				margin: 0 auto;
+				border: 1px solid red;
+				border-radius: 5px;
+			}
+			
+			nav {
+				overflow: hidden;
+				margin-top: 10px;
+				position: relative;
+			}
+			
+			nav span {
+				font-size: 2rem;
+				color: orange;
+				float: left;
+				margin-left: 40px;
+			}
+			
+			nav a {
+				font-size: 2rem;
+				color: orange;
+				text-decoration: none;
+				position: absolute;
+				right: 20px;
+			}
+			
+			.p2 {
+				margin-top: 2px;
+				color: black;
+				font-size: 1.8rem;
+				float: right;
+				margin-right: 20px;
+				display: none;
+			}
+			
+			article {
+				width: 100%;
+			}
+			
+			.sec1 {
+				text-align: center;
+			}
+			
+			.sec1 textarea {
+				width: 95%;
+				height: 150px;
+				resize: none;
+				margin-top: 20px;
+			}
+			
+			.sec2 {
+				overflow: hidden;
+			}
+			
+			.sec2 ul {
+				display: inline-block;
+				list-style: none;
+			}
+			
+			.sec2 ul li {
+				/*display: inline-block;*/
+				float: left;
+				font-size: 1.8rem;
+				margin-left: 20px;
+				margin-top: 40px;
+			}
+			
+			.sec2 ul li:hover {
+				color: orange;
+			}
+			
+			.sec2 input {
+				float: right;
+				margin-top: 30px;
+				margin-right: 20px;
+				width: 65px;
+				height: 35px;
+				background-color: orange;
+				border-radius: 10px;
+				border: none;
+				color: white;
+				font-size: 1.5rem;
+				outline: 0;
+			}
+			
+			.div1 {
+				height: 63%;
+				border: 1px solid orange;
+				border-radius: 5px;
+				margin-top: 1px;
+			}
+			
+			.div1 ul {
+				height: 100%;
+				overflow: hidden;
+			}
+			
+			.li1 {
+				width: 95%;
+				margin: 0 auto;
+				height: 22%;
+				border: 1px solid black;
+				margin-top: 10px;
+				font-size: 2rem;
+				position: relative;
+			}
+			
+			.p1,
+			.p3,
+			.p4 {
+				margin-top: 15px;
+				margin-left: 10px;
+			}
+			
+			.a2 {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+
+	<body id="isBody">
+		<div class="wrap">
+			<nav>
+				<span>LOGO</span>
+				<a href="###" id="a1">点击领取红包</a>
+				<p class="p2" id="p2"></p>
+			</nav>
+			<article class="art">
+				<section class="sec1">
+					<textarea name="" rows="" cols="" value="" id="text1"></textarea>
+				</section>
+				<section class="sec2">
+					<ul>
+						<li>表情</li>
+						<li>图片</li>
+						<li>视频</li>
+						<li>话题</li>
+						<li>文章</li>
+					</ul>
+					<input type="button" name="btn1" id="btn1" value="发布" />
+				</section>
+			</article>
+		</div>
+		<div class="div1">
+			<ul id="ul1">
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var oA1 = document.getElementById("a1");
+			var text1 = document.getElementById("text1");
+			var oBtn1 = document.getElementById("btn1");
+			var oP2 = document.getElementById("p2");
+			var oUl = document.getElementById("ul1");
+			var body = document.getElementById("isBody");
+			var time = null;
+			text1.onclick = function() {
+				oA1.style.display = "none";
+				oP2.style.display = "block";
+				time = setInterval(function() {
+					var num = text1.value.length;
+					oP2.innerHTML = "还能输入" + (150 - num) + "个字";
+					if (num >= 150) {
+						alert("最多输入150个字");
+					}
+				}, 30);
+			}
+			oBtn1.onclick = function() {
+				if (text1.value.length == 0) {
+					alert("什么也不写就发，是不是傻");
+				} else {
+					alert("发布成功");
+					oA1.style.display = "inline";
+					oP2.style.display = "none";
+					var liNew = document.createElement("li");
+					var pNew1 = document.createElement("p");
+					var pNew3 = document.createElement("p");
+					var pNew4 = document.createElement("p");
+					var aNew = document.createElement("a");
+					var date1 = new Date();
+					pNew1.innerHTML = "我是刘思文";
+					pNew3.innerHTML = text1.value;
+					pNew4.innerHTML = date1.getMonth() + "月" + date1.getDate() + "日" + date1.getHours() + ":" + date1.getMinutes() + "发布";
+					aNew.innerHTML = "X";
+					liNew.style.listStyle = "none";		
+					liNew.appendChild(pNew1);
+					liNew.appendChild(pNew3);
+					liNew.appendChild(pNew4);
+					liNew.appendChild(aNew);
+					text1.value = null;
+					liNew.setAttribute("class", "li1");
+					liNew.setAttribute("id", "li1");
+					var oLi1 = document.getElementById("li1");
+					oUl.insertBefore(liNew,oLi1);
+					pNew1.setAttribute("class", "p1");
+					pNew3.setAttribute("class", "p3");
+					pNew4.setAttribute("class", "p4");
+					aNew.setAttribute("class", "a2");
+					aNew.setAttribute("href", "###");
+					aNew.setAttribute("id","a2");
+					aNew.onclick = function(){
+						oUl.removeChild(this.parentNode);
+					}
+				}
+			}
+			
+		</script>
+	</body>
+
+</html>

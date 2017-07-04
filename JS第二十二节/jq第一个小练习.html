@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+	</head>
+	<body>
+		<div id="div1">heiheihaha</div>
+		
+		<script type="text/javascript">
+//			var oDiv = document.getElementById("div1");
+//			oDiv.onclick = function(){
+//				alert(oDiv.innerHTML);
+//			}
+			
+			$(document).ready(function(){
+				var oDiv = $("#div1");
+				oDiv.click(function(){
+//					alert($(this).html());
+					alert(this.innerHTML);
+					
+					
+					//js与jq不能混用
+//					alert(this.html());
+//					alert($(this).innerHTML);
+				});
+		
+			});
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#wrap {
+				width: 300px;
+				height: 200px;
+				background-color: red;
+				margin: 100px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			#scroll {
+				height: 200px;
+				position: absolute;
+				overflow: hidden;
+			}
+			
+			#scroll img {
+				width: 300px;
+				height: 200px;
+				display: block;
+				float: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div id="scroll" class="aa">
+				<img src="img/4.jpg" />
+				<img src="img/1.jpg" />
+				<img src="img/2.jpg" />
+				<img src="img/3.jpg" />
+				<img src="img/4.jpg" />
+				<img src="img/1.jpg" />
+			</div>
+		</div>
+		<div class="heihei">
+			<input type="button" id="btn1" value="上一张" />
+			<input type="button" id="btn2" value="下一张" />
+		</div>
+
+		<script type="text/javascript">
+			var scrDiv = document.getElementById("scroll");
+			var imgs = document.getElementsByTagName("img");
+			var oBtn1 = document.getElementById("btn1");
+			var oBtn2 = document.getElementById("btn2");
+			scrDiv.style.width = imgs.length * imgs[0].offsetWidth + "px";
+			scrDiv.style.left = -imgs[0].offsetWidth + "px";
+			var temp = 0;
+
+			oBtn2.onclick = function() {
+				if(temp == 0){
+					temp = 1;
+					startMove(scrDiv, {
+						left: scrDiv.offsetLeft - imgs[0].offsetWidth
+					}, function() {
+						temp = 0;
+						if(scrDiv.offsetLeft == -5 * imgs[0].offsetWidth) {
+
+							scrDiv.style.left = -imgs[0].offsetWidth + "px";
+
+						}
+					});
+				}
+				
+			}
+
+			oBtn1.onclick = function() {
+				if(temp == 0){
+					temp = 1;
+					startMove(scrDiv, {
+						left: scrDiv.offsetLeft + imgs[0].offsetWidth
+					}, function() {
+						temp = 0;
+						if(scrDiv.offsetLeft == 0) {
+
+							scrDiv.style.left = -imgs[0].offsetWidth * 4 + "px";
+
+						}
+					});
+				}					
+				
+			}
+		</script>
+		<script type="text/javascript" src="js/perfectMove.js">
+		</script>
+	</body>
+
+</html>

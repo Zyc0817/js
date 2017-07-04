@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li>aaa</li>
+			<li>bbb</li>
+			<li class="box">ccc</li>
+			<li class="box">ddd</li>
+			<li>eee</li>
+		</ul>
+		
+		<script type="text/javascript">
+			//li:first  第一个
+			//li:last  最后一个
+			//li:nth-of-type(2)  第二个
+			//li:eq(2)  第三个，类似于数组下标
+			//li:even 奇数行(从0开始，所以还是偶数)
+			//li:odd  偶数行
+//			$("li:even").css("background-color","red");
+			
+			
+			//filter 筛选
+			$("li").filter(".box").css("background-color","red");  
+			
+			
+			
+		</script>
+	</body>
+</html>

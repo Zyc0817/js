@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//随机生成5个数字，范围是[0,23]，并且将其添加到数组中，并且数组中的数字不能重复
+			
+			//用来装数字的数组
+			var arr = [];
+			//设置随机数的函数
+			function romNum(max,min){
+				var num = Math.floor(Math.random()*(max-min+1)+min);
+				return num;
+			}
+			//如果for循环循环条件不写，那么默认为真
+			for(var i = 0;;i++){
+				var romN = romNum(23,0);
+				//检验随机数是否重复
+				var isRepeat = true;
+				for(var j = 0;j < arr.length;j++){
+					if(arr[j] == romN){
+						isRepeat = false;
+					}
+				}
+				if(isRepeat == true){
+					arr.push(romN);
+				}
+				if(arr.length == 5){
+					break;
+				}
+			}
+			alert(arr);
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

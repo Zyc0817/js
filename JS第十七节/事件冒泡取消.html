@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				padding: 50px;
+			}
+			#div1{
+				background-color: red;
+			}
+			#div2{
+				background-color: blue;
+			}
+			#div3{
+				background-color: darkorange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">
+			<div id="div2">
+				<div id="div3"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var oDiv1 = document.getElementById("div1");
+			var oDiv2 = document.getElementById("div2");
+			var oDiv3 = document.getElementById("div3");
+			oDiv1.onclick = function(){
+				alert("1111");
+			}
+			oDiv2.onclick = function(){
+				alert("2222");
+			}
+			oDiv3.onclick = function(ev){
+				alert("3333");
+				var evObj = ev || window.event;
+				//阻止继续向父级传递事件
+				//兼容IE 谷歌 不兼容火狐
+//				evObj.cancelBubble = true; 
+				//兼容谷歌，火狐  不兼容IE
+//				evObj.stopPropagation();				
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

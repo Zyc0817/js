@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 100px;
+				background-color: lightgray;
+				position: fixed;
+				right: 0;
+				bottom: 100px;
+			}
+			#div1 a{
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">
+			<!--<a href="#isBody">向上</a>-->
+		</div>
+		<div style="width: 50px;">
+			聊完了完了完了完了完了完了完了完了完了完了完了到了肯定马上来水电站的饭桌上的发生开始打好打发时间看淡点开了没能顺利1复健科看啥来发的美女是，丰富美女发就是快发货那撒开了房你卡什么付款懒得发马卡龙撒旦教案上看来大家发快递机会发烧就快点哈开始了大家爱看啥来的快拉上束带结发上课了烦恼是，模仿你的事，马丁内斯电脑房报名时拿到房巴士，没地方那是，没地方拿生机勃发就开始被凤凰健康的不能神农大丰八级考试的金卡是单卡就是你法宝就是开发商就可能打开时拉你发动机深刻反思健康的那段是短发接口上的那看来是的那看来是都拿到那看死了的那款是辽宁大连看都是你吧看到了那块冷淡的扣篮的但撒拉到那看来的那上课
+		</div>
+		<script type="text/javascript">
+			var div1 = document.getElementById("div1");
+			//获取当前浏览器的可见高度
+//			alert(document.documentElement.clientHeight)
+			var windowHeight = document.documentElement.clientHeight;
+			//获取div1的高度
+			var divHeight = div1.offsetHeight;
+			var timer = null;
+			//判断:IE6不支持fixed定位，所以只能用absolute
+			//虽然只有sp使用ie6，但是我们出于怜悯也要考虑
+			//indexOf某个字符串首次出现的位置，如果没有返回-1
+			if(window.navigator.userAgent.indexOf("MSIE 6") != -1){
+				//当前窗口滚动
+				div1.style.position = "absolute";
+				window.onscroll = function(){
+					//让div1能固定在右下角
+					var bodyScrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+					var t = windowHeight - divHeight - 100;
+					t = t + bodyScrollTop;
+					div1.style.top = t + "px";
+				}
+			}else{
+				div1.style.position = "fixed";
+			}
+			div1.onclick = function(){
+				//还是使用scrollTop是零的方式
+				var start = document.body.scrollTop || document.documentElement.scrollTop;
+//				var end = 0;
+				var change = - start;
+				var t = 0;
+				var d = 30;
+				clearInterval(timer);	
+				timer = setInterval(function(){
+					t++;
+					if(t >= d){
+						clearInterval(timer);
+					}
+					if(document.body.scrollTop){
+						document.body.scrollTop = Tween.Bounce.easeOut(t,start,change,d);
+					}else{
+						document.documentElement.scrollTop = Tween.Bounce.easeOut(t,start,change,d);
+					}				
+				},30);
+			}		
+		</script>
+		<script type="text/javascript" src="js/tween.js">
+			
+		</script>
+	</body>
+</html>

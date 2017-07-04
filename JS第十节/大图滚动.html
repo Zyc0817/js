@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#wrap{
+				width: 200px;
+				height: 200px;
+				position: relative;
+				overflow: hidden;
+			}
+			#middle{
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				/*transition: 1s;*/
+			}
+			#middle div{
+				width: 200px;
+				height: 200px;
+				background-color: gray;
+				font-size: 50px;
+				text-align: center;
+				line-height: 200px;
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" name="last" id="last" value="last" />
+		<input type="button" name="next" id="next" value="next" onclick="startMove()"/>
+		<br />
+		<input type="button" name="all" id="" value="第0页" />
+		<input type="button" name="all" id="" value="第1页" />
+		<input type="button" name="all" id="" value="第2页" />
+		<div id="wrap">
+			<div id="middle">
+				<div name="div">A</div>
+				<div name="div">B</div>
+				<div name="div">C</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var divs = document.getElementsByName("div");
+			var last = document.getElementById("last");
+			var next = document.getElementById("next");
+			var pageBtns = document.getElementsByName("all");
+			var middleDiv = document.getElementById("middle");
+			var wrapDiv = document.getElementById("wrap");
+			//整页翻动的宽度
+			var w = wrapDiv.offsetWidth;
+			middleDiv.style.width = divs.length * w + "px";
+			var page = 0;
+			next.onclick = function(){
+				page++;
+				if(page > divs.length - 1){
+					page = 0;
+				}
+//				middleDiv.style.left = -w * page + "px";
+				startMove(middleDiv,{left:-w * page});
+			}
+			last.onclick = function(){
+				page--;
+				if(page < 0){
+					page = divs.length - 1;
+				}
+//				middleDiv.style.left = -w * page + "px";
+				startMove(middleDiv,{left:-w * page});
+			}
+			//添加页码
+			for(var i = 0;i < pageBtns.length;i++){
+				pageBtns[i].index = i;
+				pageBtns[i].onclick = function(){
+					page = this.index;
+//					middleDiv.style.left = -w * page + "px";
+					startMove(middleDiv,{left:-w * page});
+				}			
+			}	
+		</script>
+		<script type="text/javascript" src="js/perfectMove.js">
+			
+		</script>
+	</body>
+</html>

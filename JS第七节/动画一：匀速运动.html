@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				margin-top: 50px;
+				position: absolute;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" name="btn" id="btn" value="来来，动起来" onclick="startMove()"/>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			/*
+			 * 1.不会停止（需要我们自己加判断）
+			 * 2.速度取某些值的时候可能停不下来
+			 * 3.到达位置后点击还会动
+			 * 4.重复点击速度会加快
+			 */		
+			var oDiv = document.getElementById("div1");
+			var speed = 1;
+			var time = null;
+//			var compare = 0;
+			function startMove(){
+//				if(compare == 0){				
+				clearInterval(time);				
+					time = setInterval(function(){
+					if(oDiv.offsetLeft >= 800){
+						clearInterval(time);
+					}else{
+						oDiv.style.left = oDiv.offsetLeft + speed + "px";
+					}
+				},30);
+//				}
+//				compare = 1;
+			}
+		</script>
+	</body>
+</html>

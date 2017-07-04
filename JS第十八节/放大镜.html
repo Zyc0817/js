@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.min{
+				width: 350px;
+				height: 350px;
+				border: 1px solid black;
+				float: left;
+				position: relative;
+			}
+			.max{
+				width: 350px;
+				height: 350px;
+				float: left;
+				border: 1px solid black;
+				overflow: hidden;
+				position: relative;
+				display: none;
+			}
+			.max img{
+				position: absolute;
+			}
+			.fd{
+				width: 150px;
+				height: 150px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background-color: gray;
+				opacity: 0.3;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="min">
+			<img src="img/min.jpg"/>
+			<div class="fd"></div>
+		</div>
+		<div class="max">
+			<img src="img/max.jpg"/>
+		</div>
+		
+		
+		
+		<script type="text/javascript">
+			var min = document.querySelector(".min");
+			var fd = document.querySelector(".fd");
+			var max = document.querySelector(".max");
+			var imgMax = document.querySelector(".max img");
+			//min的移入事件
+			min.onmouseover = function(){
+				//当鼠标移入min的时候，显示蒙版和max
+				fd.style.display = "block";
+				max.style.display = "block";
+				min.onmouseout = function(){
+					//当鼠标移入min的时候，显示蒙版和max
+					fd.style.display = "none";	
+					max.style.display = "none";
+				}
+				min.onmousemove = function(ev){
+					var evObj = ev || window.event;
+					var x = evObj.clientX - min.offsetLeft - (fd.offsetWidth / 2);
+					var y = evObj.clientY - min.offsetTop - (fd.offsetHeight / 2);
+					//最大移动距离
+					var maxX = min.offsetWidth - fd.offsetWidth - 2;
+					var maxY = min.offsetHeight - fd.offsetHeight - 2;
+					
+					//边界检测
+					if(x <= 0){
+						x = 0;
+					}else if(x >= maxX){
+						x = maxX;
+					}
+					
+					if(y <= 0){
+						y = 0;
+					}else if(y >= maxY){
+						y = maxY;
+					}
+					//fd动起来
+					fd.style.left = x + "px";
+					fd.style.top = y + "px";
+					
+					//求比例系数(移动距离/最大移动距离)
+					var xiX = x / maxX;
+					var xiY = y / maxY;
+					
+					imgMax.style.left = xiX * (max.offsetWidth - imgMax.offsetWidth - 2) + "px";
+					imgMax.style.top = xiY * (max.offsetHeight - imgMax.offsetHeight - 2) + "px";				
+				}
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

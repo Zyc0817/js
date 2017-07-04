@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 200px;
+				height: 200px;
+				background-color: cyan;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			var oDiv = document.getElementById("div1");
+			//事件绑定的第一种方式
+//			oDiv.onclick = function(){
+//				alert("111111");
+//			}
+//			oDiv.onclick = function(){
+//				alert("222222");
+//			}
+
+			//事件绑定的第二种方式
+			
+			//参数一：事件名(注意：没有on)
+			//参数二：绑定事件触发的函数
+			//参数三：布尔值，false(事件冒泡)  true(事件捕获) 
+			oDiv.addEventListener("click",function(){
+				alert("1111111");
+			},false);
+			oDiv.addEventListener("click",function(){
+				alert("2222222");
+			},false);
+			document.body.addEventListener("click",function(){
+				alert("3333333");
+			},false)
+
+			//这种绑定事件方式主要有两个特点
+			//1.能同时绑定两个或两个以上相同事件的绑定函数，不会覆盖
+			//2.这个方法也能给同一个元素绑定多个事件的绑定函数
+			
+			
+			
+			//这个方法非常棒但是有兼容问题，还是ie6，7，8不兼容这个方法
+			
+			
+			
+			//ie6，7，8有单独的处理方法
+//			oDiv.attachEvent("onclick",function(){
+//				//只能冒泡不能捕获	
+//			});
+			
+			//事件删除
+//			oDiv.removeEventListener("click",函数名,false);
+			
+
+			
+		</script>
+	</body>
+</html>

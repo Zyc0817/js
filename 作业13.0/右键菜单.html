@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul{
+				list-style: none;
+			}
+			.ul1{
+				width: 100px;
+				background-color: lightgray;
+				text-align: center;
+				position: absolute;
+				display: none;
+			}
+			.ul2{
+				width: 100px;
+				background-color: lightgray;
+				text-align: center;
+				position: absolute;
+				left: 95px;
+				top: 30px;
+				display: none;
+			}
+			.ul3{
+				width: 150px;
+				background-color: lightgray;
+				text-align: center;
+				position: absolute;
+				left: 190px;
+				top: 60px;
+				display: none;
+			}
+			.ul4{
+				width: 100px;
+				background-color: lightgray;
+				text-align: center;
+				position: absolute;
+				left: 95px;
+				top: 45px;
+				display: none;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<ul id="ul1" class="ul1">
+			<li>我是1</li>
+			<li>我是2</li>
+			<li id="li1">我是3
+				<ul id="ul2" class="ul2">
+					<li>我是3下的1</li>
+					<li>我是3下的2</li>
+					<li id="li2">我是3下的3
+						<ul id="ul3" class="ul3">
+							<li>我是3下的3下的1</li>
+							<li>我是3下的3下的2</li>
+							<li>我是3下的3下的3</li>
+							<li>我是3下的3下的4</li>
+						</ul>
+					</li>
+					<li>我是3下的4</li>
+				</ul>
+			</li>
+			<li id="li3">我是4
+				<ul id="ul4" class="ul4">
+					<li>我是4下的1</li>
+					<li>我是4下的2</li>
+					<li>我是4下的3</li>
+					<li>我是4下的4</li>
+				</ul>
+			</li>
+			<li>我是5</li>
+		</ul>
+		
+		
+		<script type="text/javascript">
+			var oUl1 = document.getElementById("ul1");
+			var oUl2 = document.getElementById("ul2");
+			var oUl3 = document.getElementById("ul3");
+			var oUl4 = document.getElementById("ul4");
+			var allLi = document.getElementsByTagName("li");
+			var oLi1 = document.getElementById("li1");
+			var oLi2 = document.getElementById("li2");
+			var oLi3 = document.getElementById("li3");
+			for(var i = 0;i < allLi.length;i++){
+				allLi[i].addEventListener("mouseover",function(){
+					this.style.backgroundColor = "red";	
+					oUl4.style.display = "none";
+					oUl3.style.display = "none";
+					oUl2.style.display = "none";
+				},true);
+				allLi[i].addEventListener("mouseout",function(){
+					this.style.backgroundColor = "lightgray";	
+				},false);
+			}
+			document.oncontextmenu = function(ev){
+				var evObj = ev || window.event;
+				oUl1.style.left = evObj.clientX + "px";
+				oUl1.style.top = evObj.clientY + "px";
+				oUl1.style.display = "block";
+				return false;
+			}
+			oLi1.onmouseover = function(){
+				oUl2.style.display = "block";
+				oUl2.style.left = 95 + "px";
+				oUl2.style.top = 30 + "px";
+			}
+			oLi1.onmouseout = function(){
+//				oUl2.style.display = "none";
+			}
+			oLi2.onmouseover = function(){
+				oUl3.style.display = "block";
+				oUl3.style.left = 95 + "px";
+				oUl3.style.top = 30 + "px";
+			}
+			oLi2.onmouseout = function(){
+//				oUl3.style.display = "none";
+			}
+			oLi3.onmouseover = function(){
+				oUl4.style.display = "block";
+				oUl4.style.left = 95 + "px";
+				oUl4.style.top = 45 + "px";
+			}
+			oLi3.onmouseout = function(){
+//				oUl4.style.display = "none";
+			}
+			document.onclick = function(){
+				oUl1.style.display = "none";
+			}
+			
+		</script>
+	</body>
+</html>

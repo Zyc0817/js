@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+	</head>
+	<body>
+		<ul id="guizi">
+			<li id="g1" class="guiA">小栗旬</li>
+			<li id="g2" class="guiA">安倍晋三</li>
+			<li id="g3" class="guiB" data-img = "123.jpg">滨崎步</li>		
+		</ul>
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+				//id选择器
+//				$("#g1").html("<strong>媳妇是疯子</strong>");
+				//.text()文本内容的取值存值可以使用这个，但是不能向内容里放标签
+//				alert($("#g1").text());
+
+				//标签名选择器
+//				$("li").html("鬼子");
+//				$("li:first").html("鬼子");
+
+				//找到所有li里面class名为guiA的标签
+//				$("li.guiA").html("鬼子");
+//				$("ul li:first").html("11111");
+				
+				
+				//属性选择器
+				//选择具有这个属性的元素
+//				$("[data-img]").html("1234");
+				//选择所有li中class值为guiA的元素
+//				$("li[class = guiA]").html("aaaa");
+//				$("li[class != guiA]").html("aaaa")
+				//$：选择以'.jpg'结尾的
+//				$("li[data-img$='.jpg']").html("234");			
+			});
+			
+			
+			//相当于ready
+			$(function(){
+					
+			});
+		</script>
+	</body>
+</html>

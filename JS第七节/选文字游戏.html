@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.main {
+				font-size: 17px;
+			}
+			
+			.content {
+				text-align: center;
+			}
+			
+			#txt {
+				font-size: 140px;
+				color: red;
+			}
+			
+			.footer {
+				text-align: center;
+			}
+			
+			.footer input {
+				width: 80px;
+				height: 80px;
+				margin: 0 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="head">
+				<p id="grade">0分</p>
+				<p id="time">20秒</p>
+			</div>
+			<div class="content">
+				<p id="txt">黄</p>
+			</div>
+			<div class="footer">
+				<input type="button" id="" value="" name="蓝" style="background-color: blue;" onclick="btnClick(this)" />
+				<input type="button" id="" value="" name="红" style="background-color: red;" onclick="btnClick(this)" />
+				<input type="button" id="" value="" name="黄" style="background-color: yellow;" onclick="btnClick(this)" />
+			</div>
+		</div>
+		<script type="text/javascript">
+			//控制只走一次倒计时
+			var isClickBtn = 0;
+			//装定时器用的
+			var timeInval = null;
+			//倒计时的数字
+			var time = 20;
+			//游戏的默认文字
+			var main_text = "黄";
+			//初始分数
+			var grade = 0;
+			//分数统计函数
+			function checkMain_text(btnObj) {
+				if (btnObj.name == main_text) {
+					grade++;
+					document.getElementById("grade").innerHTML = grade + "分";
+				} else {
+					grade--;
+					document.getElementById("grade").innerHTML = grade + "分";
+				}
+			}
+			//随机输出一种颜色
+			function getRandom() {
+				var arr = ["红", "黄", "蓝"];
+				var flag = Math.floor(Math.random() * 3);
+				return arr[flag];
+			}
+			//按钮点击事件
+			function btnClick(obj) {
+				//首先判断加分减分
+				checkMain_text(obj);
+				//分数统计完换文字
+				main_text = getRandom();
+				//拿到显示文字的标签
+				var pTxt = document.getElementById("txt");
+				//显示出新随机出来的文字
+				pTxt.innerHTML = main_text;
+				//随机文字颜色
+				var txtColor = getRandom();
+				if (txtColor == "红") {
+					pTxt.style.color = "red";
+				} else if (txtColor == "蓝") {
+					pTxt.style.color = "blue";
+				} else {
+					pTxt.style.color = "yellow";
+				}
+				//点击就开始倒计时
+				if (isClickBtn == 0) {
+					timeInval = setInterval(changeTime, 1000);
+					isClickBtn = 1;
+				}
+			}
+			function changeTime() {
+				time--;
+				//将时间显示出来
+				document.getElementById("time").innerHTML = time + "秒";
+				if (time == 0) {
+					clearInterval(timeInval);
+					alert("游戏结束，你获得了" + grade + "分");
+					window.location.reload();
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+	</head>
+	<body>
+		<div></div>
+		<script type="text/javascript">
+			window.onload = function(){
+				alert("窗口加载完毕")
+			}
+//					/\
+//					||
+//					\/			
+			$(document).ready(function(){
+				alert("我也加载完毕了")
+			});
+			/*
+			 1.ready的执行要在window.onload之前
+			 2.ready的执行效率更高
+			 3.所以一般我们都将jq代码写在ready方法里面	 
+			 */
+			
+			
+			
+//			innerHTML = 123;
+//			$("div").html(123);	
+			
+			
+//			onclick = function(){};
+//			click(function(){});
+			
+
+
+		</script>
+	</body>
+</html>

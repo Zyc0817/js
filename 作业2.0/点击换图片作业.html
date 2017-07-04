@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<img src="img/h0.png" id="img1"/>
+		<input type="button" name="btn1" id="btn1" value="上一张" />
+		<input type="button" name="btn2" id="btn2" value="下一张" />
+		<script type="text/javascript">
+		var oImg = document.getElementById("img1");
+		var oBtn1 = document.getElementById("btn1");
+		var oBtn2 = document.getElementById("btn2");
+		var compare = 0;
+		oBtn2.onclick = function(){
+			compare++;
+			if(compare>9){
+				compare = 0;
+			}	
+			oImg.src = "img/h" + compare + ".png";
+		}	
+		oBtn1.onclick = function(){
+			compare--;
+			if(compare<0){
+				compare = 9;
+			}
+			oImg.src = "img/h" + compare + ".png";
+		}
+		</script>
+	</body>
+</html>

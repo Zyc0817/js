@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+		<style type="text/css">
+			.top{
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="myGirl">
+			<li id="g1" class="girA">江疏影</li>
+			<li id="g2" class="girA">范冰冰</li>
+			<li id="g3" class="girB" data-img = "123.jpg">安以轩</li>		
+		</ul>
+		
+		<script type="text/javascript">
+			//设置第一个样式
+//			$("#g1").css("color","red");
+			//设置多条样式
+//			$("#g1").css({"color":"red","backgroundColor":"green"});
+
+			//addClass() 添加一个css类名，类似于setAttribute
+//			$("#g1").addClass("top");
+			//删除一个类名
+//			$("#g1").removeClass();
+			
+			//切换类名
+//			$("#g1").click(function(){
+//				$("#g1").toggleClass("top");
+//			});
+
+			//是否包含这个类名
+			alert($("#g1").hasClass("girA"));
+			
+		</script>
+	</body>
+</html>

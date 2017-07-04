@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			 	{n,m}:可以出现最少n次,最多m次
+			 	{n,}:最少出现n次，最多不限
+			 	{,m}:最少不限，最多出现m次
+			 	{n}:正好n次
+			 	+:{1,}
+			 	*:{0,}
+			 	?:{0,1}
+			 */
+//			var re = /a{1,10}/;
+
+			var str = "我叫sp，我的qq号是289715209,我同桌的qq号是424508055";
+			var re = /[1-9]\d{4,10}/g;
+			alert(str.match(re));
+		</script>
+	</body>
+</html>

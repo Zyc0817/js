@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+		</script>
+		<style type="text/css">
+			#wrap {
+				width: 200px;
+				height: 200px;
+				position: relative;
+				/*overflow: hidden;*/
+			}
+			
+			#middle {
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				transition: .5s;
+			}
+			
+			#middle div {
+				width: 200px;
+				height: 200px;
+				background-color: gray;
+				font-size: 50px;
+				text-align: center;
+				line-height: 200px;
+				float: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<input type="button" name="last" id="last" value="last" />
+		<input type="button" name="next" id="next" value="next" />
+		<br />
+		<input type="button" name="all" class="in1" value="第0页" />
+		<input type="button" name="all" class="in1" value="第1页" />
+		<input type="button" name="all" class="in1" value="第2页" />
+		<div id="wrap">
+			<div id="middle">
+				<div class="div1">A</div>
+				<div class="div1">B</div>
+				<div class="div1">C</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function() {
+				var $last = $("#last");
+				var $next = $("#next");
+				var $middleDiv = $("#middle");
+				var $div = $(".div1");
+				var $wrapDiv = $("#wrap");
+				var $pageBtns = $(".in1");
+				var w = $wrapDiv.width();
+				$middleDiv.css({
+					width: $div.length * w
+				});
+				var page = 0;
+				$next.click(function() {
+					page++;
+					if(page > $div.length - 1) {
+						page = 0;
+					}
+					$middleDiv.css({
+						left: -w * page
+					});
+				});
+				$last.click(function() {
+					page--;
+					if(page < 0) {
+						page = $div.length - 1;
+					}
+					$middleDiv.css({
+						left: -w * page
+					});
+				});
+
+				//添加页码
+				$pageBtns.click(function() {
+					page = $pageBtns.index($(this));
+					alert(page)
+					$middleDiv.css({
+						left: -w * page
+					});
+				});
+
+			});
+		</script>
+		<script type="text/javascript" src="js/perfectMove.js">
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="txt" value="" />
+		<input type="text" name="" id="" value="" />
+		<a href="http://www.baidu.com">百度</a>
+		<input type="button" id="btn" value="我是按钮" />
+		<script type="text/javascript">
+			var oTxt = document.getElementById("txt");
+			//成为焦点时触发的事件
+			oTxt.onfocus = function(){
+				console.log("我是焦点啦");
+			}
+			//失去焦点的时候触发
+			oTxt.onblur = function(){
+				console.log("我不是焦点啦");
+			}
+			//成为焦点的三种方式
+			//1.鼠标点击
+			//2.tab键
+			//3.JS方法
+			var oBtn = document.getElementById("btn");
+			oBtn.onclick = function(){
+				//通过调用这个方法，我们的这个标签直接成为焦点
+				oTxt.focus();
+				setTimeout(function(){
+					//通过调用这个方法，我们的这个标签直接失去焦点
+					oTxt.blur();
+				},3000);
+			}		
+		</script>
+	</body>
+</html>

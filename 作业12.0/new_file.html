@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				background-color: magenta;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			var oDiv = document.getElementById("div1");
+			oDiv.onmousedown = function(ev){
+				var evObj = window.event || ev;
+				var x = evObj.clientX - oDiv.offsetLeft;
+				var y = evObj.clientY - oDiv.offsetTop;
+				document.onmousemove = function(ev){
+					var a = window.event || ev;
+					oDiv.style.left = a.clientX - x + "px";
+					oDiv.style.top = a.clientY - y + "px";
+					oDiv.onmouseup = function(){
+						document.onmousemove = "";
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

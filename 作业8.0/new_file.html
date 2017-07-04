@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			input,div{
+				margin: 0;
+				padding: 0;
+			}
+			#wrap{
+				width: 200px;
+				height: 200px;
+				border: 1px solid black;
+				position: relative;
+			}
+			#div1{
+				position: absolute;
+				height: 100%;
+				top: 0;
+				left: 0;
+			}
+			#div1 div{
+				width: 200px;
+				height: 200px;
+				background-color: lightgray;
+				text-align: center;
+				line-height: 200px;
+				font-size: 50px;
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" name="" id="last" value="上一张" />
+		<input type="button" name="" id="next" value="下一张" />
+		<br />
+		<input type="button" name="all" id="" value="第1页" />
+		<input type="button" name="all" id="" value="第2页" />
+		<input type="button" name="all" id="" value="第3页" />
+		<div id="wrap">
+			<div id="div1">
+				<div name="div">刘文</div>
+				<div name="div">东旭</div>
+				<div name="div">龙哥</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var last = document.getElementById("last");
+			var next = document.getElementById("next");
+			var oDiv = document.getElementById("div1");
+			var allDiv = document.getElementsByName("div");
+			var oDiv1 = document.getElementById("wrap");
+			var allBtn = document.getElementsByName("all");
+			oDiv.style.width = allDiv.length * allDiv[0].offsetWidth + "px";
+			var w = allDiv[0].offsetWidth;
+			var page = 0;
+			next.onclick = function(){
+				page++;
+				if(page > allDiv.length-1){
+					page = 0;
+				}
+				startMove(oDiv,{left:-w * page});
+			}
+			last.onclick = function(){
+				page--;
+				if(page < 0){
+					page = allDiv.length - 1;
+				}
+				startMove(oDiv,{left:-w * page});
+			}
+			for(var i = 0;i < allBtn.length;i++){
+				allBtn[i].index = i;
+				allBtn[i].onclick = function(){
+					page = this.index;
+					startMove(oDiv,{left:-w * this.index});
+				}
+			}
+		</script>
+		<script type="text/javascript" src="js/perfectMove.js">			
+		</script>
+	</body>
+</html>

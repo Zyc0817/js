@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+		<style type="text/css">
+			#div1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				/*border: 1px solid black;
+				padding: 50px;
+				margin: 50px;*/
+				position: absolute;
+				left: 100px;
+				top: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		
+		<script type="text/javascript">
+			$(function(){
+				//内容宽度，效率高
+//				alert($("#div1").width());
+//				//内容+padding的宽度
+//				alert($("#div1").innerWidth());
+//				//内容+padding+border的宽度
+//				alert($("#div1").outerWidth());
+				
+//				alert($("#div1").offset().left);
+//				alert($("#div1").offset().top);
+				alert($("#div1").css("width"));
+//				alert($("#div1").css("top"));
+			});
+		</script>
+	</body>
+</html>

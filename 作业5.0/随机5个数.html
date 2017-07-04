@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var arr1 = [];
+			for(var i = 0; i > -1;i++){		
+				var count = Math.floor(Math.random()*24);	
+				if(count != arr1[0] && count != arr1[1] && count != arr1[2] && count != arr1[3] && count != arr1[4]){
+					if(arr1.length < 5){					
+						arr1.push(count);
+					}else{
+						break;	
+					}
+				}		
+			}
+			console.log(arr1);
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

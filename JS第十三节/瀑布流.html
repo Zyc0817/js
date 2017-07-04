@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#flow{
+				list-style: none;
+				position: relative;
+				margin: 0 auto;
+			}
+			#flow li{
+				width: 200px;
+				background-color: lightgray;
+				position: absolute;
+				font-size: 50px;
+				transition: 0.5s;		
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="flow">
+		 	
+		</ul>
+		<script type="text/javascript">
+			//随机高度的函数
+			function randH(min,max){
+				return parseInt(Math.random() * (max - min + 1) + min);
+			}
+			var ul = document.getElementById("flow");
+			var leftSpace = 10;  //左间距
+			var paddingSpace = 10;  //li间距
+			var hs = [];	
+			function layout(bol){
+				var lis = document.getElementsByTagName("li");
+				//列数
+				var cols = parseInt(document.documentElement.clientWidth / 200);
+				//大水杯（ul）的宽度
+				ul.style.width = cols * 200 + paddingSpace * (cols - 1) + leftSpace + "px";
+				//保存 列 高度的数组
+				var arrH = [];
+				for(var i = 0;i < cols;i++){
+					arrH[i] = 10;  //每一列的初始高度
+				}
+				function creatLi(index){
+					var li = lis[index] || document.createElement("li");
+					//将下标赋给li
+					li.innerHTML = index;
+					//随机生成高度
+					var h = hs[index] || randH(100,300);
+					li.style.height = h + "px";
+					if(bol){
+						hs.push(h);
+					}
+					//找最短列
+					var minl = 0;  //最短列的列号
+					var minH = arrH[0];  //最短列的高度
+					for(var i = 0;i < arrH.length;i++){
+						if(minH > arrH[i]){
+							minH = arrH[i];
+							minl = i;
+						}
+					}
+					//求left值
+					var l = leftSpace + (200 + paddingSpace) * minl;
+					li.style.left = l + "px";
+					//求top值
+					var t = minH + paddingSpace;
+					li.style.top = t + "px";
+					bol && ul.appendChild(li);
+					//更新最小值列
+					arrH[minl] = arrH[minl] + li.offsetHeight + paddingSpace;				
+				}
+				//循环创建li
+				for(var i = 0;i < 5;i++){
+					creatLi(i);
+				}
+			}
+			layout(true);
+			//当窗口size发生变化的时候触发
+			window.onresize = function(){
+				layout(false);
+			}
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

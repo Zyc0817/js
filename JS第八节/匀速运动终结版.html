@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				margin-top: 50px;
+				position: absolute;
+				left: 1000px;
+			}
+			span{
+				width: 1px;
+				height: 300px;
+				background-color: black;
+				position: absolute;
+				left: 800px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" id="" value="动起来" onclick="startMove(800)"/>
+		<div id="div1"></div>
+		<span></span>
+		<script type="text/javascript">
+//			alert(Math.abs(-5));
+			//Math.abs 绝对值
+			var oDiv = document.getElementById("div1");
+			var time = null;
+			function startMove(aim){
+				var speed = 0;
+				if (oDiv.offsetLeft < aim) {
+					speed = 7;
+				} else{
+					speed = -7;
+				}
+				clearInterval(time);
+				time = setInterval(function(){
+					if (Math.abs(oDiv.offsetLeft - aim) < 7) {
+						clearInterval(time);
+						oDiv.style.left = aim + "px";
+					} else{
+						oDiv.style.left = oDiv.offsetLeft + speed + "px";
+					}
+				},30);
+			}	
+		</script>
+	</body>
+</html>

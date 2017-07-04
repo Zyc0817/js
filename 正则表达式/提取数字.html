@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+//			var arr1 = str.split(" ");
+//			arr1[0].split(",");
+//			arr1[6] = arr1[6].substring(2);
+//			var arr2 = [];	
+//			for(var i = 0;i < arr1.length;i++){
+//				if(arr1[i] >= "12" && arr1[i] <= "99"){		
+//					arr2.push(arr1[i]);
+//				}
+//			}
+//			alert(arr2)
+			
+			
+			var str = "12,87 76 -ddf e dd 89 ff76 99";
+			var tmp = "";
+			var arr = [];
+			for(var i = 0;i < str.length;i++){
+				if(str.charAt(i) >= "0" && str.charAt(i) <= "9"){
+					tmp += str.charAt(i);
+				}else{
+					if(tmp.length != 0){
+						arr.push(tmp);
+						tmp = "";
+					}
+				}			
+			}
+			if(tmp.length != 0){
+				arr.push(tmp);
+				tmp = "";
+			}
+//			alert(arr);
+			
+			
+			
+			var re = /\d+/g;
+			alert(str.match(re));
+			/*
+			 什么是正则：
+			 正则表达式又称作规则表达式，计算机科学的一个概念，
+			 正则表达式通常用来检索或者替换那些符合某个模式或
+			 规则的文本。
+			 1.强大的字符串匹配工具
+			 2.是一种正常人很难看懂的文字
+			 
+			 */
+		</script>
+	</body>
+</html>

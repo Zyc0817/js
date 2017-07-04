@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#wrap{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap"></div>
+		<script type="text/javascript">
+			function mouseWheel(obj,fn){			
+				var ff = navigator.userAgent.indexOf("firefox");
+				if(ff != -1){
+					//在火狐下滚轮事件要使用下面的方式绑定
+					obj.addEventListener("DOMMouseScroll",wheel,false);
+				}else{
+					obj.onmousewheel = wheel;
+				}
+				function wheel(ev){
+					var evObj = ev || window.event;
+					var down = true;				
+					if(evObj.detail){
+						dowm = evObj.detail < 0;
+					}else{
+						down = evObj.wheelDelta > 0;
+					}
+					//回调函数，把值回传给调用的地方
+					fn(down,evObj);
+					if(evObj.preventDefault){
+						evObj.preventDefault();
+					}
+					return false;
+				}
+			}
+			
+			
+			var oWrap = document.getElementById("wrap");
+			mouseWheel(window,function(d,eve){
+				if (d) {
+					oWrap.style.width = oWrap.offsetWidth + 10 + "px";
+					oWrap.style.height = oWrap.offsetHeight + 10 + "px";
+				} else{
+					oWrap.style.width = oWrap.offsetWidth - 10 + "px";
+					oWrap.style.height = oWrap.offsetHeight - 10 + "px";
+				}
+			});
+		</script>
+	</body>
+</html>

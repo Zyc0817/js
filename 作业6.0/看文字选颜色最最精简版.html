@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1,#div2{
+				width: 100px;
+				height: 50px;
+				text-align: center;
+				line-height: 50px;
+			}
+			#div3{
+				width: 300px;
+				height: 300px;
+				border: 1px solid red;
+				font-size: 200px;
+				margin: 0 auto;
+				text-align: center;
+				line-height: 300px;
+				color: red;
+			}
+			.wrap{
+				width: 350px;
+				margin: 20px auto;
+			}
+			.wrap input{
+				width: 100px;
+				height: 100px;
+				outline: 0;
+				margin-left: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">0分</div>
+		<div id="div2">20秒</div>
+		<div id="div3">黄</div>
+		<div class="wrap">
+			<input type="button" id="btn1" value="" name="红" style="background-color: red;"/>
+			<input type="button" id="btn2" value="" name="黄" style="background-color: yellow;"/>
+			<input type="button" id="btn3" value="" name="蓝" style="background-color: blue;"/>
+		</div>
+		<script type="text/javascript">
+			var oDiv1 = document.getElementById("div1");
+			var oDiv2 = document.getElementById("div2");
+			var oDiv3 = document.getElementById("div3");
+			var arr1 = document.getElementsByTagName("input");
+			var time;
+			var count = 20;
+			var index = 0;	
+			var compare = true;
+			for(var i = 0;i < 3;i++){			
+				arr1[i].onclick = function(){	
+					if(this.name == oDiv3.innerHTML){
+						index++;
+					}else{
+						index--;
+					}
+					if(compare == true){
+						time = setInterval(function(){
+							count--;
+							oDiv2.innerHTML = count + "秒";					
+							if(count <= 0){
+							clearInterval(time);
+							alert("游戏结束!");
+							}
+						},1000);
+						compare = false;
+					}		
+					var arr2 = ["红","黄","蓝"];
+					var arr3 = ["red","yellow","blue"];
+					var num = Math.floor(Math.random()*3);
+					oDiv3.innerHTML = arr2[num];
+					oDiv3.style.color = arr3[num];
+					oDiv1.innerHTML = index + "分";
+				}
+			}	
+		</script>
+	</body>
+</html>

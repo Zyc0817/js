@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				margin-top: 10px;
+			}
+			section span{
+				width: 100px;
+				height: 100px;
+				background-color: yellow;
+				position: absolute;
+				left: 0px;
+				/*top: 10px;*/
+				z-index: -2;
+				text-align: right;
+				line-height: 100px;
+			}
+			section{
+				/*position: absolute;*/
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<div><span>刘文</span></div>
+			
+		</section>
+		<section>
+			<div><span>东旭</span></div>
+			
+		</section>
+		<section>
+			<div><span>龙哥</span></div>
+			
+		</section>
+		<section>
+			<div><span>黄俊</span></div>
+			
+		</section>
+		<section>
+			<div><span>宋刚</span></div>
+			
+		</section>
+		<script type="text/javascript">
+			function getStyle(obj,attr){
+				if(obj.currentStyle){
+					return obj.currentStyle[attr];
+				}else{
+					return getComputedStyle(obj,false)[attr];
+				}
+			}	
+			var ad = document.getElementsByTagName("div");
+			var as = document.getElementsByTagName("span");
+			var asec = document.getElementsByTagName("section");
+			function move(obj,aim,attr){
+				clearInterval(obj.time);
+				obj.time = setInterval(function(){
+					var curr = parseInt(getStyle(obj,attr));
+					speed = (aim - curr) / 8
+					speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+					if(curr == aim){
+						clearInterval(obj.time);
+					}else{
+						obj.style[attr] = curr + speed + "px";
+					}		
+				},30);			
+			}
+			for(var i = 0;i < ad.length;i++){
+				asec[i].time = null;
+				asec[i].onmouseover = function(){					
+					move(this,200,"width");			
+				}
+				asec[i].onmouseout = function(){				
+					move(this,-100,"width");			
+				}
+			}
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

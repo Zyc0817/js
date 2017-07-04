@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: relative;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<script type="text/javascript" src="js/perfectMove.js">
+			
+		</script>
+		<script type="text/javascript">
+			var $div = $("div");
+			var oDiv = document.getElementsByTagName("div")[0];
+			$div.click(function(){
+				startMove(this,{left:300})
+				$div.css({
+//					width:200
+				});	
+			});
+//			oDiv.onclick = function(){
+//				startMove(this,{left:300})
+//			}
+			
+		</script>
+	</body>
+</html>

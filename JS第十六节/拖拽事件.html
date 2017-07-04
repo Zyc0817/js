@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 100px;
+				background-color: magenta;
+				position: absolute;			
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			var oDiv = document.getElementById("div1");
+			oDiv.onmousedown = function(ev){
+				var evObj = ev || window.event;
+				//计算我点击的点距离方块的上左的距离
+				var disX = evObj.clientX - oDiv.offsetLeft;
+				var disY = evObj.clientY - oDiv.offsetTop;
+				document.onmousemove = function(ev){
+					var e = ev || window.event;
+					var left = e.clientX - disX + "px";
+					oDiv.style.left = left;
+					oDiv.style.top = e.clientY - disY + "px";
+					oDiv.onmouseup = function(){
+						document.onmousemove = "";
+					}
+				}
+			}		
+		</script>
+	</body>
+</html>

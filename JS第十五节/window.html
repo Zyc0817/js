@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				/*padding: 0;*/
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" name="btn1" id="btn1" value="按钮1" />
+		<input type="button" name="" id="btn2" value="按钮2" />
+		<!--
+			window对象
+			所有浏览器都支持window对象
+			所有javascript的全局对象 变量 函数都会自动成为window对象的成员
+			全局变量是window对象的属性，全局函数是window对象的方法
+			我们以前学过的alert，setintervalue，这些都是window的方法
+		-->
+		<script type="text/javascript">
+			//1.窗口位置
+			//获取窗口相对于顶端的位置
+			//（1）chrome  Safari  Opera  IE，不兼容火狐
+//			alert(screenTop);
+			//(2)firefox chrome Safari，不兼容IE
+//			alert(window.screenY);
+			
+			//获取窗口相对于左侧的位置
+			//（1）chrome  Safari  Opera  IE，不兼容火狐
+//			alert(window.screenLeft);
+			//(2)firefox chrome Safari，不兼容IE
+//			alert(window.screenY);
+
+			
+			//2.窗口大小
+			
+			//(1)浏览器窗口内部高度和宽度(BOM)
+			//支持IE9以上 chrome Safari Firefox Opera
+//			alert(window.innerHeight);
+//			alert(window.innerWidth);
+			
+			//(2)支持IE9以上 chrome Safari Firefox Opera(DOM)
+			//相当于html
+//			alert(document.documentElement.clientHeight);
+//			alert(document.documentElement.clientWidth);
+			
+			//(3)支持低版本IE
+			//body的高度是由内容撑开的，内容多高body多高，没有内容body为0,自带margin值
+//			alert(document.body.clientHeight);
+//			alert(document.body.clientWidth);
+
+			//获取整个浏览器的窗口大小,算导航栏
+//			alert(window.outerWidth);
+//			alert(window.outerHeight);
+			
+			var oBtn1 = document.getElementById("btn1");
+			var oBtn2 = document.getElementById("btn2");
+			var newWindow = null;
+			oBtn1.onclick = function(){
+				//window.open(括号内可以有四个参数，但是后两个没用)
+				//参数1：URL地址
+				//参数2：打开方式"_self自身打开"   "_blank在新窗口中打开"
+				newWindow = open("http://www.baidu.com","_blank");
+//				alert(newWindow)
+			}
+			oBtn2.onclick = function(){
+				//火狐不能用
+//				window.close();
+				newWindow.close();
+			}
+			//JS区window可以省略
+//			window.alert();
+//			window.confirm();
+//			window.prompt();
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

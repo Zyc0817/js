@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 50px;
+				background-color: red;
+			}
+			#div2{
+				width: 100px;
+				height: 50px;
+				background-color: blue;
+			}
+			#div3{
+				width: 100px;
+				height: 50px;
+				background-color: yellow;
+			}
+			#div4{
+				width: 100px;
+				height: 50px;
+				background-color: cyan;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div id="div2"></div>
+		<div id="div3"></div>
+		<div id="div4"></div>
+		<script type="text/javascript">
+			var allDiv = document.getElementsByTagName("div");
+			var time = null;
+			function startMove(aim){
+				for(var i = 0;i < allDiv.length;i++){
+					clearInterval(time)
+					time = setInterval(function(){
+					var speed = (aim - this.offsetWidth)/8;
+					speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+						if (this.offsetWidth == aim) {
+							clearInterval(time);
+						} else{
+							allDiv[i].style.width = this.offsetWidth + speed + "px";
+						}
+					},30);	
+				}				
+			}
+			allDiv[0].onmouseover = function(){
+				startMove(300);
+			}
+			allDiv[0].onmouseout = function(){
+				startMove(100);
+			}
+//			oDiv2.onmouseover = function(){
+//				startMove(300);
+//			}
+//			oDiv2.onmouseout = function(){
+//				startMove(100);
+//			}
+		</script>
+	</body>
+</html>

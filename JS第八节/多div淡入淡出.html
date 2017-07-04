@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				margin-top: 10px;
+				opacity: 0.3;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script type="text/javascript">
+			//多物体运动，所有东西都不能共用
+			//属性与运动对象的绑定，速度，其他属性值（例如不透明度）
+			
+			
+			
+			var allDiv = document.getElementsByTagName("div");
+			function startMove(obj,aim){
+				clearInterval(obj.time);	
+				obj.time = setInterval(function(){
+					var speed = (aim - obj.oc)*100/8;
+					speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+					if (obj.oc == aim) {
+						clearInterval(obj.time);
+					} else{
+						obj.oc += speed/100;
+						obj.oc = parseFloat(obj.oc.toFixed(2));
+						obj.style.opacity = obj.oc;
+					}
+				},30);
+			}
+			for(var i = 0;i < allDiv.length;i++){
+				allDiv[i].time = null;
+				allDiv[i].oc = 0.3;
+				allDiv[i].onmouseover = function(){
+					startMove(this,1);
+				}
+				allDiv[i].onmouseout = function(){
+					startMove(this,0.3);
+//					window.location.reload();
+				}
+				 
+			}
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

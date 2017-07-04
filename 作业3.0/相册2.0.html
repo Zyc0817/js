@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div div{
+				width: 20px;
+				height: 20px;
+				background-color: black;
+				opacity: 0.6;
+				color: white;
+				text-align: center;
+				line-height: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div id="div1">1</div>
+			<img src="img/1.png" id="img"/>
+		</div>
+		<input type="button" name="btn1" id="btn1" value="上一张" />
+		<input type="button" name="btn2" id="btn2" value="下一张" />
+		<script type="text/javascript">
+			var oBtn1 = document.getElementById("btn1");
+			var oBtn2 = document.getElementById("btn2");
+			var oImg = document.getElementById("img");
+			var oDiv = document.getElementById("div1")
+			var arr = ["img/1.png","img/2.png","img/3.png","img/4.png","img/5.png"];
+			var index = 0;
+			oBtn1.onclick = function(){
+				index--;
+				if(index < 0){
+					index = 4;
+				}
+				oImg.src = arr[index];	
+				oDiv.innerHTML = index+1;
+			}
+			
+			oBtn2.onclick = function(){
+				index++;
+				if(index > 4){
+					index = 0;
+				}
+				oImg.src = arr[index];
+				oDiv.innerHTML = index+1;
+			}
+		</script>
+	</body>
+</html>

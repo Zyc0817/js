@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p>11111</p>
+		<ul id="ul1">
+			<li>1111</li>
+			<li>2222</li>
+			<li>3333</li>
+			<li>4444</li>
+		</ul>
+		
+		
+		<script type="text/javascript">
+			var oUl = document.getElementById("ul1");
+			/*
+			 元素.firstChild:属性(只读) 第一个子节点
+			 标准下:firstChild包含文本和元素节点类型
+			 非标准下:只包含元素节点.
+			 
+			 元素.firstElementChild:属性(只读) 获取第一个元素子节点
+			 非标准不兼容也就是ie9以下不支持这个属性.
+			 */
+			alert(oUl.firstElementChild.nodeType);
+
+			if (oUl.firstElementChild) {
+				oUl.firstElementChild.style.backgroundColor = "yellow";
+			} else{
+				oUl.firstChild.style.backgroundColor = "yellow";
+			}
+			
+			/*
+			 lastChild
+			 lastElementChild
+			 */
+			if (oUl.lastElementChild) {
+				oUl.lastElementChild.style.backgroundColor = "red";
+			} else{
+				oUl.lastChild.style.backgroundColor = "red";
+			}
+			/*
+			 元素.nextSibling   获取当前元素的下一个兄弟元素
+			 元素.nextElementSibling
+			 */
+			if (oUl.nextElementSibling&&oUl.firstElementChild) {
+				oUl.firstElementChild.nextElementSibling.style.backgroundColor = "orange";
+			} else{
+				oUl.firstChild.nextSibling.style.backgroundColor = "yellow";
+			}
+			/*
+			 元素.previousSibling        获取当前元素的上一个兄弟元素.
+			 元素.previousElementSibling
+			 */
+//			alert(oUl.previousElementSibling);
+			if (oUl.lastElementChild.previousElementSibling) {
+				oUl.lastElementChild.previousElementSibling.style.backgroundColor = "magenta";
+			} else{
+				oUl.lastChild.previousSibling.style.backgroundColor = "magenta";
+			}
+		</script>
+	</body>
+</html>

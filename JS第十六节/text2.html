@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#div1{
+				width: 100px;
+				height: 100px;
+				background-color: cyan;
+				position: absolute;
+				left: 0;
+				top: 0;
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			var oDiv = document.getElementById("div1");
+			document.onmousemove = function(ev){
+				var evObj = window.event || ev;
+				oDiv.style.left = evObj.clientX - oDiv.offsetWidth / 2 + "px";
+				oDiv.style.top = evObj.clientY - oDiv.offsetHeight / 2 + "px";
+			}
+		</script>
+	</body>
+</html>

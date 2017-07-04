@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			img{
+				width: 300px;
+				height: 200px;	
+			}
+			#div1{
+				position: relative;
+				bottom: 50px;
+				right: -200px;
+				width: 50px;
+				height: 50px;
+				opacity: 0.6;
+				background-color: black;
+				color: white;
+				text-align: center;
+				line-height: 50px;
+				border-radius: 10px;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				//获取加载图片的img
+				var oImg = document.getElementById("img");
+				//获取上一张按钮
+				var oBtn1 = document.getElementById("btn1");
+				//获取下一张按钮
+				var oBtn2 = document.getElementById("btn2");
+				//获取显示数字的div
+				var oDiv1 = document.getElementById("div1");			
+				//创建用作拼接图片地址的中间值
+				var index = 1;
+				//上一张按钮的点击事件
+				oBtn1.onclick = function(){
+					index--;
+					if(index < 1){
+						index = 5;
+					}
+					oImg.src = "img/" + index + ".png";
+					//获取标签内内容
+					oDiv1.innerHTML = index;
+				}
+				//下一张按钮的点击事件
+				oBtn2.onclick = function(){
+					index++;
+					if(index > 5){
+						index = 1;
+					}
+					oImg.src = "img/" + index + ".png";
+					oDiv1.innerHTML = index;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<img src="img/1.png" id="img"/>
+			<div id="div1">1</div>
+		</div>
+		<input type="button" name="btn1" id="btn1" value="上一张" />
+		<input type="button" name="btn2" id="btn2" value="下一张" />
+	</body>
+</html>

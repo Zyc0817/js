@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function minTwo(a,b){
+				return a < b ? a : b;
+			}
+			var result = minTwo(1,2);
+			document.write("两个数的最小值:"+result+"</br>");
+			
+			function minThree(a,b,c){
+				var min = minTwo(a,b);
+				min = minTwo(min,c);
+				return min;
+			}
+			var result = minThree(5,2,3);
+			document.write("三个数的最小值："+result+"</br>");
+			
+			function minFour(a,b,c,d){
+				var min = minThree(a,b,c);
+				min = minTwo(min,d);
+				return min;
+			}
+			var result = minFour(18,2,3,4);
+			document.write("四个数的最小值"+result+"</br>");
+			
+			function midThree(a,b,c){
+				var mid = a > b ? a : b;
+				if(mid < c){
+					return mid;
+				}else{
+					mid = a < b ? a : b;
+					mid = mid > c ? mid : c;
+					return mid;
+				}			
+			}
+			var result = midThree(8,5,10);
+			document.write("三个数的中间值："+result);
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				text-align: center;
+				font-size: 50px;
+				margin-top: 20px;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div"></div>	
+		<script type="text/javascript">				
+			var oDiv = document.getElementById("div");		
+			var time;		
+			function oDay(a,b,c,d){
+				var date2 = new Date(a,b,c);
+				var time1 = date2.getTime();		
+					var date1 = new Date();
+					var time2 = date1.getTime();
+					var day = ("距离" + d + "还有<br/>"+Math.floor((time1-time2)/1000/60/60/24)+"天");
+					var hours = (Math.floor(((time1-time2)/1000/60/60)%24)+"小时");
+					var minnutes = (Math.floor((time1-time2)/1000/60)%60+"分");
+					var second = (Math.floor((time1-time2)/1000)%60+"秒");
+					oDiv.innerHTML = day + hours + minnutes + second;					
+				return ;
+			}
+			oDay(2016,9,1,"十一");
+			time = setInterval(function(){	
+				oDay(2016,9,1,"十一");
+			},1000);		
+		</script>
+	</body>
+</html>

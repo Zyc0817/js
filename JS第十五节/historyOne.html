@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" id="btn" value="页面1按钮" />
+		<a href="historyTwo.html">jump</a>
+		<script type="text/javascript">
+			//window.history  当前页面历史网址的集合
+//			alert(history.length);
+			var oBtn = document.getElementById("btn");
+			oBtn.onclick = function(){
+				//跳转下一级页面
+//				history.go(1);
+				history.forward();
+			
+			}
+		</script>
+	</body>
+</html>

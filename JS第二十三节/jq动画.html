@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js"> 
+			
+		</script>
+		<style type="text/css">
+			#div1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		
+		<script type="text/javascript">
+			//hide()   show()
+			$(function(){
+				$("#div1").click(function(){
+					$(this).hide(1000,function(){
+//						alert("我变完了");
+						$(this).show(1000,function(){
+							$(this).css("background-color","blue");
+						});
+					});
+				});
+				
+				
+				//animate
+				$("#div1").click(function(){
+					$(this).animate({
+						width:"500px",
+						height:"500px",
+					},1000,function(){
+						$(this).css({
+							backgroundColor:"blue"
+						});
+					});
+				});	
+			});	
+		</script>
+	</body>
+</html>

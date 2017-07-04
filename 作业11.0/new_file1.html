@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.wrap {
+				width: 320px;
+				height: 480px;
+				background: url(img/game_bg.jpg);
+				margin: 50px auto;
+				position: relative;
+			}
+			
+			.count {
+				position: absolute;
+				font-weight: bold;
+				font-size: 20px;
+				color: white;
+				left: 65px;
+				top: 13px;
+			}
+			
+			.timeDown {
+				width: 180px;
+				height: 16px;
+				position: absolute;
+				left: 63px;
+				top: 66px;
+				background: url(img/progress.png);
+			}
+			
+			.wolf img {
+				position: absolute;
+			}
+			
+			.start {
+				text-align: center;
+				font-size: 40px;
+				color: white;
+				line-height: 480px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="count">0</div>
+			<div class="timeDown"></div>
+			<div class="wolf"></div>
+			<div class="start">开始</div>
+		</div>
+		<script type="text/javascript">
+			var count = document.getElementsByClassName("count")[0];
+			var timeDown = document.getElementsByClassName("timeDown")[0];
+			var wolf = document.getElementsByClassName("wolf")[0];
+			var start = document.getElementsByClassName("start")[0];
+			var arrPos = [{
+				l: "98px",
+				t: "115px"
+			}, {
+				l: "17px",
+				t: "160px"
+			}, {
+				l: "15px",
+				t: "220px"
+			}, {
+				l: "30px",
+				t: "293px"
+			}, {
+				l: "122px",
+				t: "273px"
+			}, {
+				l: "207px",
+				t: "295px"
+			}, {
+				l: "200px",
+				t: "211px"
+			}, {
+				l: "187px",
+				t: "141px"
+			}, {
+				l: "100px",
+				t: "185px"
+			}];
+
+			function random(min, max) {
+				return parseInt(Math.random() * (max - min + 1) + min);
+			}
+			var scoring = 0;
+			var time1 = null;
+			start.onclick = function() {	
+				td();
+				start.style.display = "none";	
+				time1 = setInterval(function() {
+					var img = new Image();
+					var index = 0;
+					var wolfType = random(0, 100) < 80 ? "h" : "x";
+					img.src = "img/" + wolfType + index + ".png";
+					var bol = true;
+					var r = 0;
+					while (bol) {
+						r = random(0, arrPos.length - 1);
+						for (var i = 0; i < wolf.children.length; i++) {
+							if (parseInt(arrPos[r].l) == wolf.children[i].offsetLeft) {						
+								break;
+							}
+						}
+						if (i == wolf.children.length) {
+							bol = false;
+						}
+					}
+					img.style.left = arrPos[r].l;
+					img.style.top = arrPos[r].t;
+					wolf.appendChild(img);
+					img.time1 = setInterval(function(){
+						index++;
+						img.src = "img/" + wolfType + index + ".png";
+						if(index > 4){
+							clearInterval(img.time1);
+							img.time2 = setInterval(function(){
+								index--;
+								img.src = "img/" + wolfType + index + ".png";
+								if(index <= 0){
+									clearInterval(img.time2);
+									wolf.removeChild(img);
+								}
+							},150);
+						}
+					},150);
+					
+					var compare = true;
+					img.onclick = function(){
+						if(compare == true){
+							if(wolfType == "h"){
+								scoring += 10;
+							}else{
+								scoring -= 10;
+							}
+						}
+						count.innerHTML = scoring;
+						compare = false;
+						clearInterval(img.time1);
+						clearInterval(img.time2);
+						index = 5;
+						img.time3 = setInterval(function(){
+							index++;
+							img.src = "img/" + wolfType + index + ".png";
+							if(index > 8){				
+								clearInterval(img.time3);
+								wolf.removeChild(img);
+							}
+						},150);
+					}
+				}, 800);
+				
+			}		
+			var time2 = null;
+			function td(){
+				time2 = setInterval(function(){
+					if(timeDown.offsetWidth <= 0){
+						clearInterval(time2);
+						clearInterval(time1);
+						alert("游戏结束");
+						window.location.reload();
+					}else{
+						timeDown.style.width = timeDown.offsetWidth - 1 + "px"; 
+					}
+				},100);
+			}		
+		</script>
+	</body>
+
+</html>

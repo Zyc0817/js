@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" name="btn1" id="btn1" value="全选" />
+		<!--<input type="button" name="btn2" id="btn2" value="反选" />-->
+		<ul>
+			<li><input type="checkbox" name="ck" id="ck1" value="" /></li>
+			<li><input type="checkbox" name="ck" id="ck2" value="" /></li>
+			<li><input type="checkbox" name="ck" id="ck3" value="" /></li>
+			<li><input type="checkbox" name="ck" id="ck4" value="" /></li>
+			<li><input type="checkbox" name="ck" id="ck5" value="" /></li>	
+		</ul>
+		
+		<script type="text/javascript">
+			var btn1 = document.getElementById("btn1");
+			var btn2 = document.getElementById("btn2");
+//			var ck1 = document.getElementById("ck1");
+//			var ck2 = document.getElementById("ck2");
+//			var ck3 = document.getElementById("ck3");
+//			var ck4 = document.getElementById("ck4");
+//			var ck5 = document.getElementById("ck5");
+			var arr = document.getElementsByTagName("input");
+//			alert(arr.length);
+			var compare = true;
+			btn1.onclick = function(){
+				if(compare == true){
+					for(var i = 0;i < arr.length;i++){
+						if(arr[i].name == "ck"){
+							arr[i].checked = true;
+						}		
+					}
+					btn1.value = "取消";
+				}else{
+					for(var i = 0;i < arr.length;i++){
+						if(arr[i].name == "ck"){
+							arr[i].checked = false;
+						}	
+					}
+					btn1.value = "全选";
+				}
+				compare =! compare;
+//				ck1.checked = true;
+//				ck2.checked = true;
+//				ck3.checked = true;
+//				ck4.checked = true;
+//				ck5.checked = true;
+			}
+//			btn2.onclick = function(){
+//				for(var i = 0;i < arr.length;i++){
+//					if(arr[i].name == "ck"){
+//						arr[i].checked = false;
+//					}
+//				}
+////				ck1.checked = false;
+////				ck2.checked = false;
+////				ck3.checked = false;
+////				ck4.checked = false;
+////				ck5.checked = false;
+//			}
+		</script>
+	</body>
+</html>

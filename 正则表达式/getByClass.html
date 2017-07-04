@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="ul1">
+			<li class="box xxx"></li>
+			<li class="boxxxx"></li>
+			<li class="box   aada"></li>
+			<li></li>
+			<li class="box"></li>
+		</ul>
+		<script type="text/javascript">
+			function getByClass(oParent,sClass){
+				var arr = oParent.getElementsByTagName("*");
+				var newArr = [];
+				//  \\:正则里相当于一个\，\b：检索单词边界
+				var re = new RegExp("\\b" + sClass + "\\b","i");
+				for(var i = 0;i < arr.length;i++){
+//					if(arr[i].className.match(re) == sClass){
+//						newArr.push(arr[i]);
+//					}
+					if(re.test(arr[i].className)){
+						newArr.push(arr[i]);
+					}
+
+				}
+				return newArr;
+			}
+			var oUl = document.getElementById("ul1");
+			var allBox = getByClass(oUl,"box");
+			for(var i = 0;i < allBox.length;i++){
+				allBox[i].style.backgroundColor = "red";	
+			}
+//			var a = 100;
+//			function test(){
+//				alert(a);
+//				var a = 10;
+//				alert(a);
+//			}
+//			test();
+			
+			
+//			var a = 1;
+//			var b = "1";
+//			// ==:相对等于,会把等号两端的内容转换成同种类型进行判断;
+//			// ===:绝对等于，先判断等号两端是否是同一类型;
+//			if(a == b){
+//				alert("相等");
+//			}else{
+//				alert("不相等");
+//			}
+
+
+//			var obj = {};
+//			obj.test1 = function(){
+////				alert(this);
+//			}
+//			var test2 = obj.test1;
+//			test2();
+//			var a = [1,2]
+//			alert(typeof(test2))
+
+
+			alert("1234".split("1"));
+			
+			
+			
+			
+			
+			
+
+
+			
+
+		</script>
+	</body>
+</html>

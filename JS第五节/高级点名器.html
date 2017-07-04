@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				text-align: center;
+			}
+			.wrap{
+				width: 960px;
+				border: 1px solid red;
+				margin: 50px auto;
+				overflow: hidden;
+			}
+			.wrap div{
+				width: 100px;
+				height: 100px;
+				margin: 10px;
+				float: left;
+				background-color: gray;
+				text-align: center;
+				line-height: 100px;
+				font-size: 20px;
+				color: white;
+				outline: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="div1">赵小庆</div>
+			<div id="div2">邓玉</div>
+			<div id="div3">赵青臣</div>
+			<div id="div4">王瑞琦</div>
+			<div id="div5">曹铭蓄</div>
+			<div id="div6">夏菁</div>
+			<div id="div7">张玲</div>
+			<div id="div8">王思媛</div>
+			<div id="div9">董磊</div>
+			<div id="div10">郑艳玲</div>
+			<div id="div11">李想</div>
+			<div id="div12">张云驰</div>
+			<div id="div13">赵宇</div>
+			<div id="div14">于政文</div>
+			<div id="div15">许卓</div>
+			<div id="div16">王渤皓</div>
+			<div id="div17">王鑫晨</div>
+			<div id="div18">马闯</div>
+			<div id="div19">lsp</div>
+			<div id="div20">高佳楠</div>
+			<div id="div21">李双利</div>
+			<div id="div22">李宁</div>
+			<div id="div23">王吉</div>
+		</div>
+		<input type="button" name="btn" id="btn" value="开始" />
+		<script type="text/javascript">
+			var oBtn = document.getElementById("btn");
+			var compare = true;
+			var time  = null;
+			oBtn.onclick = function(){
+				if(compare == true){
+					time = setInterval(function(){	
+						var num = Math.floor(Math.random()*23+1);
+						var oDiv = document.getElementById("div"+num);
+						oDiv.style.backgroundColor = "red";
+						for(var i = 1;i < 24;i++){
+							if(i == num){
+								continue;
+							}
+							var divv = document.getElementById("div" + i);
+							divv.style.backgroundColor = "gray";
+						}
+					},200);
+					this.value = "停止";
+					
+				}else{
+					clearInterval(time);
+					this.value = "开始";
+				}
+				compare =! compare;			
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

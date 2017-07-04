@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 500px;
+				height: 300px;
+				border: 1px solid black;
+				margin: 100px auto;
+				line-height: 300px;
+				font-size: 50px;
+			}
+			body{
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">要开始了呦！</div>
+		<input type="button" name="btn" id="btn" value="开始" />
+		<script type="text/javascript">
+			var oDiv = document.getElementById("div1");
+			var oBtn = document.getElementById("btn");
+			var arr = ["张玲","夏菁","王思源","董磊","李双利","曹明旭","王瑞琪","郑艳玲","李想","高佳楠","赵清晨","张云驰","赵宇","马闯","李世鹏","邓玉","赵晓庆","于正文","许卓","王博浩","王鑫晨"];
+			var time;
+			var compare = true;
+			oBtn.onclick = function(){
+				if (compare == true) {
+					time = setInterval(function(){
+						var median = Math.floor(Math.random()*(arr.length));
+						oDiv.innerHTML = arr[median];
+					},100);	
+					this.value = "停止";
+				} else{
+					clearInterval(time);	
+					this.value = "开始";
+				}
+				compare =! compare;
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>	
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="ul1">
+			<li>1111 <a href="###">删除</a></li>
+			<li>1111 <a href="###">删除</a></li>
+			<li>1111 <a href="###">删除</a></li>
+			<li>1111 <a href="###">删除</a></li>
+		</ul>
+		<script type="text/javascript">
+			var oUl = document.getElementById("ul1");
+			var allA = document.getElementsByTagName("a");
+			for(var i = 0;i < allA.length;i++){
+				allA[i].onclick = function(){
+					//父级元素.removeChild（this.获取当前节点的父节点）
+					oUl.removeChild(this.parentNode);
+				}
+			}
+			
+		</script>
+	</body>
+</html>
+

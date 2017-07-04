@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//封装函数，不确定参数个数的时候用
+			//判断几个数的最大值
+			function findMax(){
+				var max = 0;
+				if(arguments.length == 0){
+					alert("sp,没值求什么最大值！");
+					return;
+				}
+				for(var i = 0;i < arguments.length;i++){
+					if(arguments[i] > max){
+						max = arguments[i];
+					}
+				}
+				return max;
+			}
+			var max = findMax(10,2,3,4,6,8,5);
+			alert(max);		
+		</script>
+	</body>
+</html>

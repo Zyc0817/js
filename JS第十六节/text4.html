@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			var oDiv = document.getElementById("div1");
+			document.onkeydown = function(ev){
+				var evObj = ev || window.event;
+				var x = oDiv.offsetLeft;
+				var y = oDiv.offsetTop;
+				var a = evObj.keyCode;
+				switch(a){
+					case 37:
+					oDiv.style.left = x - 20 + "px";
+					break;
+					case 38:
+					oDiv.style.top = y - 20 + "px";
+					break;
+					case 39:
+					oDiv.style.left = x + 20 + "px";
+					break;
+					case 40:
+					oDiv.style.top = y + 20 + "px";
+					break;
+				}
+			}
+			
+		</script>
+	</body>
+</html>

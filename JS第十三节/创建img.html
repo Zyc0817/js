@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<img src="http://img1.gtimg.com/tj/pics/hv1/122/48/2110/137215112.jpg"/>
+		<script type="text/javascript">
+//			var img = document.createElement("img");
+//			img.src = "http://img1.gtimg.com/tj/pics/hv1/122/48/2110/137215112.jpg";
+//			img.onload = function(){
+//				alert("葛大爷");
+//			}
+//			document.body.appendChild(img);		
+
+			//我们总会使用的创建img方法
+			var img = new Image();
+			img.src = "http://img1.gtimg.com/tj/pics/hv1/122/48/2110/137215112.jpg"
+			img.onload = function(){
+				alert("葛大爷");
+			}
+			document.body.appendChild(img);
+			img.style.width = 100 + "px";	
+		</script>
+	</body>
+</html>

@@ -1,0 +1,82 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<style type="text/css">
+			body{
+				text-align: center;
+			}
+			.wrap{
+				width: 600px;
+				margin: 100px auto;
+			}
+			.wrap div{
+				width: 100px;
+				height: 100px;
+				border: 1px solid black;
+				display: inline-block;
+				line-height: 100px;
+				font-size: 50px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div id="div1"></div>
+			<div id="div2"></div>
+			<div id="div3"></div>
+			<div id="div4"></div>
+			<div id="div5"></div>
+		</div>
+		<input type="button" id="btn" value="金を持ち" />
+		<!--<div id="div1">别浪费钱了</div>-->
+		<script type="text/javascript">
+			var arr = [];
+			function lottery() {	
+				while (arr.length < 5) {
+					var num = Math.floor(Math.random() * 11 + 1);
+					for (var i = 0; i < arr.length; i++) {
+						if (arr[i] == num) {
+							break;
+						}
+					}
+					if (arr.length == i) {
+						arr.push(num);
+					}
+				}
+//				return arr;
+			}
+			var oDiv1 = document.getElementById("div1");
+			var oDiv2 = document.getElementById("div2");
+			var oDiv3 = document.getElementById("div3");
+			var oDiv4 = document.getElementById("div4");
+			var oDiv5 = document.getElementById("div5");
+			var oBtn = document.getElementById("btn");
+			var compare = true;
+			var time;
+			oBtn.onclick = function() {
+				
+				if (compare == true) {
+					time = setInterval(function() {
+						lottery();
+						oDiv1.innerHTML = arr[0];
+						oDiv2.innerHTML = arr[1];
+						oDiv3.innerHTML = arr[2];
+						oDiv4.innerHTML = arr[3];
+						oDiv5.innerHTML = arr[4];
+					}, 100);
+					this.value = "stop"
+				} else {
+					clearInterval(time);
+					this.value = "金を持ち";
+				}
+				compare = !compare;
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>天夜叉</title>
+		<style type="text/css">
+			div,
+			img,
+			input {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#wrap {
+				width: 400px;
+				height: 300px;
+				border: 1px solid black;
+				position: relative;
+				margin: 100px auto;
+				overflow: hidden;
+			}
+			
+			#div {
+				height: 100%;
+				position: absolute;
+				top: 0;
+			}
+			
+			#div img {
+				width: 400px;
+				height: 300px;
+				float: left;
+				display: block;
+			}
+			
+			.div {
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div id="div">
+				<img src="img/4.jpg" />
+				<img src="img/1.jpg" />
+				<img src="img/2.jpg" />
+				<img src="img/3.jpg" />
+				<img src="img/4.jpg" />
+				<img src="img/1.jpg" />
+			</div>
+		</div>
+		<div class="div">
+			<input type="button" id="btn1" value="上一张" />
+			<input type="button" id="btn2" value="下一张" />
+		</div>
+		<script type="text/javascript">
+			var wrapDiv = document.getElementById("wrap");
+			var oDiv = document.getElementById("div");
+			var oBtn1 = document.getElementById("btn1");
+			var oBtn2 = document.getElementById("btn2");
+			var allImg = document.getElementsByTagName("img");
+			oDiv.style.width = allImg.length * allImg[0].offsetWidth + "px";
+			oDiv.style.left = -allImg[0].offsetWidth + "px";
+			oBtn1.onclick = last;
+			oBtn2.onclick = next;
+			var time = null;
+			time = setInterval(function(){
+				next();
+			},30);
+			oBtn1.onmouseover = function(){
+				clearInterval(time);
+			}
+			oBtn1.onmouseout = function(){
+				time = setInterval(function(){
+					next();
+				},30);
+			}
+			oBtn2.onmouseover = function(){
+				clearInterval(time);
+			}
+			oBtn2.onmouseout = function(){
+				time = setInterval(function(){
+					next();
+				},30);
+			}
+			var temp = 0;
+			function next() {
+				if (temp == 0) {
+					temp = 1;
+					startMove(oDiv, {left: oDiv.offsetLeft - allImg[0].offsetWidth},function(){
+						if (-(allImg.length - 1) * allImg[0].offsetWidth == oDiv.offsetLeft) {
+							oDiv.style.left = -allImg[0].offsetWidth + "px";
+						}
+						temp = 0;
+					});
+				}
+			}
+			function last(){
+				if(temp == 0){
+					temp = 1;
+					startMove(oDiv,{left:oDiv.offsetLeft + allImg[0].offsetWidth},function(){
+						if(oDiv.offsetLeft == 0){
+							oDiv.style.left = -allImg[0].offsetWidth * 4 + "px";
+						}
+						temp = 0;
+					});
+				}
+			}
+		</script>
+		<script type="text/javascript" src="js/perfectMove.js">
+		</script>
+	</body>
+
+</html>

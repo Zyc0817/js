@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" id="btn" value="页面2按钮" />
+		<script type="text/javascript">
+//			alert(history.length);
+			var oBtn = document.getElementById("btn");
+			oBtn.onclick = function(){
+				//返回上一级页面
+//				history.go(-1);
+				history.back();
+			}
+		</script>
+	</body>
+</html>

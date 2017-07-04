@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			document.onclick = function(ev){
+//				alert("111111");
+				//火狐浏览器不能通过window.event获取事件对象
+				//需要在触发事件的函数形参里传入一个ev，ev就
+				//代表触发事件的事件对象
+				var evObj = ev || window.event;
+//				console.log(evObj);
+				alert(evObj.clientX);
+				alert(evObj.clientY);
+			}
+		</script>	
+	</body>
+</html>

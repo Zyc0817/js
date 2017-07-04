@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+		</script>
+		<style type="text/css">
+			.wrap {
+				width: 650px;
+				height: 600px;
+				margin: 0 auto;
+				position: relative;
+			}
+			
+			.div1 {
+				position: absolute;
+			}
+			
+			.div2 {
+				position: absolute;
+				top: 59px;
+				left: 117px;
+			}
+			
+			.div3 {
+				position: absolute;
+				top: 160px;
+				left: 249px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap" id="wrap">
+			<div class="div1">
+				<img src="img/turntable-bg.jpg" />
+			</div>
+			<div class="div2" id="turn">
+				<img src="img/turntable.png" />
+			</div>
+			<div class="div3" id="startMove">
+				<img src="img/pointer.png" />
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function() {
+				var $startMove = $("#startMove");
+				var $turn = $("#turn");
+
+				function rand() {
+					return(Math.random() * (0.06 - 0.04 + 1) + 0.04);
+				}
+
+				var time = null;
+				var a = 0;
+				var speed = 20;
+				var compare = true;
+				var bol = true;
+				$startMove.click(function() {
+					if(bol) {
+						if(compare) {
+							console.log(a);
+							time = setInterval(function() {
+								a = a + speed;
+								$turn.css({
+									transform: "rotateZ(" + a + "deg)"
+								});
+							}, 30);
+						} else {
+							bol = false;
+							clearInterval(time);
+							console.log(a);
+							var time1 = setInterval(function() {
+								speed = speed - rand();
+								if(speed < 0) {
+									clearInterval(time1);
+									speed = 20;
+									bol = true
+								} else {
+									a = a + speed;
+									$turn.css({
+										transform: "rotateZ(" + a + "deg)"
+									});
+								}
+							}, 30);
+							tan();
+						}
+						compare = !compare;
+					}
+				});
+
+				function tan() {
+					var time = setTimeout(function() {
+
+						var b = a % 360;
+						b = parseInt(b / 51.4);
+						switch(b) {
+							case 0:
+								alert("免单4999元");
+								break;
+							case 1:
+								alert("免单50元");
+								break;
+							case 2:
+								alert("免单10元");
+								break;
+							case 3:
+								alert("免单5元");
+								break;
+							case 4:
+								alert("免分期服务费");
+								break;
+							case 5:
+								alert("提高白条额度");
+								break;
+							case 6:
+								alert("未中奖");
+								break;
+						}
+					}, 1200);
+				}
+			});
+		</script>
+	</body>
+
+</html>

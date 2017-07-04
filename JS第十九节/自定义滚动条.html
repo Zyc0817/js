@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#wrap{
+				width: 300px;
+				height: 400px;
+				border: 1px solid black;
+				position: absolute;
+				left: 100px;
+				top: 100px;
+				font-size: 30px;
+				overflow: hidden;
+			}
+			#sliderWrap{
+				position: absolute;
+				right: 0;
+				top: 0;
+				height: 100%;
+				width: 20px;
+				background-color: gainsboro;
+			}
+			#middle{
+				position: absolute;
+			}
+			#slider{
+				position: absolute;
+				width: 20px;
+				height: 50px;
+				background-color: red;
+				border-radius: 10px;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="middle">
+				李伯伯要当红军 红军不要李伯伯
+				因为李伯伯的屁股大呀 容易被鬼子发现目标
+				李伯伯找到了团长 团长也是个老伯伯
+				因为伯伯同情伯伯呀 李伯伯就光荣当了红军
+				李伯伯去执行任务 爬上了小山坡
+				因为李伯伯的屁股大呀 被鬼子发现了目标
+				李伯伯拍屁股就跑 鬼子上来就是两刺刀
+				为了革命为了党啊 李伯伯就壮烈牺牲了
+				李伯伯要当红军 红军不要李伯伯
+				因为李伯伯的屁股大呀 容易被鬼子发现目标
+				李伯伯找到了团长 团长也是个老伯伯
+				因为伯伯同情伯伯呀 李伯伯就光荣当了红军
+				李伯伯去执行任务 爬上了小山坡
+				因为李伯伯的屁股大呀 被鬼子发现了目标
+				李伯伯拍屁股就跑 鬼子上来就是两刺刀
+				为了革命为了党啊 李伯伯就壮烈牺牲了
+				李伯伯要当红军 红军不要李伯伯
+				因为李伯伯的屁股大呀 容易被鬼子发现目标
+				李伯伯找到了团长 团长也是个老伯伯
+				因为伯伯同情伯伯呀 李伯伯就光荣当了红军
+				李伯伯去执行任务 爬上了小山坡
+				因为李伯伯的屁股大呀 被鬼子发现了目标
+				李伯伯拍屁股就跑 鬼子上来就是两刺刀
+				为了革命为了党啊 李伯伯就壮烈牺牲了
+				李伯伯要当红军 红军不要李伯伯
+				因为李伯伯的屁股大呀 容易被鬼子发现目标
+				李伯伯找到了团长 团长也是个老伯伯
+				因为伯伯同情伯伯呀 李伯伯就光荣当了红军
+				李伯伯去执行任务 爬上了小山坡
+				因为李伯伯的屁股大呀 被鬼子发现了目标
+				李伯伯拍屁股就跑 鬼子上来就是两刺刀
+				为了革命为了党啊 李伯伯就壮烈牺牲了
+			</div>
+			<div id="sliderWrap">
+				<div id="slider"></div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			function mouseWheel(obj,fn){			
+				var ff = navigator.userAgent.indexOf("firefox");
+				if(ff != -1){
+					//在火狐下滚轮事件要使用下面的方式绑定
+					obj.addEventListener("DOMMouseScroll",wheel,false);
+				}else{
+					obj.onmousewheel = wheel;
+				}
+				function wheel(ev){
+					var evObj = ev || window.event;
+					var down = true;				
+					if(evObj.detail){
+						dowm = evObj.detail < 0;
+					}else{
+						down = evObj.wheelDelta > 0;
+					}
+					//回调函数，把值回传给调用的地方
+					fn(down,evObj);
+					if(evObj.preventDefault){
+						evObj.preventDefault();
+					}
+					return false;
+				}
+			}
+		</script>
+		
+		<script type="text/javascript">
+			var wrap = document.getElementById("wrap");
+			var middle = document.getElementById("middle");
+			var sliderWrap = document.getElementById("sliderWrap");
+			var slider = document.getElementById("slider");
+			//计算滑块高度
+			var scale = wrap.offsetHeight / middle.offsetHeight;
+			var h = sliderWrap.offsetHeight * scale;
+			slider.style.height = h + "px";
+			var maxY = sliderWrap.offsetHeight - slider.offsetHeight;		
+			slider.onmousedown = function(ev){
+				var evObj = ev || event;
+				var disY = evObj.clientY - slider.offsetTop;
+				document.onmousemove = function(ev){
+					var eve = ev || event;
+					var y = eve.clientY - disY;			
+					if(y <= 0){
+						y = 0;
+					}else if (y >= maxY){
+						y = maxY;
+					}
+					slider.style.top = y + "px";
+					var a = y / maxY;
+					var mT = a * (wrap.offsetHeight - middle.offsetHeight);
+					middle.style.top = mT + "px";
+				}
+				document.onmouseup = function(){
+					document.onmousemove = "";
+				}
+				return false;
+			}
+			mouseWheel(wrap,function(dd,ev){
+				var yy = slider.offsetTop;
+				if (dd) {
+					yy -= 10;
+				} else{
+					yy += 10;
+				}
+				if (yy <= 0) {
+					yy = 0;
+				} else if(yy >= maxY){
+					yy = maxY;
+				}
+				slider.style.top = yy + "px";
+				var moveScale2 = yy / maxY;
+				middle.style.top = (wrap.offsetHeight - middle.offsetHeight) * moveScale2 + "px";
+			});
+			
+			sliderWrap.onclick = function(ev){
+				var evObj = ev || event;
+				var yyy = ev.clientY - wrap.offsetTop - slider.offsetHeight / 2;
+				if (yyy <= 0) {
+					yyy = 0;
+				} else if(yyy >= maxY){
+					yyy = maxY;
+				}
+				slider.style.top = yyy + "px";
+				var moveScale2 = yyy / maxY;
+				middle.style.top = (wrap.offsetHeight - middle.offsetHeight) * moveScale2 + "px";
+				
+			}
+			
+		</script>
+	</body>
+</html>

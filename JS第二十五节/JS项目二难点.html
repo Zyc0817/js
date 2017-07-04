@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#wrap{
+				list-style: none;
+				width: 1100px;
+				height: 418px;
+				margin: 100px auto;
+				border: 1px solid red;
+				position: relative;
+			}
+			#wrap li{
+				position: absolute;
+				transition: all 1s;
+			}
+			#wrap li img{
+				width: 320px;
+				height: 418px;
+			}
+			#wrap li div{
+				width: 320px;
+				height: 418px;
+				background-color: black;
+				opacity: 0.6;
+				position: absolute;
+				left: 0;
+				top: 0;
+				transition: all 1s;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<ul id="wrap">
+			<li><img src="img/r/1.jpg" /><div></div></li>
+			<li><img src="img/r/2.jpg" /><div></div></li>
+			<li><img src="img/r/3.jpg" /><div></div></li>
+			<li><img src="img/r/4.jpg" /><div></div></li>
+			<li><img src="img/r/5.jpg" /><div></div></li>
+			<li><img src="img/r/6.jpg" /><div></div></li>
+		</ul>
+		<script type="text/javascript">
+			window.onload = function(){
+				var oUl = document.getElementById("wrap");
+				var liAll = document.getElementsByTagName("li");
+				var myAttr = [{
+					"left":118,
+					"zindex":2,
+					"scale":0.8,
+					"index":0,
+					"oc":0.6
+				},{
+					"left":246,
+					"zindex":3,
+					"scale":0.9,
+					"index":1,
+					"oc":0.6
+				},{
+					"left":390,
+					"zindex":4,
+					"scale":1,
+					"index":2,
+					"oc":0
+				},{
+					"left":566,
+					"zindex":3,
+					"scale":0.9,
+					"index":3,
+					"oc":0.6
+				},{
+					"left":726,
+					"zindex":2,
+					"scale":0.8,
+					"index":4,
+					"oc":0.6
+				},{
+					"left":390,
+					"zindex":1,
+					"scale":0.6,
+					"index":5,
+					"oc":0.6
+				}];
+				Ass(liAll,myAttr);
+				function Ass(arr1,arr2){
+					for(var i = 0;i < liAll.length;i++){
+						arr1[i].style.left = arr2[i].left + "px";
+						arr1[i].style.zIndex = arr2[i].zindex;
+						arr1[i].style.transform = "scale(" + (arr2[i].scale) + ")";
+						arr1[i].isIndex = arr2[i].index;
+						arr1[i].lastElementChild.style.opacity = arr2[i].oc;
+					}
+				}
+				function change(n){
+					for(var i = 0;i < n;i++){
+						var temp = myAttr[0];
+						myAttr[0] = myAttr[1];
+						myAttr[1] = myAttr[2];
+						myAttr[2] = myAttr[3];
+						myAttr[3] = myAttr[4];
+						myAttr[4] = myAttr[5];
+						myAttr[5] = temp;
+					}
+				}
+				function startMove(){	
+					change(1);
+					Ass(liAll,myAttr);		
+				}
+				var timer = setInterval(startMove,1000);
+				
+				
+				oUl.onmouseover = function(){
+					clearInterval(timer);
+					oUl.onmouseout = function(){
+						timer = setInterval(startMove,1000);
+					}
+					for(var i = 0;i < liAll.length;i++){
+						liAll[i].onclick = function(){
+							var sc = this.isIndex - 2;
+							if (sc < 0) {
+								sc = Math.abs(sc);
+								change(sc);
+								Ass(liAll,myAttr);
+							} else{
+								sc = 8 - this.isIndex;
+								change(sc);
+								Ass(liAll,myAttr);
+							}	
+							
+						}
+						liAll[i].onmouseover = function(){
+							this.lastElementChild.style.opacity = 0;
+							this.onmouseout = function(){
+								if(this.isIndex != 2){
+									this.lastElementChild.style.opacity = 0.6;
+								}				
+							}
+						}
+					}			
+				}
+			}
+		</script>
+	</body>
+</html>

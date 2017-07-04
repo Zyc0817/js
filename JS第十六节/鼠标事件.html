@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 150px;
+				height: 150px;
+				background-color: red;
+			}
+			.div2{
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div class="div2" onclick="text(this)"></div>
+		<script type="text/javascript">
+			/*
+			 事件是JS中常用的功能，绝大部分的交互事件都能完成
+			 
+			 事件作用
+			 事件可以用于处理表单验证，用户的输入，用户行为以及浏览器的一些动作
+			 事件通常是跟函数一起使用的
+			 常见事件：
+			 1.鼠标事件
+			 2.键盘事件
+			 3.框架/对象事件（onload，onresize）
+			 4.表单事件
+			 5.拖动事件	 
+			 */
+			var oDiv = document.getElementById("div1");
+//			oDiv.onclick = function(){
+//				console.log(this);
+//			}
+//			
+//			function text(obj){
+//				console.log(obj);
+//				console.log(this);			
+//			}
+//			window.text();
+			//因为绑定事件的方式不同，函数里的this也不同
+			//如果是通过div.onclick来绑定事件，这个函数相当于div的一个方法
+			//这种情况this代表了这个标签
+			
+			//如果函数是全局的，而且在行间进行绑定，这个函数相当于是window的
+			//所以方法里的this就代表window，如果在这种方式下我们还要获取到
+			//标签本身，那么就需要借助参数
+			
+			
+			//1
+//			oDiv.onmouseover = function(){
+//				alert("鼠标移入");  //只是移入的瞬间会走，在范围内移动就不会触发这个方法
+//			}
+
+//			//2
+//			oDiv.onmouseout = function(){
+//				alert("鼠标移出");
+//			}
+
+			//3
+//			oDiv.onmousemove = function(){
+//				alert("只要在范围内移动就会触发");
+//			}
+
+			//4
+//			oDiv.ondblclick = function(){
+//				alert("双击");
+//			}
+			
+			//鼠标点击后触发
+//			oDiv.onmousedown = function(){
+//				alert("111111");
+//			}
+//			
+//			//鼠标松开后触发
+//			oDiv.onmouseup = function(){
+//				alert("222222");
+//			}
+//			
+//			//鼠标点击松开后触发
+//			oDiv.onclick = function(){
+//				alert("333333");
+//			}
+
+//			oDiv.oncontextmenu = function(){
+//				alert("右键");
+//				可以去掉浏览器右键默认的那个东西
+//				return false;
+//			}		
+		</script>
+	</body>
+</html>

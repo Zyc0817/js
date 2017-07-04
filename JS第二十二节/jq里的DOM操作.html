@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+	</head>
+	<body>
+		<ul id="myGirl">
+			<li id="g1" class="girA">江疏影</li>
+			<li id="g2" class="girA">范冰冰</li>
+			<li id="g3" class="girB" data-img = "123.jpg">安以轩</li>		
+		</ul>
+		
+		
+		<script type="text/javascript">
+			$(function(){
+				//1.操作文本节点
+//				$("#g1").text("杨幂");
+				//获取文本内容
+//				alert($("#g1").text());
+			
+			
+				//2.操作属性节点
+				
+					//添加属性节点
+//					$("#g1").attr("data-img","sp.jpg");
+					//删除属性节点
+//					$("#g1").removeAttr("data-img");
+
+					//插入一个节点
+					//向一个元素的内容尾部追加内容
+//					$("#g1").append("<strong>我的女神</strong>");
+//					$("<strong>我的女神</strong>").appendTo($("#g1"));
+				
+					//向一个元素的内容头部追加内容
+//					$("#g1").prepend("<strong>我的女神</strong>");
+//					$("<strong>我的女神</strong>").prependTo($("#g1"));
+
+				
+					//在指定元素之前添加输入的元素
+//					$("<li>heihei</li>").insertBefore($("#g1"));
+					//在指定元素之后添加输入的元素
+//					$("<li>小泽玛利亚</li>").insertAfter($("#g1"));
+				
+					//移出节点
+				
+					//删除节点以及它的子节点
+//					$("#g2").remove();
+
+					//清空节点内容
+//					$("#g2").empty();
+					
+					//复制节点
+//					$("#myGirl").append(($("#g1").clone()));
+
+					//替换节点
+//					$("#g2").replaceWith("<p>张馨予</p>");
+//					$("<p>lsp</p>").replaceAll($("li"));
+
+
+			});
+			
+		</script>
+	</body>
+</html>

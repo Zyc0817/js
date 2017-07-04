@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				text-align: center;
+			}
+			.wrap{
+				width: 300px;
+				height: 200px;
+				margin: 100px auto;
+				border:  1px solid red;
+				text-align: center;
+				line-height: 200px;
+				font-size: 40px;
+				color: orange;
+			}
+			input{
+				width: 100px;
+				height: 100px;
+				background-color: white;
+				border-radius: 50px;
+				outline: 0;
+				font-size: 30px;
+				color: blue;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="div1">看谁这么任性</div>
+		</div>
+		<input type="button" name="btn" id="btn" value="开始" />
+		
+		<script type="text/javascript">
+			var oBtn = document.getElementById("btn");
+			var oDiv = document.getElementById("div1");
+			var arr = ["张玲","夏菁","王思媛","董磊","李双利","曹明旭","王瑞琪","郑艳玲","李想","高佳楠","赵清晨","张云驰","赵宇","马闯","李世鹏","邓玉","赵小庆","于正文","许卓","王博浩","王鑫晨","李宁","王吉"];
+			var compare = true;
+			var time = null;
+			oBtn.onclick = function(){
+				if(compare == true){
+					time = setInterval(function(){
+						var num = Math.floor(Math.random()*arr.length);
+						oDiv.innerHTML = arr[num];
+					},100);
+					this.value = "停止";
+				}else{
+					clearInterval(time);
+					this.value = "开始";
+				}
+				compare =! compare;
+			}
+			
+		</script>
+	</body>
+</html>

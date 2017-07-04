@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="div1"></div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			var oWrap = document.getElementById("wrap");
+			var oDiv1 = document.getElementById("div1");
+			
+			
+			//onmouseenter与onmouseleave不会触发冒泡
+			//检测的是移入移出的边界，先碰到谁的边界先执行哪个
+//			oDiv1.onmouseenter = function(){
+//				alert("移入div1");	
+//			}
+//			oWrap.onmouseenter = function(){
+//				alert("移入wrap");	
+//			}
+//			oWrap.onmouseleave = function(){
+//				alert("移出wrap");
+//			}
+//			oDiv1.onmouseleave = function(){
+//				alert("移出div1");
+//			}
+			
+			
+		</script>
+	</body>
+</html>

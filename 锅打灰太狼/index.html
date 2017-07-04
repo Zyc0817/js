@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.wrap{
+				width: 320px;
+				height: 480px;
+				margin: 50px auto;
+				position: relative;
+				background: url(img/game_bg.jpg);
+			}
+			.score{
+				position: absolute;
+				left: 60px;
+				top: 14px;
+				font-size: 20px;
+				color: white;
+			}
+			.timer{
+				position: absolute;
+				left: 63px;
+				top: 66px;	
+				width: 180px;	
+				height: 16px;
+				background: url(img/progress.png);
+			}
+			.start{
+				text-align: center;
+				line-height: 480px;
+				font-size: 40px;
+				color: white;				
+			}
+			img{
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="score" id="score">0</div>
+			<div class="timer" id="timer"></div>
+			<div class="start">开始</div>
+			<div id="wolf">
+				<!--<img src="img/h0.png"/>-->
+			</div>		
+		</div>
+		<script type="text/javascript">
+			var start = document.getElementsByClassName("start")[0];
+			var timer = document.getElementById("timer");
+			var wolf = document.getElementById("wolf");
+			var score = document.getElementById("score");
+			var time1 = null;	
+			var count = 0;
+			var arrJson = [{l:18,t:155},
+						   {l:16,t:218},
+						   {l:28,t:290},
+						   {l:98,t:113},
+						   {l:104,t:190},
+						   {l:118,t:271},
+						   {l:185,t:139},
+						   {l:197,t:209},
+						   {l:207,t:293}];
+			function random(min,max){
+				return parseInt(Math.random() * (max - min + 1) + min);
+			}
+			
+			start.onclick = function(){
+				start.style.display = "none";
+				time1 = setInterval(function(){
+					if(timer.offsetWidth <= 0){
+						clearInterval(time1);
+						alert("游戏结束！" + count + "分");
+						window.location.reload();
+					}else{				
+						timer.style.width = timer.offsetWidth - 1 + "px";			
+					}				
+				},200);	
+				clock();
+				var time3 = setInterval(function(){
+					clock();
+				},500);			
+			}
+			
+			function clock(){
+				var img = new Image();
+				wolf.appendChild(img);
+				var time2 = null;
+				var time3 = null;
+				var time4 = null;
+				var index = 0;		
+				var index2 = 9;
+				var d = random(0,100) < 81 ? "h" : "x";
+				time2 = setInterval(function(){
+					img.src = "img/" + d + index +".png";
+					index++;				
+					if(index == 5){				
+						clearInterval(time2);
+						time3 = setInterval(function(){
+							img.src = "img/" + d + index +".png";
+							index--;				
+							if(index == -1){
+								clearInterval(time3);
+								wolf.removeChild(img);
+							}
+						},100)
+					}
+				},100);
+				var bool = true;	
+				var r = 0;
+				while(bool){
+					r = random(0,8);
+					for(var i = 0;i < wolf.children.length;i++){
+						if(arrJson[r].l == wolf.children[i].offsetLeft){
+							break;
+						}			
+					}
+					if(i == wolf.children.length){
+						bool = false;
+					}
+				}
+				img.style.left = arrJson[r].l + "px";		
+				img.style.top = arrJson[r].t + "px";	
+				var compare = true;
+				img.onclick = function(){
+					if(compare == true){
+						clearInterval(time2);
+						clearInterval(time3);
+						if(d == "h"){
+							count += 10;
+						}else
+							count -= 10;				
+						time4 = setInterval(function(){
+							img.src = "img/" + d + index2 +".png";
+							index2--;				
+							if(index2 == -1){				
+								clearInterval(time4);	
+								wolf.removeChild(img);
+							}
+						},100);
+						compare = false;
+					}			
+					score.innerHTML = count;
+				}
+			}		
+		</script>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.text{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				margin-top: 10px;
+			}
+		</style>
+	</head>
+	<body id="isBody">
+		<input type="button" name="btn" id="btn" value="点我点我" />
+		<script type="text/javascript">
+			var oBtn = document.getElementById("btn");
+			var bao = document.getElementById("isBody");
+			oBtn.onclick = function(){
+				var oDivNew = document.createElement("div");
+				bao.appendChild(oDivNew);
+				//设置样式
+				oDivNew.setAttribute("class","text");
+				
+			}		
+		</script>
+	</body>
+</html>

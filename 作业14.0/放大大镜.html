@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.min{
+				width: 350px;
+				height: 350px;
+				position: relative;
+				float: left;
+				border: 1px solid black;
+			}
+			.fd{
+				width: 150px;
+				height: 150px;
+				background-color: cyan;
+				opacity: 0.3;
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.max{
+				width: 350px;
+				height: 350px;
+				border: 1px solid black;
+				float: left;
+				overflow: hidden;
+				position: relative;
+				display: none;
+			}
+			.max img{
+				position: absolute;
+				/*display: none;*/
+			}
+		</style>
+	</head>
+	<body>
+		<div class="min">
+			<img src="img/min.jpg"/>
+			<div class="fd"></div>
+		</div>
+		<div class="max">
+			<img src="img/max.jpg"/ id="img">
+		</div>
+		<script type="text/javascript">
+			var fd = document.getElementsByClassName("fd")[0];
+			var min = document.getElementsByClassName("min")[0];
+			var max = document.getElementsByClassName("max")[0];
+			var oImg = document.getElementById("img");
+			min.onmouseover = function(){
+				fd.style.display = "block";
+				max.style.display = "block";				
+				min.onmouseout = function(){
+					fd.style.display = "none";
+					max.style.display = "none";
+				}
+				min.onmousemove = function(ev){
+					var evObj = ev || event;
+					var x1 = evObj.clientX - fd.offsetWidth / 2;
+					var y1 = evObj.clientY - fd.offsetHeight / 2;				
+					var maxX = min.offsetWidth - fd.offsetWidth;
+					var maxY = min.offsetHeight - fd.offsetHeight;
+					if(x1 >= maxX){
+						x1 = maxX;
+					}else if(x1 <= 0){
+						x1 = 0;
+					}
+					if(y1 >= maxY){
+						y1 = maxY;
+					}else if(y1 <= 0){
+						y1 = 0;
+					}
+					fd.style.left = x1 + "px";
+					fd.style.top = y1 + "px";
+					var biX = x1 / maxX;
+					var biY = y1 / maxY;
+					oImg.style.left = biX * (max.offsetWidth - oImg.offsetWidth) + "px";
+					oImg.style.top = biY * (max.offsetHeight - oImg.offsetHeight) + "px";
+				}
+			}
+		</script>
+	</body>
+</html>

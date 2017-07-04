@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div class="glass-wrap">
+				<div class="glass-wrap-small">
+					<img src="img/min.jpg" class="glass-img-small"/>
+					<div class="glass-box"></div>
+				</div>
+				<div class="glass-wrap-big">
+					<img src="img/max.jpg" class="glass-img-big"/>
+				</div>
+			</div>	
+		</div>
+		<script type="text/javascript" src="js/glass.js">
+			
+		</script>
+		<script type="text/javascript">
+			$(function(){
+				$("#wrap").glass();
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.minWrap{
+				width: 350px;
+				height: 350px;
+				position: relative;
+				float: left;
+				border: 1px solid black;
+			}
+			.fd{
+				width: 150px;
+				height: 150px;
+				background-color: cyan;
+				opacity: 0.3;
+				position: absolute;
+				top: 0;
+				display: none;
+			}
+			.maxWrap{
+				width: 350px;
+				height: 350px;
+				float: left;
+				overflow: hidden;
+				border: 1px solid black;
+				position: relative;
+				display: none;
+			}
+			.maxWrap img{
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="minWrap" class="minWrap">
+			<img src="img/min.jpg"/>
+			<div id="fd" class="fd"></div>
+		</div>
+		<div id="maxWrap" class="maxWrap">
+			<img src="img/max.jpg"/>
+		</div>
+		
+		<script type="text/javascript">
+			$(function(){
+				var minWrap = $(".minWrap");
+				var maxWrap = $(".maxWrap");
+				var fd = $(".fd");
+				var maxImg = $(".maxWrap img");
+				minWrap.mouseover(function(){
+					fd.show();
+					maxWrap.show();
+					minWrap.mouseout(function(){
+						fd.hide();
+						maxWrap.hide();
+					});
+					minWrap.mousemove(function(ev){
+						var evObj = ev || event;
+						var x1 = evObj.clientX - (fd.width() / 2) - minWrap.offset().left;
+						var y1 = evObj.clientY - (fd.height() / 2) - minWrap.offset().top;
+						var maxX = minWrap.width() - fd.width();
+						var maxY = minWrap.height() - fd.height();
+						if(x1 <= 0){
+							x1 = 0;
+						}else if(x1 >= maxX){
+							x1 = maxX;
+						}
+						if(y1 <= 0){
+							y1 = 0;
+						}else if(y1 >= maxY){
+							y1 = maxY;
+						}
+						fd.css({
+							left:x1,
+							top:y1 
+						});
+						var a = x1 / maxX;
+						var b = y1 / maxY;
+						maxImg.css({
+							left:a * (maxWrap.width() - maxImg.width()),
+							top:b * (maxWrap.height() - maxImg.height())
+						})
+					});	
+				});
+			});		
+		</script>
+	</body>
+</html>

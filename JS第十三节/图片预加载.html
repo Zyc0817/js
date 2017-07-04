@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			var imgArr = ["http://upload.cbg.cn/2016/0304/1457056383894.png",
+						  "http://www.people.com.cn/mediafile/pic/20160220/42/4669138697377271870.jpg",
+						  "http://img5.imgtn.bdimg.com/it/u=2440239430,4272254993&fm=21&gp=0.jpg",
+						  "http://i3.sinaimg.cn/ent/y/2009-03-24/U1817P28T3D2436803F326DT20090324212544.jpg"];
+		</script>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+//			alert(imgArr.length);
+			var oDiv = document.getElementById("div1");
+			var imgs = [];
+			var count = 0;
+			for(var i = 0;i < imgArr.length;i++){
+				var img = new Image();
+				img.src = imgArr[i];
+				img.onload = function(){
+					count++;
+					imgs.push(this);
+					if(count == imgArr.length){
+						for(var j = 0;j < imgs.length;j++){
+							oDiv.appendChild(imgs[j]);
+						}
+					}
+				}		
+			}
+			//图片预加载
+			//1.浏览器有限使用缓存进行提取图片
+			//2.图片预加载解决了图片重复加载的问题，当图片的数据源没有发生变化的时候
+		</script>
+	</body>
+</html>

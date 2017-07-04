@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" name="btn" id="btn" value="来一注" />
+		<div id="div">1170来吧！！</div>
+		
+		<script type="text/javascript">
+			function rand(min,max){
+				return parseInt(Math.random()*(max-min+1)+min);
+			}
+			function lottery(){
+				var arr = [];
+				while(arr.length < 5){
+					var num = rand(1,11);
+					for(var i = 0;i < arr.length;i++){
+						if(arr[i] == num){
+							break;
+						}
+					}
+					if(i == arr.length){
+						arr.push(num);
+					}
+				}
+				return arr;
+			}
+			var oBtn = document.getElementById("btn");
+			var oDiv = document.getElementById("div");
+			var compare = true;
+			var time;
+			oBtn.onclick = function(){
+				if (compare == true) {
+					time = setInterval(function(){
+						oDiv.innerHTML = lottery();
+					},100);
+					
+				} else{
+					clearInterval(time);
+				}
+				compare =! compare;
+			}
+			
+			
+		</script>
+	</body>
+</html>

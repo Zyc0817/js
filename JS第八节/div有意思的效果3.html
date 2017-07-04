@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			//获取样式区域的样式
+			function getStyle(obj,attr){
+				if(obj.currentStyle){
+					return obj.currentStyle[attr];
+				}else{
+					return getComputedStyle(obj,false)[attr];
+				}
+			}	
+			var oDiv = document.getElementById("div1");
+//			alert(getStyle(oDiv,"width"));
+//			alert(typeof(getStyle(oDiv,"width")));
+			setInterval(function(){
+				//offsetWidth拿到的是可视区域的宽度（内容+padding+border）
+				oDiv.style.width = parseInt(getStyle(oDiv,"width")) - 1 + "px";
+			},30);
+//			alert(typeof(getStyle(oDiv,"width")));
+		</script>
+	</body>
+</html>

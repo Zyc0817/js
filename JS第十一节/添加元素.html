@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" name="btn" id="btn" value="添加元素" />
+		<input type="text" name="text" id="text" value="" />
+		<ul id="ul1">
+			<li id="li1">aaaa</li>
+		</ul>
+		<script type="text/javascript">
+			var btn = document.getElementById("btn");
+			var inpu = document.getElementById("text");
+			var oUl = document.getElementById("ul1");
+			var oLi1 = document.getElementById("li1");
+			btn.onclick = function(){
+				//创建元素createElement
+				var liNew = document.createElement("li");
+				liNew.innerHTML = inpu.value;
+				liNew.style.listStyle = "none";
+//				oUl.appendChild(liNew);  //在后面添加
+				oUl.insertBefore(liNew,oLi1);  //在前面添加
+			}
+			
+			
+		</script>
+	</body>
+</html>

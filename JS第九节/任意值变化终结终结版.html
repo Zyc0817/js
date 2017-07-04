@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+				left: 0;
+				opacity: 0.3;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			var oDiv = document.getElementById("div1");
+			oDiv.onmouseover = function(){
+				startMove(this,1,"opacity");
+			}
+			oDiv.onmouseout = function(){
+				startMove(this,0.3,"opacity");
+			}
+		</script>
+		<script type="text/javascript" src="js/move1.js">
+			
+		</script>
+	</body>
+</html>

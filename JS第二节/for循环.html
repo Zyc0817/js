@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//选择提示框
+//			var result = confirm("你忧郁吗");
+//			alert(result);
+			//文本提示输入框
+//			var result = prompt("你真的不忧郁么？");
+//			alert(result);
+
+			//for循环
+			/*
+			 * for循环的语法结构
+			 * for(变量初始化；条件表达式；循环增量){
+			 * 	语句；
+			 * } 
+			 */
+			//举例
+//			for(var i = 0;i < 5;i++){
+//				//alert(如果不点击确定按钮，会阻塞当前线程)
+//				alert("sp不忧郁");
+//				console.log(i);
+//			}
+			//for(A,B,C){
+			//	D;
+			//}
+			//执行顺序：A B D C B D C B D C B
+			
+//			for(var i = 0;i < 5;i++){
+//				console.log(i+1);
+//			}
+//			for(var i = 0;i < 5;i++){
+//				console.log(5 - i);
+//			}
+			
+			
+//			for(var i = 1;i <= 10;i++){
+//				if(i % 2 == 0){
+//					console.log(i);
+//				}
+//			}
+			
+			
+			
+//			for(var i = 200;i <= 300;i++){
+////				if(parseInt(i/10)%10 != 7){
+//				if(parseInt(i % 100 / 10) != 7){
+//					console.log(i);
+//				}
+//			}
+			
+			
+//			for(var i = 1;i < 100;i++){
+//				if(parseInt(i / 10) == 7 || i % 10 == 7){
+//					console.log(i);
+//				}
+//			}
+			
+			
+			//累加器
+//			var count = 0;
+//			for(var i = 200;i <= 300;i++){
+//				if(i % 2 ==0){
+//					count++;
+//				}
+//			}
+//			alert(count);
+			
+			//随机数[a,b]  Math.random()*(b-a+1)+a;
+			//Math.floor相当于parseInt
+//			var result =Math.floor(Math.random()*(24-1+1)+1);
+//			alert(result);
+//			for(var i = 0;i < 10;i++){
+//				var num = Math.floor(Math.random()*(100-1+1)+1);
+//				console.log(num);	
+//			}
+
+
+//			var max = 100;
+//			for(var i = 0;i < 10;i++){
+//				var num = Math.floor(Math.random()*(100-1+1)+1);
+//				console.log(num);
+//				if(max > num){
+//					max = num;
+//				}
+//			}
+//			alert(max);
+			
+//			var min = 100;
+//			for(var i = 0;i < 10;i++){
+//				var num = Math.floor(Math.random()*(100-1+1)+1);
+//				console.log(num);
+//				min = min > num ? num : min;
+//			}
+//			alert(min);
+
+			//用for循环打印10个随机数
+//			var max = 9;
+//			var min = 31;
+//			var sum = 0;
+//			for(var i = 0;i < 10;i++){
+//				var num = Math.floor(Math.random()*(30-10+1)+10);
+//				console.log(num);
+//				max = max > num ? max : num;
+//				min = min > num? num : min;
+////				sum = sum + num;
+//				sum += num;
+//			}	
+//			alert("最大值"+max);
+//			alert("最小值"+min);
+//			alert("和"+sum);
+
+
+
+
+			//break , continue
+			//break：直接跳出循环，不再执行循环
+			//continue：跳出本次循环，然后接着执行循环
+//			for(var i = 0;i < 10;i++){
+//				if(i == 6){
+//					continue;
+//				}
+//				console.log(i);
+//			}
+
+			
+			//文档流
+//			document.write("世鹏好帅！！！！")
+//			for(var i = 0;i < 1;i++){
+//				document.write(i + 1 + "&nbsp;&nbsp;&nbsp;");
+//			}
+//			document.write("</br>")
+//			for(var j = 0;j < 2;j++){
+//				document.write(j + 1 + "&nbsp;&nbsp;&nbsp;");
+//			}
+//			document.write("</br>")
+//			for(var k = 0;k < 3;k++){
+//				document.write(k + 1 + "&nbsp;&nbsp;&nbsp;");
+//			}
+			
+//			for(var i = 0;i < 3;i++){           //控制有多少行
+//				for(var j = 0;j <= i;j++){  		//控制每行有多少个
+//					document.write(j + 1);
+//				}
+//				document.write("</br>");
+//			}
+			
+			
+//			for(var i = 0;i < 3;i++){
+//				for(var j = 1;j <= 3 - i;j++){
+//					document.write(j);
+//				}
+//				document.write("</br>")
+//			}
+
+
+
+			for(var i = 0;i < 3;i++){
+				for(var j = 3;j >= i+1;j--){
+					document.write(j);
+				}
+				document.write("</br>")
+			}
+			
+//			for(var i = 1;i < 10;i++){				
+//				for(var j = 0;j < 10;j++){				
+//					for(var k = 0;k <10;k++){
+//						document.write(i * 100 + j * 10 + k);
+//						document.write("</br>");
+//					}
+//				}			
+//			}
+			
+			
+			
+		</script>
+	</body>
+</html>

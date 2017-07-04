@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" name="btn" id="btn" value="按钮" />  <!--在后面加 onclick = "sayHi()"-->
+		<script type="text/javascript">
+			/*
+			 * 函数的基本格式:
+			 * 		function 函数名(参数列表){
+			 * 			函数体
+			 * 			return  返回值;
+			 * }
+			 */
+			//函数的第一种类型：无参数无返回值
+			//当函数无返回值的时候，return可以不写
+//			function textOne(){
+//				alert("我是一个函数");
+//			}
+//			//函数的调用
+//			textOne();
+
+
+//			var oBtn = document.getElementById("btn");
+//			function sayHi(){
+//				for(var i = 0;i < 3;i++){
+//					console.log("我要减肥!!");
+//				}	
+//			}
+//			//将一个已经声明好的函数绑定给一个按钮的事件，是不需要加括号的，只写函数名就好了
+//			oBtn.onclick = sayHi;       //把()去掉就能调用，外面好多人不知道
+
+			//函数的第二种类型：有参数无返回值
+//				function textTwo(a,b,c){
+//					alert(a+b+c);
+//				}
+//				textTwo(1,2,3);
+			
+//			function textOne(n){
+//				for(var i = 0;i < n;i++){
+//					alert("我要减肥");
+//				}		
+//			}
+//			textOne(3);
+
+//			function heiHei(a){
+//				a++;
+//				alert(a);
+//			}
+//			var num = 10;
+//			heiHei(num);
+//			alert(num);
+			//实参（num)，形参(a)
+			//实参--形参，是值拷贝的过程
+			
+			
+			
+			//函数第三种类型：无参数有返回值
+//			function textThree(){
+//				alert("1111111");
+//				return 100;			
+//			}
+//			var result = textThree();
+//			alert(result);
+			//1.return的作用是将函数的结果返回到调用函数的地方
+			//2.return是跳出函数
+			//3.return后面的代码不会被执行
+			
+			
+			//函数的第四种类型：有参数有返回值类型
+//			function isSum(a,b){
+//				var result = a + b;
+//				return result;
+//			}
+//			var c = isSum(5,6);
+//			alert(c);
+
+//			var sum = 0;
+//			function thisSum(n){
+//				for(var i = 1;i <= n;i++){
+//					sum += i;
+//				}
+//				return sum;		
+// 			}
+//			var c = thisSum(2);
+//			alert(c);
+
+
+			function aa(a,b){ 
+				return a > b ? a : b;
+			}
+//			var d = aa(1,5);
+//			alert(d);
+			function threeMAx(a,b,c){
+				var max = aa(a,b);
+				max = aa(max,c);
+				return max;
+			}
+//			var result = threeMAx(6,9,4);
+//			alert(result);			
+			
+			function fourMax(a,b,c,d){
+				var max1 = threeMAx(a,b,c);
+				max1 = aa(max1,d);
+				return max1;
+			}
+			var result = fourMax(10,2,3,4);
+			alert(result);
+
+//			function threeMax(a,b,c){
+//				var d = a > b ? a : b;
+//				return d > c ? d : c;
+//			}
+//			var result = threeMax(100,2,30);
+//			alert(result);
+
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

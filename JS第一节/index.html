@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+
+	<body>
+		<!--
+			一.什么是js？（javaScript）
+			1.js和java没有任何关系
+			2.js是世界上最通用的脚本语言，没有之一
+			3.js由三部分组成
+				3.1 ECMAScript：基本语法和标准
+				3.2 DOM：文本流对象
+				3.3 BOM：浏览器对象（获得一切跟浏览器有关的信息）
+			4.HTML：网站的内容
+			  CSS：网站的样式
+			  JS：网站交互，数据传输			  
+		-->
+		<!--
+			二：js的引入方式
+			在html文档中通过script标签去写js代码
+			PS:
+			<script type="text/javascript">
+			//这里就是我们要写JS代码的地方，一般写在</body>上面
+			</script>			
+		-->
+		<!--<script type="text/javascript">
+			//提示框
+			alert("哈哈")
+		</script>-->
+		<!--<script type="text/javascript" src="js/text.js">
+			//外部引入代码写在这里
+		</script>-->
+		<script type="text/javascript">
+			//1.常量：在程序运行期间不会发生改变的量
+			//	ps：1   2.5    a   B    
+			//2.变量：在程序运行期间可以发生改变的量（可以理解为一个容器）
+			//如何声明一个变量
+			//格式 类型修饰符  变量名  =  初始值；
+			//var num = 100;
+			/*
+			 * var(类型修饰符)  变量
+			 * num  变量名
+			 * =    赋值符号
+			 * 100  初始值
+			 */
+//			num = 200;
+//			alert(num);
+//			var nth = 300;
+//			nth = 500;
+//			alert(nth);
+			/*
+			 * 数据类型：
+			 * 1.整形（int）：14  18  29  30
+			 * 2.浮点型（float 小数）：2.8  4.5  9.6
+			 * 3.字符型：a  b  c  A  I  O
+			 * 4.字符串：asdf   ASDF   嘿嘿额
+			 * 5.布尔类型：  var sp = false;
+							sp = true;
+			 * 6.null类型:var a = null;
+			 * 7.undefined类型 var b;
+			 * 
+			 * 变量的命名规范：
+			 * 1.只能由字母数字下划线和$符组成，并且不能以数字开头
+			 * 2.见名知意
+			 * 3.不能与系统保留字重复
+			 * 4.不能重复命名
+			 * 5.驼峰命名规则
+			 */
+//			var numA = 100;
+//			var numB = 200;
+//			var numC = numA + numB;
+//			numC = numC + numC - numA;
+//			alert(numC);
+			
+			
+			//字符串
+			//var str = "世鹏的水杯";
+			//alert(str);
+			//字符串变量的定义''或者""都可以，但是不能混合使用,引号内的内容都称为字符串
+//			var num = 1000;
+//			var strr = "0"
+//			alert(strr+num+21);
+			//+的作用：1.算数运算   2.连接两个字符串
+			//字符串和数字连接后的结果是字符串
+			
+			//运算符 + - * / %
+//			var a = 10;
+//			var b = 6;
+			//+
+//			var c = a + b;
+			//-
+//			c = a - b;
+			//*
+//			c = a * b;
+			// /
+//			c = a / b;
+			//c = parseInt(a / b); //取整
+			//表达式：由常量 变量 运算符组成，而且表达式一定有返回值
+			//语句：看到一个；就是一个语句（语句是程序的最基本的单元）
+			
+			//++在后，先运算之后再自增
+			//++在前，先自增之后再运算
+//			var num = 10;
+//			var result = num++;
+//			alert(result);
+//			alert(num);
+//			var a = 10;
+//			var b = 20;
+//			var c = a ++ + b;
+//			alert(c);
+			
+			//关系运算符（>  <  >=  <=  ==  !=）
+//			var num1 = 10;
+//			var num2 = 20;
+			//>
+//			var result = num1 > num2;
+//			alert(result);
+//			result = num1 < num2;
+//			alert(result);
+//			result = num1 == num2;
+//			alert(result);
+			
+			
+			//逻辑运算符
+//			var num1 = 10;
+//			var num2 = 20;
+//			var num3 = 30;
+//			//逻辑与运算（&&）
+//			//逻辑与运算两侧的表达式都为真，整个返回值才为真
+//			var result = num1 < num2 && num3 > num2;
+//			alert(result);
+//			//逻辑或运算（||）
+//			//逻辑或运算两侧的表达式都为假，整个返回值才为假
+//			result = num1 > num2 || num3 > num2;
+//			alert(result);
+//			//逻辑非运算（！）
+//			//非前为假，非后为真。非前为真，非后为假
+//			result = !(num1 > num2);
+// 			alert(result);
+			
+//			var num1 = 10;
+//			var num2 = 20;
+//			var i =0;
+//			var result = num1 > num2 && i++;
+//			//非0即真
+//			alert(i);
+//			//逻辑与运算的短路现象，当左侧表达式为假的时候，右侧的表达式将不再执行
+//			
+//			var result = num1 < num2 || i++;
+//			alert(i);
+			//逻辑或运算的短路现象，当左侧表达式为真的时候，右侧的表达式讲不再执行
+			
+			
+			//条件分支语句  if 
+			/*
+			 * if的第一种形式
+			 * if（条件表达式）{
+			 * 		语句；
+			 * }
+			 * 如果条件表达式为真则执行语句，否则直接跳过
+			 */
+//			var aa = 10;
+//			var bb = 20;
+//			var i = 0;
+//			if(aa > bb){
+//				i++;
+//			}
+//			alert(i);
+
+			/*if语句的第二种形式
+			 *if（条件表达式）{
+			 * 	语句1；
+			 * }else{
+			 * 	语句2；
+			 * }
+			 * 如果条件表达式为真，则执行语句1，否则执行语句2
+			 */
+//			var aa = 10;
+//			var bb = 20;
+//			var i = 10;
+//			if (aa > bb) {
+//				i++;
+//			} else{
+//				i--;
+//			}
+//			alert(i);
+			
+//			var score = 80;
+//			var c = 1;
+//			if (score >= 90) {
+//				c = "宝贝真棒，么么哒！"
+//			} else{
+//				c = "小子，看棒！"
+//			}
+//			alert(c);
+
+//			var year = 2000;
+//			if((year%4 == 0 && year%100 != 0) || (year%400 == 0){
+//				alert("是闰年")
+//			}else{
+//				alert("是平年")
+//			}
+//			var num = 17;
+//			var ge = num % 10;		
+//			var shi = parseInt(num / 10);
+//			alert(shi);
+//			alert(ge);
+			
+//			var aa = 10;
+//			var bb = 20;
+//			var cc = aa > bb?aa : bb;
+//			alert(cc);
+			var aa = 19;
+			var bb = 20;
+			var result = aa > bb;
+			//typeof检测变量类型
+			alert(typeof(result));
+			var dd = 20;
+			alert(typeof(dd));
+			
+			
+		</script>
+	</body>
+
+</html>

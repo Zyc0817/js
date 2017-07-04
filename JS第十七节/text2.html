@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				padding: 50px;
+			}
+			#div1{
+				background-color: red;
+			}
+			#div2{
+				background-color: cadetblue;
+			}
+			#div3{
+				background-color: cyan;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">
+			<div id="div2">
+				<div id="div3"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var oDiv1 = document.getElementById("div1");
+			var oDiv2 = document.getElementById("div2");
+			var oDiv3 = document.getElementById("div3");
+			oDiv1.addEventListener("click",function(){
+				alert("1111111");
+			},false);
+			oDiv2.addEventListener("click",function(){
+				alert("2222222");
+			},false);
+			oDiv3.addEventListener("click",function(){
+				alert("3333333");
+			},false);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			img{
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="img/1.jpg" id="img1"/>
+		<script type="text/javascript">
+			var oImg = document.getElementById("img1");
+			var time = null;
+			var oc = 1;
+			var speed = 0;
+			function startMove(aim){		
+				clearInterval(time);
+				time = setInterval(function(){
+					if (oc < aim) {
+						speed = 0.1; 
+					} else{
+						speed = -0.1;
+					}
+					if (oc == aim) {
+						clearInterval(time);
+					} else{
+						oc += speed;	
+						oc = parseFloat(oc.toFixed(2));
+						//oc.toFixed(n)保留小数点后n位
+						//parseFloat将字符串转成小数类型
+						oImg.style.opacity = oc;
+					}
+				},30);		
+			}
+			oImg.onmouseover = function(){
+				startMove(0.3);
+			}
+			oImg.onmouseout = function(){
+				startMove(1);
+			}
+		</script>
+	</body>
+</html>

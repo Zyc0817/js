@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				margin-top: 10px;
+				opacity: 0.3;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script type="text/javascript">
+			var oDiv = document.getElementsByTagName("div");
+			function move(obj,aim){
+				clearInterval(obj.time);
+				obj.time = setInterval(function(){
+					var speed = (aim - obj.oc)*100/8;
+					speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+					if (obj.oc == aim) {
+						clearInterval(obj.time);
+					} else{
+						obj.oc += speed/100;
+						obj.oc = parseFloat(obj.oc.toFixed(2));
+						obj.style.opacity = obj.oc;
+					}			
+				},30);
+			}
+			for(var i = 0;i < oDiv.length;i++){
+				oDiv[i].time = null;
+				oDiv[i].oc = 0.3;
+				oDiv[i].onmouseover = function(){
+					move(this,1);
+				}
+				oDiv[i].onmouseout = function(){
+					move(this,0.3);
+				}
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

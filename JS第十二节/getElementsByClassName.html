@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="ul1">
+			<li>1111</li>
+			<li class="box box">2222</li>
+			<li>3333</li>
+			<li class="box box2">4444</li>
+		</ul>
+		<script type="text/javascript">
+			//数组
+//			var allBox = document.getElementsByClassName("box");
+			var allBox = getElementsByClassName("box");
+//			console.log(allBox);
+			console.log(allBox);
+			function getElementsByClassName(className){
+				var aEls = document.getElementsByTagName("*");
+				var arr = [];	
+				for(var i = 0;i < aEls.length;i++){			
+					var allCN = aEls[i].className.split(" ");
+					for(var j = 0;j < allCN.length;j++){
+						if(allCN[j] == className){
+							arr.push(aEls[i]);
+							break;
+						}					
+					}					
+				}	
+				return arr;
+			}	
+		</script>
+	</body>
+</html>

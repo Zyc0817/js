@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<form action="" method="">
+			姓名:<input type="text" name="txt" id="txt" value="" /><br /> 
+			密码:<input type="password" name="pas" id="pas" value="" /><br />
+			<input type="checkbox" name="" id="ch1" value=""/>记住用户名<br />
+			<input type="checkbox" name="" id="ch2" value="" />记住密码<br />
+			<input type="submit" name="" id="sub" value="提交" />
+		</form>
+			
+		<script type="text/javascript" src="js/cookie.js">
+		
+		</script>
+		<script type="text/javascript">
+			var txt = document.getElementById("txt");
+			var pas = document.getElementById("pas");
+			var ch1 = document.getElementById("ch1");
+			var ch2 = document.getElementById("ch2");
+			var sub = document.getElementById("sub");
+			
+			sub.addEventListener("click",function(){
+				
+				if(ch1.checked){
+					saveCookie("username",txt.value,1);
+				}else{
+					removeCooKie("username");
+				}
+				if(ch2.checked){			
+					saveCookie("password",pas.value,1);
+				}else{
+					removeCooKie("password");
+				}
+				
+				
+			},false);
+			
+			
+			if(getCookie("username") == false){
+				txt.value = "";
+			}else{
+				txt.value = getCookie("username");
+				ch1.setAttribute("checked","");
+				
+			}
+			
+			
+			if(getCookie("password") == false){
+				pas.value = "";
+			}else{
+				pas.value = getCookie("username");	
+				ch2.setAttribute("checked","");
+			}
+			
+			
+			
+			
+			
+	
+			
+			
+			
+		</script>
+
+	</body>
+
+</html>

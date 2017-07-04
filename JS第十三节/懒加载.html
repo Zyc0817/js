@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			img{
+				width: 400px;
+				height: 600px;
+				background-color: lightgray;;
+				position: absolute;
+				top:1000px;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="" date-src="http://imgsrc.baidu.com/baike/pic/item/29381f30e924b899ec709e9c6b061d950b7bf6c2.jpg"/>
+		
+		<script type="text/javascript">
+			/*
+			 啥是懒加载？
+			 网页中有许多img标签，这些img标签的src指向了服务器的地址，
+			 当浏览器从上向下读取的时候，src对应的网址就会加载这张图片，
+			 但不会一次性都加载，所有的图片只加载用户可视范围内的图片，
+			 这种加载过程叫做懒加载
+			 
+			 懒加载的目的
+			 1.避免一次请求过多的内容，加快网页加载速度
+			 2.提升页面友好度，提升seo
+			 3.减少服务器压力
+			 
+			 */
+			
+			var img = document.getElementsByTagName("img")[0];
+			var imgOffsetTop = img.offsetTop;
+			//屏幕的高度
+			var height = document.documentElement.clientHeight;
+			var distance = imgOffsetTop - height + 300;
+			var scrollValue = 0;
+			window.onscroll = function(){
+				if (document.documentElement && document.documentElement.scrollTop){
+      				scrollValue = document.documentElement.scrollTop;  
+      			}
+				else if (document.body) {
+					scrollValue = document.body.scrollTop;
+				}
+     				 
+     				 
+     				 
+				if(scrollValue >= distance){
+					var imgPath = img.getAttribute("date-src");
+					img.src = imgPath;
+				}
+			}
+			
+		</script>
+	</body>
+</html>

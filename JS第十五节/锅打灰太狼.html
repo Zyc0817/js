@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#outer {
+				background: url(img/game_bg.jpg) no-repeat;
+				width: 320px;
+				height: 480px;
+				position: relative;
+				margin: 0 auto;
+			}
+			
+			#scoring {
+				position: absolute;
+				font-weight: bold;
+				font-size: 20px;
+				color: white;
+				left: 65px;
+				top: 13px;
+			}
+			
+			#countDown {
+				position: relative;
+				background: url(img/progress.png) no-repeat;
+				width: 180px;
+				height: 16px;
+				left: 63px;
+				top: 66px;
+			}
+			
+			#wolfs img {
+				position: absolute;
+			}
+			
+			#menu {
+				position: absolute;
+				width: 320px;
+				text-align: center;
+				top: 200px;
+				left: 0;
+			}
+			
+			#start {
+				line-height: 50px;
+				font-size: 30px;
+				font-weight: bold;
+				color: green;
+				text-shadow: 0 0 5px red;
+				display: block;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="outer">
+			<!--分数-->
+			<div id="scoring">0</div>
+			<!--倒计时-->
+			<div id="countDown"></div>
+			<!--🐺s们-->
+			<div id="wolfs">
+
+			</div>
+			<div id="menu">
+				<a href="###" id="start">开始</a>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			//随机函数（坑，🐺的种类）
+			function rand(min, max) {
+				return parseInt(Math.random() * (max - min + 1) + min);
+			}
+			//分数
+			var scoring = document.getElementById("scoring");
+			//倒计时
+			var countDown = document.getElementById("countDown");
+			//🐺窝
+			var wolfs = document.getElementById("wolfs");
+			var menu = document.getElementById("menu");
+			var start = document.getElementById("start");
+			var arrPos = [{
+				l: "98px",
+				t: "115px"
+			}, {
+				l: "17px",
+				t: "160px"
+			}, {
+				l: "15px",
+				t: "220px"
+			}, {
+				l: "30px",
+				t: "293px"
+			}, {
+				l: "122px",
+				t: "273px"
+			}, {
+				l: "207px",
+				t: "295px"
+			}, {
+				l: "200px",
+				t: "211px"
+			}, {
+				l: "187px",
+				t: "141px"
+			}, {
+				l: "100px",
+				t: "185px"
+			}];
+			//计分函数
+			function scoringFn(obj){
+				var scoringNum = parseInt(scoring.innerHTML);
+				if(obj.type == "h"){
+					scoring.innerHTML = scoringNum + 10;
+				}else{
+					scoring.innerHTML = scoringNum - 10;
+				}		
+			}
+			//倒计时
+			var countDownTimer = null;
+			var countDownWidth = countDown.offsetWidth;
+			var countDownBol = false;
+			countDownTimer = setInterval(function(){
+				if(countDownBol){
+					countDownWidth--;
+					if(countDownWidth <= 0){
+						clearInterval(createWolfsTimer);
+						clearInterval(countDownTimer);
+						var score = scoring.innerHTML;
+						alert("游戏结束，你获得了" + score + "分");
+						window.location.reload();
+					}
+					countDown.style.width = countDownWidth + "px";
+				}
+			},150);
+			
+			
+			var createWolfsTimer = null;
+			start.onclick = function(){
+				countDownBol = true;
+				menu.style.display = "none";
+				createWolfsTimer = setInterval(function(){
+					//创建🐺
+					var wolf = new Image();
+					//🐺的类型
+					wolf.type = rand(0,100) < 80 ? "h" : "x";
+					wolf.index = 0;
+					wolf.src = "img/" + wolf.type + wolf.index + ".png";
+					//找坑
+					//找到狼窝里的所有img标签
+					var childs = wolfs.children;
+					//下面的两个东西是循环内使用的
+					var bol = true;
+					var r = 0;  //装我们找到的没有狼的坑的坐标
+					while(bol){
+						r = rand(0,arrPos.length - 1);
+						for(var i = 0;i < childs.length;i++){
+							if(childs[i].offsetLeft == parseInt(arrPos[r].l)){
+								break;
+							}
+						}
+						if(i == childs.length){
+							bol = false;
+						}				
+					}
+					//交出循环后的坐标
+					wolf.style.left = arrPos[r].l;
+					wolf.style.top = arrPos[r].t;
+					wolfs.appendChild(wolf);
+					//狼向上的动画
+					wolf.timer = setInterval(function(){
+						wolf.index++;
+						if(wolf.index > 4){
+							clearInterval(wolf.timer);
+							wolf.downFn();
+						}
+						wolf.src = "img/" + wolf.type + wolf.index + ".png";
+					},150);
+					wolf.downFn = function(){
+						wolf.downTimer = setInterval(function(){
+							wolf.index--;
+							if(wolf.index <= 0){
+								clearInterval(wolf.downTimer);
+								//让🐺滚蛋
+								wolfs.removeChild(wolf);
+							}
+							wolf.src = "img/" + wolf.type + wolf.index + ".png";
+						},150);
+					}
+					wolf.wolfClick = true;
+					wolf.onclick = function(){
+						if(wolf.wolfClick == false){
+							return;
+						}
+						wolf.wolfClick = false;
+						scoringFn(wolf);
+						wolf.index = 5;
+						//干掉两个出🐺的动画
+						clearInterval(wolf.timer);
+						clearInterval(wolf.downTimer)
+						wolf.clickTimer = setInterval(function(){
+							wolf.index++;
+							if(wolf.index > 8){
+								clearInterval(wolf.clickTimer);
+								wolfs.removeChild(wolf);
+							}
+							wolf.src = "img/" + wolf.type + wolf.index + ".png";
+						},150);
+						
+					}
+					
+					
+					
+				},800);
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+
+</html>

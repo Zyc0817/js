@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 50px;
+				height: 50px;
+				background-color: greenyellow;
+				border-radius: 50%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				-webkit-transition: 0.01;
+				-moz-transition: 0.01;
+				-ms-transition: 0.01;
+				-o-transition: 0.01;
+				transition: 0.01;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		
+		<script type="text/javascript">
+			var oDiv = document.getElementsByTagName("div");
+			document.onkeydown = function(ev){				
+				var evObj = window.event || ev;
+				var a = evObj.keyCode;
+				var x = oDiv[0].offsetLeft;
+				var y = oDiv[0].offsetTop;
+				switch(a){
+					case 37:
+					oDiv[0].style.left = x - 40 + "px";
+					break;
+					case 38:
+					oDiv[0].style.top = y - 40 + "px";
+					break;
+					case 39:
+					oDiv[0].style.left = x + 40 + "px";
+					break;
+					case 40:
+					oDiv[0].style.top = y + 40 + "px";
+					break;
+				}
+//				oDiv[0].style.left = evObj.clientX + "px";
+//				oDiv[0].style.top = evObj.clientY + "px";			
+				for(var i = oDiv.length-1;i > 0;i--){
+					oDiv[i].style.left = oDiv[i-1].offsetLeft + "px";
+					oDiv[i].style.top = oDiv[i-1].offsetTop + "px";			
+				}
+			}
+		</script>
+	</body>
+</html>

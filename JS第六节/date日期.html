@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var date1 = new Date();
+//			alert(date1);
+			//获取当前年份
+			var year = date1.getFullYear();
+//			alert(year);
+			//获取月份（一月份是0）
+			var month = date1.getMonth();
+//			alert(month);
+			//获取当前日
+			var day = date1.getDate();
+//			alert(year+"/"+month+"/"+day);
+			//获取当前的星期x
+//			var week = date1.getDay();
+//			alert(week);
+			
+			 //获取当前时间从（1970.1.1）到现在的毫秒数；（通常用于倒计时）
+			var time =date1.getTime();
+//			alert(time);
+
+			//获取小时数（0-23）
+			var hours = date1.getHours();
+//			alert(hours);
+
+//			获取当前分钟数
+			var min = date1.getMinutes();
+//			alert(min);
+			
+			//获取当前秒数
+			var sec = date1.getSeconds();
+//			alert(sec);
+			
+			//获取当前毫秒数
+			var mil = date1.getMilliseconds();
+//			alert(mil);
+			
+			var date2 = new Date(2016,9,1);
+			var time1 = date2.getTime();
+			var time2 = date1.getTime();
+			alert("距离中秋还有"+Math.floor((time1-time2)/1000/60/60/24)+"天");
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--测试失败版-->
+	</head>
+	<body>
+		<input type="button" name="btn" id="btn" value="stop" />
+		<script type="text/javascript">
+			var oBtn = document.getElementById("btn");
+			//创建定时器
+			//{执行的内容，毫秒}
+			var time = setInterval(function(){
+				console.log("11g");			
+			},100);
+			oBtn.onclick = function(){
+				//停止计时器
+				clearInterval(time);				
+			}	
+		</script>
+	</body>
+</html>

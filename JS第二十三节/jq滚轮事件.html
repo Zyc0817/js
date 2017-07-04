@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+		<style type="text/css">
+			#div1{
+				width: 300px;
+				height: 300px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			$.fn.extend({
+				"mouseWheel":function(fn){
+					//先判断浏览器
+					if(window.navigator.userAgent.indexOf("Firefox") != -1){
+						$(this)[0].addEventListener("DOMMouseScroll",fnWheel,false);
+					}else{
+						console.log((this))
+						$(this)[0].addEventListener("mousewheel",fnWheel,false);
+					}
+					
+					function fnWheel(ev){
+						var evObj = ev || event;
+						var down = true;
+						if(evObj.wheelDelta){
+							down = evObj.wheelDelta < 0;
+						}else{
+							down = evObj.wheelDelta > 0;
+						}
+						fn(down,evObj);
+						return false;					
+					}			
+				}
+			});	
+			
+			$.fn.extend({
+				break1:function(c){
+					var str = c.split("px");
+					return str[0];
+				}
+			});
+//			alert($("body").break1($("#div1").css("width")));
+			
+			
+			$(function(){
+				$("html").mouseWheel(function(down,evObj){
+					if(down){
+						$("#div1").css("width","+=20px");
+						$("#div1").css("height","+=20px");
+					}else{
+						$("#div1").css("width","-=20px");
+						$("#div1").css("height","-=20px");
+					}
+				});
+			});
+		</script>	
+	</body>
+</html>

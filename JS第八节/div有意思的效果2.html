@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				/*width: 100px;*/
+				height: 100px;
+				background-color: red;
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1" style="width: 100px;"></div>
+		<script type="text/javascript">
+			var oDiv = document.getElementById("div1");
+			//行间样式是可以被获取到的（标签内引入）
+//			alert(typeof(oDiv.style.width));
+			setInterval(function(){
+				
+				//offsetWidth拿到的是可视区域的宽度（内容+padding+border）
+				oDiv.style.width = parseInt(oDiv.style.width) - 1 + "px";
+			},30);
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form action="http://www.baidu.com" method="get" id="form">
+			<input type="text" id="txt" value="" />
+			<input type="submit" id="" value="" />		
+		</form>
+		
+		<script type="text/javascript">
+			var form = document.getElementById("form");
+			var txt = document.getElementById("txt");
+			//表单事件
+			form.onsubmit = function(ev){
+				//先执行onsubmit方法，然后再根据对应action完成跳转
+//				alert("11111");
+				if(!txt.value){
+					var evObj = ev || window.event;
+					//阻止当前跳转
+//					evObj.preventDefault();
+					return false;
+					/*
+					 阻止默认事件的方式有两种，一种是在事件方法的最后写上return false;
+					 另外一种是通过事件对象完成，事件对象.preventDefault();				 
+					 */
+				}				
+			}
+		</script>
+	</body>
+</html>

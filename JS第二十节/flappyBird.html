@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.wrap{
+				width: 320px;
+				height: 480px;
+				margin: 50px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			.score{
+				position: absolute;
+				top: 40px;
+				left: 50%;
+				margin-left: -14px;
+				z-index: 3;
+			}
+			.txt{
+				position: absolute;
+				top: 100px;
+				left: 50%;
+				margin-left: -108px;		
+				animation: move 1s linear infinite 0.1s alternate;
+				z-index: 3;
+			}
+			.bird{
+				position: absolute;
+				top: 120px;
+				left: 80%;
+				width: 40px;
+				height: 26px;
+				background: url(img/bird0.png);
+				animation: bird 1s linear infinite 0.1s alternate;	
+				z-index: 3;
+			}
+			.start{
+				position: absolute;
+				top: 300px;
+				left: 50%;
+				margin-left: -42px;
+				z-index: 3;
+			}
+			.slider{
+				position: absolute;
+				width: 9999px;
+				height: 14px;
+				top: 423px;
+				left: 0;
+				animation: slider 20s linear infinite 0.1s;
+			}
+			.moveBird{
+				position: absolute;
+				top: 100px;
+				left: 40px;
+				display: none;
+				background: url(img/down_bird0.png);
+				width: 40px;
+				height: 30px;
+			}
+			#ul1 li{
+				height: 100%;
+				position: absolute;
+				top: 0;
+				width: 62px;
+			}
+			#ul1{
+				list-style: none;
+			}
+			.duct_up{
+				position: relative;
+				top: 0;
+				height: 30%;
+				background: url(img/up_mod.png) repeat-y;
+			}
+			.duct_up img{
+				position: absolute;
+				bottom: 0;
+			}
+			.duct_down{
+				position: absolute;
+				background: url(img/down_mod.png) repeat-y;
+				height: 45%;
+				bottom: 0;
+			}
+			@-webkit-keyframes move{
+				0%{
+					transform: translateY(0);
+				}
+				100%{
+					transform: translateY(30px);
+				}
+			}
+			@-webkit-keyframes slider{
+				0%{
+					transform: translateX(0);
+				}
+				50%{
+					transform: translateX(-720px);
+				}
+				50.00000000000001%{
+					transform: translateX(0px)
+				}
+				100%{
+					transform: translateX(-720px);
+				}
+	
+			}
+			@-webkit-keyframes bird{
+				0%{
+					background: url(img/bird0.png);
+					transform: translateY(0);
+				}
+				100%{
+					background: url(img/bird1.png);
+					transform: translateY(30px);
+				}
+			}
+			@-webkit-keyframes move2{
+				0%{
+					background: url(img/down_bird0.png);
+				}
+				100%{
+					background: url(img/down_bird1.png);
+				}
+			}
+			@-webkit-keyframes move3{
+				0%{
+					background: url(img/up_bird0.png);
+				}
+				100%{
+					background: url(img/up_bird1.png);
+				}
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="wrap" id="wrap">
+			<img src="img/bg.jpg"/>
+			<div class="score" id="score">
+				<img src="img/0.jpg"/>
+			</div>
+			<div class="txt" id="txt">
+				<img src="img/head.jpg" id="img3"/>
+				<!--<img src="img/bird0.png" class="bird" id="bird"/>-->
+			</div>
+			<div class="bird" id="bird">
+				
+			</div>
+			<div class="start" id="start">
+				<img src="img/start.jpg" id="img2"/>
+			</div>
+			<div class="slider" id="slider">
+				<img src="img/banner.jpg"/><img src="img/banner.jpg"/><img src="img/banner.jpg"/><img src="img/banner.jpg"/>
+			</div>
+			<div class="moveBird" id="moveBird">
+				<!--<img src="img/down_bird0.png" id="img1"/>-->
+			</div>
+			<ul id="ul1">
+				<!--<li>
+					<div class="duct_up">
+						<img src="img/up_pipe.png"/>
+					</div>
+					<div class="duct_down">
+						<img src="img/down_pipe.png"/>				
+					</div>
+				</li>-->
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var start = document.getElementById("start");
+			var txt = document.getElementById("txt");
+			var bird = document.getElementById("bird");
+			var moveBird = document.getElementById("moveBird");
+			var wrap = document.getElementById("wrap");
+			var oImg = document.getElementById("img1");
+			var oImg2 = document.getElementById("img2");
+			var oImg3 = document.getElementById("img3");
+			var oUl = document.getElementById("ul1");
+			var scoreNum = 0;
+			moveBird.speed = 0;
+			
+			start.onclick = function(){		
+				start.style.display = "none";
+				txt.style.display = "none";
+				bird.style.display = "none";
+				moveBird.style.display = "block";
+				moveBird.time = setInterval(function(){
+					moveBird.speed += 0.5;
+					if(moveBird.speed >= 10){
+						moveBird.speed = 10;
+					}
+					if(moveBird.speed > 0){
+						moveBird.style.background = "url(img/down_bird0.png)";
+						moveBird.style.animation = "move2 0.1s linear infinite 0.1s alternate";
+					}else{
+						moveBird.style.background = "url(img/up_bird0.png)";
+						moveBird.style.animation = "move3 0.1s linear infinite 0.1s alternate";
+					}
+					moveBird.style.top = moveBird.offsetTop + moveBird.speed + "px";
+					if(moveBird.offsetTop >= wrap.offsetHeight + wrap.offsetTop - moveBird.offsetHeight){
+						gg();
+						clearTime();
+					}else if(moveBird.offsetTop <= 0){
+						moveBird.style.top = 0 + "px";
+						moveBird.style.background = "url(img/bird1.png)";
+					}
+				},30);
+				ductMove();
+				
+			}
+			
+			wrap.onmousedown = function(ev){
+				moveBird.speed = -7;
+				var evObj = ev || event;
+				evObj.preventDefault();			
+			}
+			function rand(min,max){
+				return parseInt(Math.random() * (max - min + 1) + min);
+			}
+			
+			function gg(){
+				start.style.display = "block";
+				oImg2.src = "img/ok.jpg";
+				txt.style.display = "block";
+				oImg3.src = "img/game_over.jpg";
+				oImg2.onclick = function(){
+					window.location.reload();
+				}
+			}
+			
+			function ductMove(){
+				var time1 = setInterval(function(){
+					var createLi = document.createElement("li");
+					var r = rand(15,50);
+					var add = true;
+					createLi.innerHTML = '<div class="duct_up" style="height: ' + r + '%;">' + '<img src="img/up_pipe.png"/>' + '</div>'
+					+ '<div class="duct_down" style="height: ' + (75 - r) + '%;">' + '<img src="img/down_pipe.png"/>' + '</div>';
+					oUl.appendChild(createLi);
+					createLi.l = 320;
+					createLi.style.left = createLi.l + "px";
+					createLi.time1 = setInterval(function(){
+						createLi.l -= 2;
+						createLi.style.left = createLi.l + "px";
+						if(createLi.l <= -62){
+							clearInterval(createLi.time1)
+							oUl.removeChild(createLi);
+							return;
+						}else if(createLi.l <= -32){
+							if(add){
+								scoreNum++;
+								add = false;
+							}
+						}
+						
+						score.innerHTML = "";
+						var strScore = String(scoreNum);
+						for(var i = 0;i < strScore.length;i++){
+							var img = document.createElement("img");
+							img.src = "img/" + strScore[i] +".jpg";
+							score.appendChild(img);
+						}	
+						crash(createLi.l);
+					},30);
+				},2800);		
+				
+			}
+			function crash(left){
+				var oDiv1 = oUl.getElementsByTagName("div")[0];
+				var oDiv2 = oUl.getElementsByTagName("div")[1];	
+				var x = left - moveBird.offsetWidth - moveBird.offsetLeft;
+				var y = moveBird.offsetTop - oDiv1.offsetHeight;
+				var a = oDiv2.offsetTop - moveBird.offsetTop - moveBird.offsetHeight;
+				var bol = true;
+				if(left <= -20){
+					bol = false;
+				}
+				if((x <= 0 && y <= 0 && a >= 0) || (x <= 0 && y >= 0 && a <= 0)){
+					if(bol){											
+						gg();
+						clearTime();
+					}			
+				}		
+			}
+			
+			function clearTime(){
+				var timeOut = setTimeout(function(){	
+					
+				},17);
+				for(var i = 1;i < timeOut;i++){
+					clearInterval(i);
+				}
+			}	
+		</script>
+	</body>
+</html>

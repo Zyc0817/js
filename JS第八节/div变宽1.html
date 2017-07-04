@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 50px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			var oDiv = document.getElementById("div1");
+			var time = null;
+			function startMove(aim){
+				clearInterval(time)
+				time = setInterval(function(){
+					var speed = (aim - oDiv.offsetWidth)/8;
+					speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+					if (oDiv.offsetWidth == aim) {
+						clearInterval(time);
+					} else{
+						oDiv.style.width = oDiv.offsetWidth + speed + "px";
+					}
+				},30);				
+			}
+			oDiv.onmouseover = function(){
+				startMove(300);
+			}
+			oDiv.onmouseout = function(){
+				startMove(100);
+			}
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

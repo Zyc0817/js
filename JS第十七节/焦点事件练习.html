@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="txt" id="txt" value="" />
+		<script type="text/javascript">
+			var oTxt = document.getElementById("txt");
+			oTxt.value = "请输入姓名";
+			oTxt.style.color = "grey";
+			oTxt.onfocus = function(){
+				if(oTxt.value == "请输入姓名" && oTxt.style.color == "grey"){
+					oTxt.value = "";
+					oTxt.style.color = "black";
+				}			
+			}
+			oTxt.onblur = function(){
+				if(oTxt.value == ""){
+					oTxt.value = "请输入姓名";
+					oTxt.style.color = "grey";
+				}		
+			}
+			
+			
+		</script>
+	</body>
+</html>

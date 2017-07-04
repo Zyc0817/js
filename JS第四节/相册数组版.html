@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			img{
+				width: 300px;
+				height: 200px;
+			}
+			.wrap{
+				position: relative;
+			}
+			#div1{
+				width: 50px;
+				height: 50px;
+				background-color: black;
+				opacity: 0.7;
+				color: white;
+				font-size: 20px;
+				text-align: center;
+				line-height: 50px;
+				position: absolute;
+				bottom: 2px;
+				left: 250px;
+				border-radius: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<img src="img/1.png" id="img"/>
+			<div id="div1">1</div>
+		</div>
+		<input type="button" name="btn1" id="btn1" value="上一张" />
+		<input type="button" name="btn2" id="btn2" value="下一张" />
+		
+		
+		
+		<script type="text/javascript">
+			var oImg = document.getElementById("img");
+			var oBtn1 = document.getElementById("btn1");
+			var oBtn2 = document.getElementById("btn2");
+			var oDiv = document.getElementById("div1");
+			var imgArr = ["img/1.png","img/2.png","img/3.png","img/4.png","img/5.png"];
+			var index = 1;
+			oBtn1.onclick = function(){
+				index--;
+				if(index < 1){
+					index = imgArr.length;
+				}
+				oDiv.innerHTML = index;
+				oImg.src = imgArr[index - 1];
+			}
+			oBtn2.onclick = function(){
+				index++;
+				if(index> imgArr.length){
+					index = 1;
+				}
+				oDiv.innerHTML = index;
+				oImg.src = imgArr[index - 1];
+			}
+			
+			
+			
+			
+		</script>	
+	</body>
+</html>

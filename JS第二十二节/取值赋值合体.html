@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+		
+	</head>
+	<body>
+		<div id="div1">123</div>
+		<ul>
+			<li id="l1" class="l1">aaa</li>
+			<li id="l1" class="l1">bbb</li>
+			<li id="l1" class="l1">ccc</li>
+			<li id="l1" class="l1">ddd</li>
+			<li id="l1" class="l1">eee</li>
+		</ul>
+		
+		
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+				//这种情况下参数有值是赋值，参数无值是取值
+				//赋值
+//				$("#div1").html("123");
+//				//取值
+//				alert($("#div1").html());
+				
+				
+				//这种情况下参数由两个是赋值，参数有一个是取值
+//				$("#div1").css("background-color","red");
+//				alert($("#div1").css("background-color"));
+
+				
+				//当是一组元素的时候，取值是一组数中的第一个
+//				alert($(".l1").html());
+
+
+				//当是一组元素的时候，赋值是所有
+//				$("#l1").html("123");
+				
+			});		
+		</script>
+	</body>
+</html>

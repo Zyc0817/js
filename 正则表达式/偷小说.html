@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<textarea name="" rows="10" cols="40" id="txt1"></textarea><br />
+		<input type="button" name="btn" id="btn" value="偷" /><br />
+		<textarea name="" rows="10" cols="40" id="txt2"></textarea>
+		<script type="text/javascript">
+			var txt1 = document.getElementById("txt1");
+			var txt2 = document.getElementById("txt2");
+			var oBtn = document.getElementById("btn");
+			
+			/*
+			 	\d:任意数字 == [0-9]
+			 	\w:数字字母下划线 == [0-9a-z_]
+			 	\s:空格 或者\t(三个空格)
+			 	
+			 	
+			 	\D:[^0-9]
+			 	\W:除了数字字母下划线都行
+			 	\S:除了空格
+			 */
+			
+			oBtn.onclick = function(){
+				//.:任意字符
+//				var re = /<.+>/g;
+				var re = /<[^<>]+>/g;
+				txt2.value = txt1.value.replace(re,"");
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

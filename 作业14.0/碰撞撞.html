@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.div1{
+				width: 500px;
+				height: 400px;
+				border: 1px solid black;
+				position: relative;
+			}
+			.div1 div{
+				width: 50px;
+				height: 50px;
+				background-color: gray;
+				position: absolute;
+			}
+			.food{
+				left: 300px;
+				top: 200px;		
+			}
+			.snake{
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div1">
+			<div class="snake"></div>
+			<div class="food"></div>
+		</div>
+		<script type="text/javascript">
+			var oDiv1 = document.getElementsByClassName("div1")[0];
+			var snake = document.getElementsByClassName("snake")[0];
+			var food = document.getElementsByClassName("food")[0];
+			snake.onmousedown = function(ev){
+				var evObj = ev || event;
+				var x1 = evObj.clientX;
+				var y1 = evObj.clientY;
+				var l = snake.offsetLeft;
+				var t = snake.offsetTop;
+				oDiv1.onmousemove = function(ev){
+					var eve = ev || event;
+					var x2 = eve.clientX;
+					var y2 = eve.clientY;
+					snake.style.left = l + x2 - x1 + "px";
+					snake.style.top = t + y2 - y1 + "px";
+					var fl = food.offsetLeft - snake.offsetWidth < snake.offsetLeft;
+					var ft = food.offsetTop - snake.offsetHeight < snake.offsetTop;
+					var fr = food.offsetLeft + food.offsetWidth > snake.offsetLeft;
+					var fb = food.offsetTop + food.offsetHeight > snake.offsetTop;
+					if(fl && ft && fr && fb){
+						food.style.backgroundColor = "red";
+					}else{
+						food.style.backgroundColor = "";
+					}
+					
+
+				}
+				snake.onmouseup = function(){
+					oDiv1.onmousemove = "";
+				}
+			}
+		</script>
+	</body>
+</html>

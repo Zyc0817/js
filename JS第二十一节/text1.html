@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#div1{
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				position: relative;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			var oDiv = document.getElementById("div1");
+			oDiv.addEventListener("touchstart",function(ev){
+				var evObj = ev || event;
+				var finger = evObj.touches[0];
+				var a = finger.pageX - oDiv.offsetLeft;
+				var b = finger.pageY - oDiv.offsetTop;
+				oDiv.addEventListener("touchmove",function(ev){
+					var eve = ev || event;
+					var finger1 = eve.touches[0];
+					var c = finger1.pageX - a;
+					var d = finger1.pageY - b;
+					
+					if(c <= 0){
+						c = 0;				
+					}else if(c >= screen.width - oDiv.offsetWidth){
+						c = screen.width - oDiv.offsetWidth;
+					}
+					if(d <= 0){
+						d = 0;				
+					}else if(d >= screen.height - oDiv.offsetHeight){
+						d = screen.height - oDiv.offsetHeight;
+					}
+					oDiv.style.left = c + "px";
+					oDiv.style.top = d + "px";	
+					oDiv.addEventListener("touchend",function(){
+						oDiv.addEventListener("touchmove","",false);
+					},false);
+				},false);		
+			},false);
+			
+			
+		</script>
+	</body>
+</html>

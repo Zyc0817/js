@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			a {
+				text-decoration: none;
+				color: orange;
+			}
+			
+			.wrap {
+				width: 600px;
+				height: 200px;
+				border: 1px solid gainsboro;
+				border-radius: 5px;
+				margin: 5px auto;
+			}
+			
+			.top {
+				height: 40px;
+				width: 100%;
+				overflow: hidden;
+			}
+			
+			.top-left {
+				width: 80px;
+				height: 100%;
+				line-height: 40px;
+				font-size: 20px;
+				color: orange;
+				float: left;
+				margin-left: 40px;
+			}
+			
+			.top-right {
+				float: right;
+				width: 60%;
+				height: 100%;
+				line-height: 40px;
+				padding-right: 20px;
+				text-align: right;
+			}
+			
+			.middle {
+				height: 100px;
+				width: 100%;
+			}
+			
+			.middle textarea {
+				width: 570px;
+				height: 90px;
+				margin-left: 15px;
+				border: 1px solid gainsboro;
+				resize: none;
+			}
+			
+			.bottom {
+				height: 60px;
+				width: 100%;
+				overflow: hidden;
+			}
+			
+			.bottom-left {
+				height: 100%;
+				width: 350px;
+				float: left;
+			}
+			
+			.bottom-left div {
+				width: 70px;
+				height: 100%;
+				text-align: center;
+				line-height: 50px;
+				float: left;
+			}
+			
+			.bottom-left div:hover {
+				color: orange;
+			}
+			
+			.bottom-right {
+				float: right;
+				width: 80px;
+				height: 40px;
+				background-color: orange;
+				line-height: 40px;
+				font-size: 20px;
+				color: white;
+				border-radius: 5px;
+				margin-right: 13px;
+				text-align: center;
+			}
+			
+			.message {
+				width: 600px;
+				height: 1000000px;
+				border: 1px solid gainsboro;
+				border-radius: 5px;
+				margin: 0 auto;
+				overflow: hidden;
+				/*position: relative;*/
+			}
+			/*为js准备样式*/
+			
+			.big {
+				width: 580px;
+				height: 100px;
+				border: 1px solid gray;
+				margin-left: 9px;
+				margin-top: 10px;
+				position: relative;
+				/*position: absolute;*/
+				top: 10px;
+				/*left: 0;*/
+			}
+			
+			.name {
+				width: 100px;
+				height: 30px;
+				line-height: 30px;
+				padding-left: 10px;
+				font-weight: bold;
+			}
+			
+			.mes {
+				width: 100px;
+				height: 30px;
+				line-height: 30px;
+				padding-left: 10px;
+			}
+			
+			.date {
+				width: 200px;
+				height: 30px;
+				line-height: 30px;
+				padding-left: 10px;
+				color: gainsboro;
+			}
+			
+			.close {
+				width: 50px;
+				height: 50px;
+				line-height: 50px;
+				position: absolute;
+				right: 20px;
+				top: 10px;
+				text-align: center;
+			}
+			
+			.close:hover {
+				color: orange;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="top">
+				<div class="top-left">
+					LOGO
+				</div>
+				<div class="top-right">
+					<a href="###">点击领取红包</a>
+				</div>
+			</div>
+			<div class="middle">
+				<textarea name="" rows="" cols=""></textarea>
+			</div>
+			<div class="bottom" onclick="addRow()">
+				<div class="bottom-left">
+					<div>表情</div>
+					<div>图片</div>
+					<div>视频</div>
+					<div>话题</div>
+					<div>文章</div>
+				</div>
+				<div class="bottom-right">
+					发布
+				</div>
+			</div>
+		</div>
+
+		<div class="message">
+			<!--<div class="big">
+             	<div class="name">
+             		lsp
+             	</div>
+             	<div class="date">
+             		日期
+             	</div>
+             	<div class="mes">
+             		pspspspspspppsps
+             	</div>
+             	<div class="close">
+             		X
+             	</div>
+             </div>-->
+		</div>
+	</body>
+	<script type="text/javascript" src="js/perfectMove.js"></script>
+	<script type="text/javascript">
+		//取东西
+		var message = document.getElementsByClassName("message")[0];
+		var txt = document.getElementsByTagName("textarea")[0];
+		//拿出a标签
+		var topRight = document.getElementsByTagName("a")[0];
+		//字数
+		var textLimit = 140;
+		//点击发布,会响应的函数
+		function addRow() {
+			if (!txt.value.length) {
+				alert("sp,没文字发什么发")
+			} else if (textLimit < 0) {
+				alert("sp,文字超了就别发了呗!")
+			} else {
+				//创建bigDiv
+				var bigDiv = createDiv("", "big");
+				//创建昵称div
+				var nameDiv = createDiv("dsp", "name");
+				bigDiv.appendChild(nameDiv);
+				//创建文本div
+				var contentDiv = createDiv(txt.value, "mes");
+				bigDiv.appendChild(contentDiv);
+				//创建时间div
+				var timeDiv = createDiv(getTime(), "date");
+				bigDiv.appendChild(timeDiv);
+				//删除div
+				var closeDiv = createDiv("X", "close");
+				bigDiv.appendChild(closeDiv);
+				message.insertBefore(bigDiv, message.firstElementChild);
+				var allBig = document.getElementsByClassName("big");		
+				closeDiv.onclick = function() {
+					bigDiv.style.left = 0 + "px";
+					startMove(bigDiv,{left:580},function(){
+						message.removeChild(bigDiv);
+					});		
+				}
+				textLimit = 140;
+				txt.value = "";
+				//JS在行间样式里赋值
+				bigDiv.style.top = -100 + "px";
+				startMove(bigDiv,{top:0});			
+			}
+		}
+		//创建时间函数
+		function getTime() {
+			var mydate = new Date();
+			//		var getDate1 = (mydate.getMonth()+1)+"月"++"日"+mydate.getHours()+":"+mydate.getMinutes()+"发布";
+			//		return getDate1;
+			var month = mydate.getMonth() + 1;
+			var day = mydate.getDay();
+			var hours = mydate.getHours();
+			var min = mydate.getMinutes();
+			return month + "月" + day + "日" + hours + "时" + min + "分" + "发布";
+		}
+		//创建div的函数
+		function createDiv(txt, className) {
+			var div = document.createElement("div");
+			div.innerHTML = txt;
+			div.setAttribute("class", className);
+			return div;
+		}
+		//当手指离开键盘的时候触发
+		txt.onkeyup = function() {
+				//当前剩余字数
+				textLimit = 140 - txt.value.length;
+				topRight.innerHTML = "还可以输入" + textLimit + "字";
+				topRight.style.color = "gainsboro";
+				if (textLimit < 0) {
+
+				}
+			}
+			//失去焦点的时候会触发的方法
+		txt.onblur = function() {
+				//		alert("我失去焦点了")
+				topRight.innerHTML = "点击领取红包";
+				topRight.style.color = "";
+			}
+			//成为焦点时会触发的方法
+		txt.onfocus = function() {
+			//////		alert("我是lsp")
+			textLimit = 140 - txt.value.length;
+			topRight.innerHTML = "还可以输入" + textLimit + "字";
+			topRight.style.color = "gainsboro";
+			if (textLimit < 0) {
+				topRight.innerHTML = "超过" + (txt.value.length - 140) + "字";
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				text-align: center;
+			}
+			.wrap{
+				width: 1145px;
+				height: 350px;
+				border: 1px solid black;
+				margin: 50px auto;
+				overflow: hidden;
+				
+			}
+			.wrap div{
+				width: 150px;
+				height: 100px;
+				border: 1px solid black;
+				float: left;
+				text-align: center;
+				line-height: 100px;
+				margin-left: 10px;
+				margin-top: 10px;
+			}
+			#btn{
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+				background-color: white;
+				border-radius: 25px;
+				outline: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="div1">张玲</div>
+			<div id="div2">夏菁</div>
+			<div id="div3">王思媛</div>
+			<div id="div4">董磊</div>
+			<div id="div5">李双利</div>
+			<div id="div6">曹铭蓄</div>
+			<div id="div7">王瑞琪</div>
+			<div id="div8">郑艳玲</div>
+			<div id="div9">李想</div>
+			<div id="div10">高佳楠</div>
+			<div id="div11">赵青臣</div>
+			<div id="div12">张云驰</div>
+			<div id="div13">赵宇</div>
+			<div id="div14">马闯</div>
+			<div id="div15">李世鹏</div>
+			<div id="div16">邓玉</div>
+			<div id="div17">赵晓庆</div>
+			<div id="div18">于正文</div>
+			<div id="div19">许卓</div>
+			<div id="div20">王渤皓</div>
+			<div id="div21">王鑫晨</div>
+		</div>
+		<input type="button" name="btn" id="btn" value="开始喽" />
+		<script type="text/javascript">
+			var oBtn = document.getElementById("btn");
+			var compare = true;
+			var time;
+			oBtn.onclick = function(){
+				if (compare == true) {
+					time = setInterval(function(){
+						var num = Math.floor(Math.random()*(21-1+1)+1);
+						var oDiv1 = document.getElementById("div"+num);
+						oDiv1.style.backgroundColor = "red";
+						for(var i = 1;i < 22;i++){
+							if(i != num){
+								var oDiv2 = document.getElementById("div"+i);
+								oDiv2.style.backgroundColor = "white";
+							}
+						}				
+					},200);
+					this.value = "就是他";
+				} else{
+					clearInterval(time);	
+					this.value = "开始喽";
+				}
+				compare =! compare;
+			}	
+		</script>	
+	</body>
+</html>

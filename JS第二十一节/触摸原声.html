@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<style type="text/css">
+			#div1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		
+		<script type="text/javascript">
+			var oDiv = document.getElementById("div1");
+//			oDiv.onclick = function(){
+//				alert("我被点击了");
+//			}
+
+			//onmousedown
+			//所有的触碰事件，都要用事件监听，也就是事件绑定的第二种形式
+			oDiv.addEventListener("touchstart",function(ev){
+//				console.log("触摸开始啦");
+				
+				var evObj = ev || event;
+				var finger = evObj.touches[0];
+				//距离屏幕的距离
+				console.log(finger.screenX);
+				//距离页面的距离
+				console.log(finger.pageX);
+				
+				
+			},false);
+			
+			
+			
+			
+			//onmousemove
+//			oDiv.addEventListener("touchmove",function(){
+//				console.log("触摸移动了");	
+//			},false);
+//			
+//			
+//			//onmouseup
+//			oDiv.addEventListener("touchend",function(){
+//				console.log("触摸结束了");	
+//			},false);
+//			
+//			
+//			//来电话，打断我们的触摸，就会执行这个方法
+//			oDiv.addEventListener("touchcancel",function(){
+//				console.log("触摸中断");
+//			},false);
+			
+			
+		</script>
+	</body>
+</html>

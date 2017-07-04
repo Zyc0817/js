@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function textOne(a,o,b){
+				if(o == "+"){
+					return a + b;
+				}else if(o == "-"){
+					return a - b;
+				}else if(o == "*"){
+					return a * b;
+				}else if(o == "/"){
+					if(b == 0){
+						alert("SB,b不能为0");
+					}else{
+						return a / b;
+					}
+				}else{
+					alert("符号错误");
+				}
+			}
+//			var result = textOne(1,"/",2);
+//			alert(result);
+			
+			
+			//switch
+//			var a = 10;
+//			switch (a){
+//				case 10:
+//					alert("值是10");
+//					break;
+//				case 20:
+//					alert("值是20");
+//					break;
+//				case 30:
+//					alert("值是40");
+//					break;
+//				case 40:
+//					alert("值是40");
+//					break;	
+//				default:
+//					alert("lsp,没有这个值");
+//					break;
+//			}
+			
+			function textTwo(a,o,b){
+				switch (o){
+					case "+":
+						return a + b;
+						break;
+					case "-":
+						return a - b;
+						break;
+					case "*":
+						return a * b;
+						break;
+					case "/":
+						if(b == 0){
+							alert("b不能为0");
+						}else{					
+							return a / b;
+						}
+						break;	
+					default:
+						alert("符号错误");
+						break;
+				}
+			}
+			var result = textTwo(1,"/",0);
+			alert(result);
+			
+			
+			
+		</script>
+	</body>
+</html>

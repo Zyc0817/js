@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+		<style type="text/css">
+			#flow{
+				list-style: none;
+				position: relative;
+				margin: 0 auto;
+			}
+			#flow li{
+				position: absolute;
+				width: 200px;
+				transition: all .5s;
+				overflow: hidden;
+			}
+			#flow li img{
+				width: 100%;
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="flow"></ul>
+		
+		
+		<script type="text/javascript">
+			$(function(){
+				var hs = [];
+				var lis = [];
+				for(var i = 2;i < 41;i++){
+					var li = $("<li></li>");
+					li.append("<img src = 'img/rendering/" + i + ".jpg'/>");
+					lis.push(li);			
+				}
+				function reHeight(bol){
+					var cols = parseInt($("body").width() / 200);
+					$("#flow").css({
+						"width" : cols * 200
+					});
+					var arrH = [];
+					for(var i = 0;i < cols;i++){
+						arrH[i] = 0;
+					}
+					for(var i = 0;i < lis.length;i++){
+						var minH = arrH[0];
+						var minl = 0;
+						for(var k = 0;k < arrH.length;k++){
+							if(minH > arrH[k]){
+								minH = arrH[k];
+								minl = k;
+							}
+						}
+						if(bol){
+							$("#flow").append(lis[i]);
+						}
+
+						lis[i].css({
+							"left":minl * 200,
+							"top":arrH[minl]
+						});
+						arrH[minl] = arrH[minl] + lis[i].height();
+					}
+					
+				}
+				window.onload = function(){
+					reHeight(true);
+					window.onresize = function(){
+						reHeight(false)
+					}
+				}
+				
+				
+			});
+		</script>
+	</body>
+</html>

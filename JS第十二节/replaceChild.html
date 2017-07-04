@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="div1">33333</div>
+		<ul id="ul1">
+			<li>11111</li>
+			<li>22222</li>
+		</ul>
+		<script type="text/javascript">
+			var oUl = document.getElementById("ul1");
+			var oDiv = document.getElementById("div1");
+			//替换 oDiv是替换元素，，第一个li是被替换的元素
+//			oUl.replaceChild(oDiv,oUl.firstElementChild);
+//			oUl.appendChild(oDiv);
+			oUl.insertBefore(oDiv,oUl.firstElementChild);
+		</script>
+	</body>
+</html>

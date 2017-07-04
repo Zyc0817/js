@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+		<style type="text/css">
+			ul{
+				list-style: none;
+			}
+			ul li{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				margin-top: 10px;
+			}
+			ul li div{
+				width: 50px;
+				height: 50px;
+				background-color: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li><div></div></li>
+			<li><div></div></li>
+			<li><div></div></li>
+			<li><div></div></li>
+			<li><div></div></li>
+		</ul>
+		<script type="text/javascript">
+			var $li = $("li");
+			var $div = $("div")
+			$div.mouseover(function(){
+//				$(this).css({
+//					width:200
+//				})
+				alert($li.index($li));
+			})
+		</script>
+	</body>
+</html>

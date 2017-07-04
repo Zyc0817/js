@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js">
+			
+		</script>
+	</head>
+	<body>
+		<ul id="myGirl">
+			<li id="g1" class="girA">江疏影</li>
+			<li id="g2" class="girA">范冰冰</li>
+			<li id="g3" class="girB" data-img = "123.jpg">安以轩</li>		
+		</ul>
+		
+		<script type="text/javascript">
+			//jq对象
+			//通过jq选择器获取的都是一个jq对象
+			//绝对不是原声js里面的对象
+			//jq对象是对DOM对象进行包装后产生的对象
+			//jq对象是jq独有的
+			//jq对象无法使用原声js中DOM对象的任何方法
+			//同样原声js的DOM对象也无法使用任何jq的方法
+			
+			$(function(){
+				var isGirl = $("#g1");
+				console.log(isGirl);
+				alert(isGirl.length);
+				alert(isGirl[0].innerHTML);
+				
+				var oLi = document.getElementById("g3");
+				alert($(oLi).html());
+			
+			});
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

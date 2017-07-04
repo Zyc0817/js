@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="ul1">
+			<li>1111 <a href="###">隐藏</a></li>
+			<li>1111 <a href="###">隐藏</a></li>
+			<li>1111 <a href="###">隐藏</a></li>
+			<li>1111 <a href="###">隐藏</a></li>
+		</ul>
+		<script type="text/javascript">
+			var allA = document.getElementsByTagName("a");
+			var allLi = document.getElementsByTagName("li");
+			for(var i = 0;i < allA.length;i++){
+				allA[i].onclick = function(){
+					/*
+					 元素.parentNode:属性（只读） 获取当前节点的父节点
+					 */
+					this.parentNode.style.display = "none";
+				}
+			}
+			
+			
+		</script>
+	</body>
+</html>

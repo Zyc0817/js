@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css" id="css">
+			.wrap{
+				width: 200px;
+				height: 200px;
+				border: 2px solid black;
+				margin: 100px auto;
+				position: relative;
+				/*border-radius: 50%;*/
+			}
+			.wrap ul{
+				margin: 0;
+				padding: 0;
+				height: 200px;
+				position: relative;
+				list-style: none;
+			}
+			.wrap ul li{
+				width: 2px;
+				height: 6px;
+				background-color: black;
+				position: absolute;
+				left: 99px;
+				top: 0;
+				transform-origin: center 100px; 
+				
+			}
+			/*.wrap ul li:nth-of-type(1){transform: rotate(0deg);}
+			.wrap ul li:nth-of-type(2){
+				transform: rotateZ(6deg);
+			}
+			.wrap ul li:nth-of-type(3){
+				transform: rotateZ(12deg);
+			}
+			.wrap ul li:nth-of-type(4){
+				transform: rotateZ(18deg);
+			}
+			.wrap ul li:nth-of-type(5){
+				transform: rotateZ(24deg);
+			}
+			.wrap ul li:nth-of-type(6){
+				transform: rotateZ(30deg);
+			}
+			.wrap ul li:nth-of-type(7){
+				transform: rotateZ(36deg);
+			}*/
+			.wrap ul li:nth-of-type(5n+1){
+				height: 12px; 
+			}
+			.hour{
+				width: 6px;
+				height: 45px;
+				background-color: black;
+				position: absolute;
+				top: 55px;
+				left: 97px;
+				/*为了旋转,修改变化基点*/
+				transform-origin: bottom; 
+			}
+			.min{
+				width: 4px;
+				height: 65px;
+				background-color: blue;
+				position: absolute;
+				top: 35px;
+				left: 98px;
+				transform-origin: bottom;
+			}
+			.sec{
+				width: 2px;
+				height: 80px;
+				background-color: red;
+				position: absolute;
+				top: 20px;
+				left: 99px;
+				transform-origin: bottom;
+			}
+			.icon{
+				width: 20px;
+				height: 20px;
+				background-color: black;
+				border-radius: 50%;
+				position: absolute;
+				top: 90px;
+				left: 90px;
+			}	
+		</style>
+	</head>
+	<body>
+		<div class="wrap" id="wrap">
+			<ul id="list">
+				<!--<li><p>12</p></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li><p>1</p></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li><p>2</p></li>
+				<li></li>-->
+			</ul>
+			<!--时针-->
+			<div class="hour" id="hour"></div>
+			<!--分针-->
+			<div class="min" id="min"></div>
+			<!--秒针-->
+			<div class="sec" id="sec"></div>
+			<!--钟表中间的圆点-->
+			<div class="icon"></div>
+		</div>
+		<script type="text/javascript">
+			//装刻度的ul
+			var oList = document.getElementById("list");
+			//拼接多个li标签的容器
+			var oLi = "";
+			//取出样式表
+			var oCss = document.getElementById("css");
+			//用来装多个li样式的容器
+			var sCss = "";
+			//取时针
+			var oHour = document.getElementById("hour");
+			//取分针
+			var oMin = document.getElementById("min");
+			//取秒针
+			var oSec = document.getElementById("sec");
+			//循环
+			for(var i = 0;i < 60;i++){
+				oLi += "<li></li>";
+				sCss += ".wrap ul li:nth-of-type("+(i+1)+"){transform: rotate("+((i+5)*6)+"deg);}";
+			}
+			oList.innerHTML += oLi;
+			oCss.innerHTML += sCss;
+			var oP = ""
+			var arr = document.getElementsByTagName("li");
+			for(var i = 0;i < 12;i++){
+				oP = "<p>"+(i+1)+"</p>";	
+				arr[5 * i].innerHTML = oP;
+			}
+			toTime();
+			setInterval(toTime,1000);
+			function toTime(){
+				//获取当前时间
+				var oDate = new Date();
+				//秒
+				var iSec = oDate.getSeconds();
+				//分
+				var iMin = oDate.getMinutes() + iSec / 60;
+				//时
+				var iHour = oDate.getHours() + iMin / 60;
+				//秒针转起来
+				oSec.style.transform = "rotate("+(iSec * 6)+"deg)";
+				//分针转起来
+				oMin.style.transform = "rotate("+(iMin * 6)+"deg)";
+				//分针转完时针转
+				oHour.style.transform = "rotate("+(iHour * 30)+"deg)"
+			}			
+		</script>
+	</body>
+</html>

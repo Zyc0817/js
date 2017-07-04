@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<style type="text/css">
+			#div1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			var oDiv = document.getElementById("div1");
+			oDiv.addEventListener("touchstart",function(){
+				var evObj = event;
+				var finger = evObj.touches[0];
+				var x1 = finger.pageX;
+				var y1 = finger.pageY;
+				var l = oDiv.offsetLeft;
+				var t = oDiv.offsetTop;
+				function heihei(){
+					var eve = event;
+					var f2 = eve.touches[0];
+					var x2 = f2.pageX;
+					var y2 = f2.pageY;
+					oDiv.style.left = l + x2 - x1 + "px";
+					oDiv.style.top = t + y2 - y1 + "px";
+				}
+				oDiv.addEventListener("touchmove",heihei,false);	
+				oDiv.addEventListener("touchend",function(){
+					oDiv.removeEventListener("touchmove",heihei,false);
+				},false);
+			},false);	
+		</script>
+	</body>
+</html>

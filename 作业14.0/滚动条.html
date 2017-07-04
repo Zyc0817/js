@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.wrap{
+				width: 300px;
+				height: 400px;
+				border: 1px solid black;
+				position: relative;
+				overflow: hidden;
+			}
+			.text{
+				font-size: 30px;
+				position: absolute;
+			}
+			.sliderWrap{
+				width: 20px;
+				position: absolute;
+				height: 100%;
+				background-color: darkgray;
+				top: 0;
+				right: 0;
+			}
+			.slider{
+				width: 100%;
+				background-color: red;
+				position: absolute;
+				/*height: 50px;*/
+				border-radius: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap" id="wrap">
+			<div class="text" id="text">
+				李伯伯要当红军 红军不要李伯伯
+				因为李伯伯的屁股大呀 容易被鬼子发现目标
+				李伯伯找到了团长 团长也是个老伯伯
+				因为伯伯同情伯伯呀 李伯伯就光荣当了红军
+				李伯伯去执行任务 爬上了小山坡
+				因为李伯伯的屁股大呀 被鬼子发现了目标
+				李伯伯拍屁股就跑 鬼子上来就是两刺刀
+				为了革命为了党啊 李伯伯就壮烈牺牲了
+				李伯伯要当红军 红军不要李伯伯
+				因为李伯伯的屁股大呀 容易被鬼子发现目标
+				李伯伯找到了团长 团长也是个老伯伯
+				因为伯伯同情伯伯呀 李伯伯就光荣当了红军
+				李伯伯去执行任务 爬上了小山坡
+				因为李伯伯的屁股大呀 被鬼子发现了目标
+				李伯伯拍屁股就跑 鬼子上来就是两刺刀
+				为了革命为了党啊 李伯伯就壮烈牺牲了
+				李伯伯要当红军 红军不要李伯伯
+				因为李伯伯的屁股大呀 容易被鬼子发现目标
+				李伯伯找到了团长 团长也是个老伯伯
+				因为伯伯同情伯伯呀 李伯伯就光荣当了红军
+				李伯伯去执行任务 爬上了小山坡
+				因为李伯伯的屁股大呀 被鬼子发现了目标
+				李伯伯拍屁股就跑 鬼子上来就是两刺刀
+				为了革命为了党啊 李伯伯就壮烈牺牲了
+				李伯伯要当红军 红军不要李伯伯
+				因为李伯伯的屁股大呀 容易被鬼子发现目标
+				李伯伯找到了团长 团长也是个老伯伯
+				因为伯伯同情伯伯呀 李伯伯就光荣当了红军
+				李伯伯去执行任务 爬上了小山坡
+				因为李伯伯的屁股大呀 被鬼子发现了目标
+				李伯伯拍屁股就跑 鬼子上来就是两刺刀
+				为了革命为了党啊 李伯伯就壮烈牺牲了
+			</div>
+			<div class="sliderWrap" id="sliderWrap">
+				<div class="slider" id="slider"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var wrap = document.getElementById("wrap");
+			var txt = document.getElementById("text");
+			var sliderWrap = document.getElementById("sliderWrap");
+			var slider = document.getElementById("slider");
+			slider.style.height = (wrap.offsetHeight / txt.offsetHeight) * sliderWrap.offsetHeight + "px";
+			function mouseWheel(obj,fn) {
+				if(navigator.userAgent.indexOf("firefox") != -1) {
+					obj.addEventListener("DOMMouseScroll", wheel, false);
+				} else {
+					obj.onmousewheel = wheel;
+				}
+				function wheel(ev) {
+					var evObj = ev || event;
+					var up = null;
+					if(evObj.detail) {
+						up = evObj.detail < 0;
+					} else {
+						up = evObj.wheelDelta > 0;
+					}
+					fn(up,evObj);
+					if(evObj.preventDefault()) {
+						evObj.preventDefault();
+					}
+					return false;
+				}
+			}
+			slider.onmousedown = function(ev){
+				var evObj = ev || event;
+				var a = evObj.clientY - slider.offsetTop;
+				document.onmousemove = function(ev){
+					var eve = ev || event;
+					var b = eve.clientY - a;			
+					if (b <= 0) {
+						b = 0;
+					} else if(b >= sliderWrap.offsetHeight - slider.offsetHeight){
+						b = sliderWrap.offsetHeight - slider.offsetHeight;
+					}
+					slider.style.top = b + "px";
+					var c = b / (sliderWrap.offsetHeight - slider.offsetHeight);
+					txt.style.top = c * (wrap.offsetHeight - txt.offsetHeight) + "px";
+				}
+				document.onmouseup = function(){
+					document.onmousemove = "";
+				}
+				if(evObj.preventDefault){
+					evObj.preventDefault;
+				}
+				return false;			
+			}
+			mouseWheel(wrap,function(u,eve){
+				var y = slider.offsetTop;
+				if(u){
+					y -= 10;
+				}else{
+					y += 10;
+				}
+				if (y <= 0) {
+					y = 0;
+				} else if(y >= sliderWrap.offsetHeight - slider.offsetHeight){
+					y = sliderWrap.offsetHeight - slider.offsetHeight
+				}
+				var d = y / (sliderWrap.offsetHeight - slider.offsetHeight);
+				txt.style.top = d * (wrap.offsetHeight - txt.offsetHeight) + "px";
+				slider.style.top = y + "px";
+			});
+			sliderWrap.onclick = function(ev){
+				var evObj = ev || event;
+				var yy = evObj.clientY - wrap.offsetTop - slider.offsetHeight / 2;
+				if (yy <= 0) {
+					yy = 0;
+				} else if(yy >= sliderWrap.offsetHeight - slider.offsetHeight){
+					yy = sliderWrap.offsetHeight - slider.offsetHeight;
+				}
+				slider.style.top = yy + "px";
+				var e = yy / (sliderWrap.offsetHeight - slider.offsetHeight);
+				txt.style.top = e * (wrap.offsetHeight - txt.offsetHeight) + "px";
+			}
+			
+		</script>
+	</body>
+</html>

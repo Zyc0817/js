@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="div"></div>
+		<script type="text/javascript">
+			function getT(){
+				var aimDate = new Date(2016,9,1);
+				var nowDate = new Date();
+				//求出时间间隔
+				var sec = parseInt((aimDate.getTime()-nowDate.getTime())/1000);
+//				alert(sec);
+				var day =parseInt(sec / 86400);
+//				alert(day);
+				sec = sec % 86400;
+				var hour = parseInt(sec / 3600);
+//				alert(hour);
+				sec = sec % 3600;
+				var min = parseInt(sec / 60);
+//				alert(min);
+				sec = sec % 60;
+				var oDiv = document.getElementById("div");
+				oDiv.innerHTML = "距离十一假期还有"+day+"天"+hour+"小时"+min+"分钟"+sec+"秒";
+			}	
+			getT();
+			setInterval(getT,1000);
+//			setInterval(function(){
+//				getT();
+//			},1000);
+		</script>
+	</body>
+</html>

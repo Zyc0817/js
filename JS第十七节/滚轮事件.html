@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			document.onmousewheel = function(ev){
+				var evObj = ev || window.event;
+				console.log(evObj.wheelDelta)
+				if(evObj.wheelDelta > 0){
+					alert("向上滚");
+				}else if(evObj.wheelDelta < 0){
+					alert("向下滚");
+				}
+				
+				
+//				alert("111111");
+			}
+		</script>
+	</body>
+</html>

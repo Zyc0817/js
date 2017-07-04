@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			@-webkit-keyframes fly{
+				0%{
+					background: url(img/bird1.png);		
+				}
+				100%{
+					background: url(img/bird0.png);
+				}
+			}
+			@-webkit-keyframes headMove{
+				0%{
+					transform: translateY(0);
+				}
+				100%{
+					transform: translateY(30px);
+				}
+			}
+			@-webkit-keyframes sliderMove{
+				0%{
+					transform: translateX(0);
+				}
+				100%{
+					transform: translateX(-300px);
+				}
+			}
+			
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				height: 100%;
+			}
+			#wrap{
+				width: 100%;
+				height: 100%;
+				max-width: 320px;
+				max-height: 480px;
+				background: url(img/bg.jpg);
+				background-size: 100% 100%;
+				position: relative;
+				overflow: hidden;
+				margin: 0 auto;
+			}
+			#head{
+				position: absolute;
+				left: 50px;
+				top: 90px;
+				animation: headMove 1s linear infinite;
+				animation-direction: alternate;
+			}
+			#head span{
+				background: url(img/bird0.png);
+				position: absolute;
+				right: 0;
+				top: 20px;
+				width: 40px;
+				height: 26px;
+				animation: fly 0.5s linear infinite;
+				animation-direction: alternate;
+			}
+			#scoring{
+				position: absolute;
+				left: 48%;
+				top: 40px;
+				z-index: 3;
+			}
+			#menu{
+				position: absolute;
+				left: 37%;
+				top: 60%;
+			}
+			#sliderWrap{
+				width: 9999px;
+				position: absolute;
+				height: 14px;
+				bottom: 9.2%;
+				background: url(img/banner.jpg) repeat-x;
+				animation: sliderMove 3s linear infinite;
+			}
+			#bird{
+				position: absolute;
+				left: 30px;
+				top: 25%;
+				display: none;
+			}
+			#ductWrap{
+				list-style: none;
+			}
+			#ductWrap li{
+				position: absolute;
+				top: 0;
+				width: 62px;
+				height: 100%;
+			}
+			.duct_up{
+				background: url(img/up_mod.png) repeat-y;
+				height: 30%;
+				position: relative;
+			}
+			.duct_up img{
+				position: absolute;
+				bottom: 0;
+			}
+			.duct_down{
+				background: url(img/down_mod.png) repeat-y;
+				height: 45%;
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="head">
+				<img src="img/head.jpg"/>
+				<span></span>
+			</div>
+			<div id="scoring">
+				<img src="img/0.jpg"/>
+			</div>
+			<div id="menu">
+				<img src="img/start.jpg" id="start"/>
+			</div>
+			<div id="sliderWrap"></div>
+			<div id="bird">
+				<img src="img/down_bird0.png"/>
+			</div>
+			<ul id="ductWrap">
+				<!--<li>
+					<div class="duct_up">
+						<img src="img/up_pipe.png"/>
+					</div>
+					<div class="duct_down">
+						<img src="img/down_pipe.png"/>
+					</div>
+				</li>-->
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var start = document.getElementById("start");
+			var menu = document.getElementById("menu");
+			var head = document.getElementById("head");
+			var bird = document.getElementById("bird");
+			var score = document.getElementById("scoring");
+			var oUl = document.getElementById("ductWrap");
+			var scoreNum = 0;
+			bird.imgObj = bird.getElementsByTagName("img")[0];
+			start.onclick = function(){
+				menu.style.display = "none";
+				head.style.display = "none";
+				bird.style.display = "block";
+				bird.speed = 0;
+				bird.move = setInterval(function(){
+					bird.speed += 0.5;
+					if(bird.speed > 0){
+						bird.imgObj.src = "img/down_bird0.png";
+					}else{
+						bird.imgObj.src = "img/up_bird0.png"
+					}
+					if(bird.speed >= 10){
+						bird.speed = 10;
+					}
+					bird.style.top = bird.offsetTop + bird.speed + "px";		
+					var ducts = oUl.getElementsByTagName("div");
+					for(var i = 0;i < ducts.length;i++){
+						if(peng(bird,ducts[i])){
+							alert("gg思密达");
+							clearTimer();
+						}						
+					}
+					if(bird.offsetTop >= 400){
+							alert("gg思密达");
+							clearTimer();
+					}else if(bird.offsetTop <=0){
+						bird.style.top = 0 + "px";
+					}				
+				},30);
+				document.onmousedown = function(ev){
+					bird.speed = -7;
+					var evObj = ev || event;
+					evObj.preventDefault();
+				}
+				
+				//创建水管定时器
+				var createDuct = setInterval(function(){
+					//创建li
+					var ductLi = document.createElement("li");
+					//随机出上部水管的高度
+					var upHeight = rand(15,50);
+					//水管起始的左侧距离
+					ductLi.l = 300;
+					ductLi.innerHTML = '<div class="duct_up" style = "height:' + upHeight + '%">' + '<img src="img/up_pipe.png"/>' + '</div>' + '<div class="duct_down" style = "height:' + (75 - upHeight) + '%">' + '<img src="img/down_pipe.png"/>' 
+					+ '</div>';
+					ductLi.style.left = ductLi.l + "px";
+					oUl.appendChild(ductLi);
+					var add = true;
+					//让柱子动起来
+					ductLi.move = setInterval(function(){
+						ductLi.l -= 2;
+						if(ductLi.l <= -62){
+							clearInterval(ductLi.move);
+							oUl.removeChild(ductLi);
+							return;
+						}else if(ductLi.l <= -32){
+							//鸟离开管了
+							if(add){
+								scoreNum++;
+								//保证一个管的加分只走一次
+								add = false;
+							}			
+						}
+						//改变分数
+						score.innerHTML = "";
+						var strScore = String(scoreNum);
+						for(var i = 0;i < strScore.length;i++){
+							var img = document.createElement("img");
+							img.src = "img/" + strScore[i] + ".jpg";
+							score.appendChild(img);
+						}
+						ductLi.style.left = ductLi.l + "px";
+					},30);					
+				},3000);			
+			}
+			function rand(min,max){
+				return parseInt(Math.random() * (max - min + 1) + min);
+			}
+			function peng(obj1,obj2){
+				var l1 = obj1.offsetLeft;
+				var r1 = l1 + obj1.offsetWidth;
+				var t1 = obj1.offsetTop;
+				var b1 = t1 + obj1.offsetHeight;
+				
+				
+				var l2 = obj2.parentNode.offsetLeft;
+				var r2 = l2 + obj2.offsetWidth;
+				var t2 = obj2.offsetTop;
+				var b2 = t2 + obj2.offsetHeight;
+				
+				if(b1 < t2 || r1 < l2 || t1 > b2 || l1 > r2){
+					return false;
+				}else{
+					return true;
+				}
+				
+				
+			}
+			//清除计时器
+			function clearTimer(){
+				var timer = setTimeout(function(){
+					for(var i = 1;i < timer;i++){
+						clearInterval(i);
+					}
+				},17);
+			}		
+		</script>
+	</body>
+</html>

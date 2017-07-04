@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="txt" id="txt" value="" />
+		<input type="button" id="btn" value="校验" />
+		<script type="text/javascript">
+			/*
+			 	数字字母下划线@一串英文或者数字，一串英文(2-4)
+			 	\w+@[a-z0-9]+\.[a-z]{2,4}
+			 */
+			
+			var txt = document.getElementById("txt");
+			var oBtn = document.getElementById("btn");
+			oBtn.onclick = function(){
+				//^...:以...开头
+				//...$:以...结尾
+				//^...$:配套使用，以...开头并且结尾
+				var re = /^\w+@[a-z0-9]+\.[a-z]{2,4}$/;
+				if(re.test(txt.value)){
+					alert("邮箱是对的");
+				}else{
+					alert("邮箱是错的");
+				}
+			}
+		</script>
+	</body>
+</html>
